@@ -1,6 +1,9 @@
 import React, {useState} from "react";
 import styled from "styled-components";
-import ReactMapGL from "react-map-gl";
+import ReactMapGL, {Marker} from "react-map-gl";
+import {AppState} from "../../../state/allReducers";
+import {useSelector} from "react-redux";
+
 export interface MapProps {}
 interface Viewport {
   longitude: number;
@@ -18,6 +21,8 @@ const Map: React.SFC<MapProps> = () => {
     zoom: 6,
   });
 
+  const events = useSelector((state: AppState) => state.EventsReducer);
+
   return (
     <MapContainer>
       <ReactMapGL
@@ -25,8 +30,21 @@ const Map: React.SFC<MapProps> = () => {
         {...viewport}
         onViewportChange={setViewport}
         mapboxApiAccessToken={process.env.REACT_APP_MAPBOX_TOKEN}
-        onClick={(e) => console.log(e.lngLat)}
-      />
+      >
+        {events.map(({_id, coordinates}) => (
+          <Marker
+            key={_id}
+            latitude={coordinates.latitude}
+            longitude={coordinates.longitude}
+            offsetLeft={-10}
+            offsetTop={-10}
+          >
+            <div
+              style={{width: "20px", height: "20px", backgroundColor: "red"}}
+            ></div>
+          </Marker>
+        ))}
+      </ReactMapGL>
     </MapContainer>
   );
 };

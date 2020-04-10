@@ -1,3 +1,9 @@
 export default interface Event {
-  id: string;
+  _id: number;
+  coordinates: {
+    longitude: number;
+    latitude: number;
+  };
+  createdAt: Date;
+  __v: number;
 }

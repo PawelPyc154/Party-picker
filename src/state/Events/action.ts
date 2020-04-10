@@ -1,8 +1,16 @@
-import {EventsActionTypes, ADD_PRODUCT_TO_BASKET} from "./actionType";
-import Event from "./Event";
+import {EventsActionTypes, GET_EVENTS} from "./actionType";
+import axiosWithBaseURL from "../../utils/axiosWithBaseURL";
+import {ThunkDispatch} from "redux-thunk";
 
-// eslint-disable-next-line import/prefer-default-export
-export const addProductToBasket = (value: Event): EventsActionTypes => ({
-  type: ADD_PRODUCT_TO_BASKET,
-  payload: value,
-});
+export const getEvents = () => async (
+  dispatch: ThunkDispatch<{}, {}, EventsActionTypes>
+) => {
+  try {
+    const res = await axiosWithBaseURL.get("/api/events");
+    console.log(res.data);
+
+    dispatch({type: GET_EVENTS, payload: res.data.data});
+  } catch (err) {
+    console.log("bad request");
+  }
+};
