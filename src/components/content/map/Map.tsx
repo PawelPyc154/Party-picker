@@ -1,10 +1,6 @@
 import React, {useState, useEffect, useRef} from "react";
 import styled from "styled-components";
-import ReactMapGL, {
-  Marker,
-  FullscreenControl,
-  GeolocateControl,
-} from "react-map-gl";
+import ReactMapGL, {Marker, FullscreenControl} from "react-map-gl";
 import {AppState} from "../../../state/allReducers";
 import {useSelector} from "react-redux";
 
@@ -23,7 +19,7 @@ const Map: React.SFC<MapProps> = () => {
     latitude: 52,
     width: "100%",
     height: "100%",
-    zoom: 6,
+    zoom: 5.7,
   });
 
   // Flex map
@@ -41,7 +37,7 @@ const Map: React.SFC<MapProps> = () => {
   return (
     <MapContainer ref={container}>
       <ReactMapGL
-        mapStyle="mapbox://styles/pabloplatyna/ck8kll2tu0cpm1io3t5p29ypq"
+        mapStyle="mapbox://styles/pabloplatyna/ck8ut7ofi1acd1irlfikzj4qd"
         {...viewport}
         onViewportChange={setViewport}
         mapboxApiAccessToken={process.env.REACT_APP_MAPBOX_TOKEN}
