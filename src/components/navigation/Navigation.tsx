@@ -1,5 +1,7 @@
 import React from "react";
 import styled from "styled-components";
+import {Button} from "../../styledComponents";
+import {FaUserAlt} from "react-icons/fa";
 
 export interface NavigationProps {}
 
@@ -7,7 +9,10 @@ const Navigation: React.SFC<NavigationProps> = () => {
   return (
     <NavigationContainer>
       <Logo>LOGO</Logo>
-      <Button>ZALOGUJ SIĘ</Button>
+      <Button>
+        {/* <FaUserAltStyled /> */}
+        ZALOGUJ SIĘ
+      </Button>
     </NavigationContainer>
   );
 };
@@ -22,15 +27,12 @@ const NavigationContainer = styled.div`
   align-items: center;
 `;
 
-const Button = styled.button`
-  background-color: transparent;
-  border: 1px solid #3498db;
-  border-radius: 0;
-  height: 35px;
-  padding: 5px;
-  color: #3498db;
-  margin: 0 20px 0 auto;
-`;
 const Logo = styled.div`
   margin: 0 20px;
+`;
+
+const FaUserAltStyled = styled(FaUserAlt)`
+  font-size: 20px;
+  color: #3498db;
+  margin-right: 7px;
 `;
