@@ -16,6 +16,5 @@ const FiltersContainer = styled.div`
   display: flex;
   align-items: center;
   border: 1px solid #313131;
-
   margin-top: 10px;
 `;

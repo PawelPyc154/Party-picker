@@ -7,7 +7,6 @@ export const getEvents = () => async (
 ) => {
   try {
     const res = await axiosWithBaseURL.get("/api/events");
-    console.log(res.data);
 
     dispatch({type: GET_EVENTS, payload: res.data.data});
   } catch (err) {

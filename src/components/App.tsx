@@ -5,6 +5,7 @@ import Navigation from "./navigation/Navigation";
 import Content from "./content/Content";
 import {useDispatch} from "react-redux";
 import {getEvents} from "../state/events/action";
+import media from "../utils/MediaQueries";
 
 function App() {
   const dispatch = useDispatch();
@@ -25,6 +26,9 @@ export default App;
 
 const AppContainer = styled.div`
   width: 100%;
-  height: 100vh;
+  min-height: 100vh;
   background-color: #181818;
+  ${media.tablet} {
+    height: 100vh;
+  }
 `;

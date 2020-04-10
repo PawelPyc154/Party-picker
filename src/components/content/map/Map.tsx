@@ -1,6 +1,10 @@
-import React, {useState} from "react";
+import React, {useState, useEffect, useRef} from "react";
 import styled from "styled-components";
-import ReactMapGL, {Marker} from "react-map-gl";
+import ReactMapGL, {
+  Marker,
+  FullscreenControl,
+  GeolocateControl,
+} from "react-map-gl";
 import {AppState} from "../../../state/allReducers";
 import {useSelector} from "react-redux";
 
@@ -13,6 +17,7 @@ interface Viewport {
   zoom: number;
 }
 const Map: React.SFC<MapProps> = () => {
+  const container = useRef<HTMLDivElement>(null);
   const [viewport, setViewport] = useState<Viewport>({
     longitude: 19,
     latitude: 52,
@@ -21,16 +26,29 @@ const Map: React.SFC<MapProps> = () => {
     zoom: 6,
   });
 
+  // Flex map
+  useEffect(() => {
+    const handleResize = () =>
+      setViewport((prev) => ({...prev, width: "100%", height: "100%"}));
+    window.addEventListener("resize", handleResize);
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  });
+
   const events = useSelector((state: AppState) => state.EventsReducer);
 
   return (
-    <MapContainer>
+    <MapContainer ref={container}>
       <ReactMapGL
         mapStyle="mapbox://styles/pabloplatyna/ck8kll2tu0cpm1io3t5p29ypq"
         {...viewport}
         onViewportChange={setViewport}
         mapboxApiAccessToken={process.env.REACT_APP_MAPBOX_TOKEN}
       >
+        <FullscreenControlWrapper>
+          <FullscreenControl />
+        </FullscreenControlWrapper>
         {events.map(({_id, coordinates}) => (
           <Marker
             key={_id}
@@ -54,5 +72,9 @@ export default Map;
 const MapContainer = styled.div`
   width: 100%;
   height: 100%;
-  padding: 10px;
+`;
+const FullscreenControlWrapper = styled.div`
+  position: absolute;
+  right: 10px;
+  bottom: 30px;
 `;

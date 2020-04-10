@@ -4,6 +4,8 @@ export default interface Event {
     longitude: number;
     latitude: number;
   };
+  place: string;
+  voivodeship: string;
   createdAt: Date;
   __v: number;
 }
