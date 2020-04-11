@@ -1,21 +1,22 @@
-import React from "react";
+import React, {useContext} from "react";
 import Filters from "./filters/Filters";
 import EventItem from "./eventItem/EventItem";
 import styled from "styled-components";
-import {useSelector} from "react-redux";
-import {AppState} from "../../../state/allReducers";
+
 import media from "../../../utils/MediaQueries";
+import {FilterContext} from "../../context/GetAndFilterEvents";
 
 export interface EventsProps {}
 
 const Events: React.SFC<EventsProps> = () => {
-  const events = useSelector((state: AppState) => state.EventsReducer);
+  // const events = useSelector((state: AppState) => state.EventsReducer);
+  const {eventsFiltered} = useContext(FilterContext);
 
   return (
     <EventsContainer>
       <Filters />
       <EventsList>
-        {events.map((event) => (
+        {eventsFiltered.map((event) => (
           <EventItem key={event._id} event={event} />
         ))}
       </EventsList>
@@ -32,6 +33,10 @@ const EventsContainer = styled.div`
 `;
 const EventsList = styled.div`
   padding-bottom: 10px;
+  min-height: calc(100vh - 55px);
+  ${media.tablet} {
+    min-height: initial;
+  }
   ${media.tablet} {
     margin: 0 5px;
     overflow-y: scroll;

@@ -5,7 +5,15 @@ export default interface Event {
     latitude: number;
   };
   place: string;
-  voivodeship: string;
+  province: string;
   createdAt: Date;
   __v: number;
+  attractions: string[];
+  icone: string;
+  name: string;
+  type: string;
+  time: {
+    start: string;
+    end: string;
+  };
 }

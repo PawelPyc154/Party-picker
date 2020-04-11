@@ -4,15 +4,19 @@ import Map from "./map/Map";
 import Events from "./events/Events";
 import media from "../../utils/MediaQueries";
 
+import GetAndFilterEvent from "../context/GetAndFilterEvents";
+//
+
 export interface ContentProps {}
-console.log(media);
 
 const Content: React.SFC<ContentProps> = () => {
   return (
-    <ContentContainer>
-      <Map />
-      <Events />
-    </ContentContainer>
+    <GetAndFilterEvent>
+      <ContentContainer>
+        <Map />
+        <Events />
+      </ContentContainer>
+    </GetAndFilterEvent>
   );
 };
 

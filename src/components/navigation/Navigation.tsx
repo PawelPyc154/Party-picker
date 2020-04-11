@@ -9,8 +9,8 @@ const Navigation: React.SFC<NavigationProps> = () => {
   return (
     <NavigationContainer>
       <Logo>LOGO</Logo>
-      <Button>
-        {/* <FaUserAltStyled /> */}
+      <Button style={{margin: "0 20px 0 auto"}}>
+        <FaUserAltStyled />
         ZALOGUJ SIĘ
       </Button>
     </NavigationContainer>

@@ -4,9 +4,20 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+}
+
+body {
     color: white;
+    box-sizing: border-box;
 }
 
 .colorPicker {
-    color: rgb(148, 148, 148);
+    color: #3498db77;
+}
+
+input:focus,
+select:focus,
+textarea:focus,
+button:focus {
+    outline: none;
 }

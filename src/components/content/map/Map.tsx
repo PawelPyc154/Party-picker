@@ -3,6 +3,7 @@ import styled from "styled-components";
 import ReactMapGL, {Marker, FullscreenControl} from "react-map-gl";
 import {AppState} from "../../../state/allReducers";
 import {useSelector} from "react-redux";
+import {FaOdnoklassniki} from "react-icons/fa";
 
 export interface MapProps {}
 interface Viewport {
@@ -46,17 +47,18 @@ const Map: React.SFC<MapProps> = () => {
           <FullscreenControl />
         </FullscreenControlWrapper>
         {events.map(({_id, coordinates}) => (
-          <Marker
+          <MarkerStyled
             key={_id}
             latitude={coordinates.latitude}
             longitude={coordinates.longitude}
             offsetLeft={-10}
             offsetTop={-10}
           >
-            <div
-              style={{width: "20px", height: "20px", backgroundColor: "red"}}
-            ></div>
-          </Marker>
+            <MarkerContent className="markerContent">
+              <FaOdnoklassnikiStyled />
+            </MarkerContent>
+            <MarkerInfo className="markerInfo">y</MarkerInfo>
+          </MarkerStyled>
         ))}
       </ReactMapGL>
     </MapContainer>
@@ -73,4 +75,42 @@ const FullscreenControlWrapper = styled.div`
   position: absolute;
   right: 10px;
   bottom: 30px;
+`;
+const MarkerStyled = styled(Marker)`
+  z-index: 0;
+
+  &:hover {
+    z-index: 20;
+  }
+`;
+const MarkerContent = styled.div`
+  width: 40px;
+  height: 40px;
+  background-color: #f1c40f;
+  border-radius: 20px;
+  display: flex;
+  align-items: center;
+
+  &:hover ~ .markerInfo {
+    opacity: 1;
+  }
+`;
+
+const FaOdnoklassnikiStyled = styled(FaOdnoklassniki)`
+  font-size: 30px;
+  color: black;
+  margin-right: 7px;
+  transform: translateX(5px);
+`;
+const MarkerInfo = styled.div`
+  border: 1px solid #3498db;
+  width: 200px;
+  height: 150px;
+  position: absolute;
+  top: -160px;
+  left: -80px;
+  background-color: #181818;
+  pointer-events: none;
+  opacity: 0;
+  z-index: 10000;
 `;
