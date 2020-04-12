@@ -13,7 +13,7 @@ export default interface Event {
   name: string;
   type: string;
   time: {
-    start: string;
-    end: string;
+    start: number;
+    end: number;
   };
 }

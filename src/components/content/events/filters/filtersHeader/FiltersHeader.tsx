@@ -13,28 +13,29 @@ const FiltersHeader: React.SFC<FiltersHeaderProps> = ({
   openFilterOptions,
   handleOpenFilterOptions,
 }) => {
-  const { eventsFiltered, filters, handleChangeFilters } = useContext(FilterContext);
+  const { eventsFiltered, filters, handleChangeFilters, handleChangeDate } = useContext(
+    FilterContext,
+  );
 
   return (
     <>
-      {filters.timeFromTo ? (
-        <Badge onClick={() => handleChangeFilters(filters.name, 'name')}>
-          {filters.timeFromTo[0]}
-          {' - '}
-          {filters.timeFromTo[1]}
-        </Badge>
-      ) : null}
       {filters.name ? (
         <Badge onClick={() => handleChangeFilters(filters.name, 'name')}>
           {filters.name}
           ...
         </Badge>
       ) : null}
+
       {filters.province ? (
         <Badge onClick={() => handleChangeFilters(filters.province, 'province')}>
           {filters.province}
         </Badge>
       ) : null}
+
+      {filters.timeFromTo[0] !== 7 * 24 * 2 || filters.timeFromTo[1] !== 38 * 24 * 2 ? (
+        <Badge onClick={() => handleChangeDate({}, [7 * 24 * 2, 38 * 24 * 2])}>data filter</Badge>
+      ) : null}
+
       {openFilterOptions ? (
         <Count style={{ marginLeft: 'auto' }}>
           Count:

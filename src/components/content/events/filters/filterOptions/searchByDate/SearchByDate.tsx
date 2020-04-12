@@ -1,30 +1,30 @@
-import React, { useContext, ChangeEvent } from 'react';
+import React, { useContext } from 'react';
 import Slider from '@material-ui/core/Slider';
 import { withStyles } from '@material-ui/core';
 import ValueLabelComponent from './ValueLabelComponent';
-import { FilterContext, Filters } from '../../../../../context/GetAndFilterEvents';
+import { FilterContext } from '../../../../../context/GetAndFilterEvents';
 
 export interface SearchByDateProps {}
 
 const SearchByDate: React.SFC<SearchByDateProps> = () => {
-  const { filters, setFilters } = useContext(FilterContext);
-
-  const handleChange = (event: ChangeEvent<{}>, newValue: any) => {
-    setFilters((prev: Filters) => ({ ...prev, timeFromTo: newValue }));
-  };
+  const { filters, handleChangeDate } = useContext(FilterContext);
 
   const marks = [
     {
-      value: Date.now() / (1000 * 60 * 30),
+      value: 8 * 24 * 2,
       label: 'Dzisiaj',
     },
     {
-      value: (Date.now() + 1000 * 60 * 60 * 24 * 7) / (1000 * 60 * 30),
+      value: 15 * 24 * 2,
       label: 'Za tydzień',
     },
     {
-      value: (Date.now() + 1000 * 60 * 60 * 24 * 31) / (1000 * 60 * 30),
+      value: 38 * 24 * 2,
       label: 'Za miesiąc',
+    },
+    {
+      value: 68 * 24 * 2,
+      label: 'Za dwa miesiące',
     },
   ];
 
@@ -32,12 +32,12 @@ const SearchByDate: React.SFC<SearchByDateProps> = () => {
     <SliderStyled
       ValueLabelComponent={ValueLabelComponent}
       value={filters.timeFromTo}
-      onChange={handleChange}
+      onChange={handleChangeDate}
       valueLabelDisplay="auto"
       aria-labelledby="range-slider-steps"
       marks={marks}
-      min={(Date.now() - 1000 * 60 * 60 * 24 * 10) / (1000 * 60 * 30)}
-      max={(Date.now() + 1000 * 60 * 60 * 24 * 60) / (1000 * 60 * 30)}
+      min={0}
+      max={80 * 24 * 2}
     />
   );
 };
