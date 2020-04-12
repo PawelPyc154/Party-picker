@@ -17,6 +17,13 @@ const FiltersHeader: React.SFC<FiltersHeaderProps> = ({
 
   return (
     <>
+      {filters.timeFromTo ? (
+        <Badge onClick={() => handleChangeFilters(filters.name, 'name')}>
+          {filters.timeFromTo[0]}
+          {' - '}
+          {filters.timeFromTo[1]}
+        </Badge>
+      ) : null}
       {filters.name ? (
         <Badge onClick={() => handleChangeFilters(filters.name, 'name')}>
           {filters.name}

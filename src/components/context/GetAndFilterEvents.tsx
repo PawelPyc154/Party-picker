@@ -6,6 +6,7 @@ import Event from '../../state/events/Event';
 export interface Filters {
   name: string;
   province: string;
+  timeFromTo: number[];
 }
 
 export const FilterContext = React.createContext(
@@ -13,7 +14,7 @@ export const FilterContext = React.createContext(
     eventsFiltered: Event[];
     filters: Filters;
     setFilters: React.Dispatch<React.SetStateAction<Filters>>;
-    handleChangeFilters: (value: string, filterProperty: string) => void;
+    handleChangeFilters: (value: string, filterProperty: keyof Filters) => void;
   },
 );
 
@@ -22,9 +23,13 @@ export interface GetAndFilterEventProps {}
 const GetAndFilterEvent: React.SFC<GetAndFilterEventProps> = ({ children }) => {
   const events = useSelector((state: AppState) => state.EventsReducer);
   const [eventsFiltered, setEventsFiltered] = useState(events);
-  const [filters, setFilters] = useState({
+  const [filters, setFilters] = useState<Filters>({
     name: '',
     province: '',
+    timeFromTo: [
+      (Date.now() - 1000 * 60 * 60 * 24 * 1) / (1000 * 60 * 30),
+      (Date.now() + 1000 * 60 * 60 * 24 * 15) / (1000 * 60 * 30),
+    ],
   });
 
   useEffect(() => {
@@ -35,14 +40,18 @@ const GetAndFilterEvent: React.SFC<GetAndFilterEventProps> = ({ children }) => {
     );
   }, [events, filters]);
 
-  const handleChangeFilters = (value: string, filterProperty: string) => {
-    setFilters((prev: any) => {
+  const handleChangeFilters = (
+    value: string | number | number[],
+    filterProperty: keyof Filters,
+  ) => {
+    setFilters((prev: Filters) => {
       if (prev[filterProperty] === value) {
         return { ...prev, [filterProperty]: '' };
       }
       return { ...prev, [filterProperty]: value };
     });
   };
+
   return (
     <FilterContext.Provider
       value={{

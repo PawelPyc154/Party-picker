@@ -21,3 +21,9 @@ textarea:focus,
 button:focus {
     outline: none;
 }
+
+span[data-index="1"]+.MuiSlider-markLabel {
+    @media (max-width: 768px) {
+        transform: translate(-50%, -12px);
+    }
+}
