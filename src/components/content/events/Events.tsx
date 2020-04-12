@@ -1,16 +1,16 @@
-import React, {useContext} from "react";
-import Filters from "./filters/Filters";
-import EventItem from "./eventItem/EventItem";
-import styled from "styled-components";
+import React, { useContext } from 'react';
+import styled from 'styled-components';
+import Filters from './filters/Filters';
+import EventItem from './eventItem/EventItem';
 
-import media from "../../../utils/MediaQueries";
-import {FilterContext} from "../../context/GetAndFilterEvents";
+import media from '../../../utils/MediaQueries';
+import { FilterContext } from '../../context/GetAndFilterEvents';
 
 export interface EventsProps {}
 
 const Events: React.SFC<EventsProps> = () => {
   // const events = useSelector((state: AppState) => state.EventsReducer);
-  const {eventsFiltered} = useContext(FilterContext);
+  const { eventsFiltered } = useContext(FilterContext);
 
   return (
     <EventsContainer>
@@ -31,6 +31,7 @@ const EventsContainer = styled.div`
     order: -1;
   }
 `;
+
 const EventsList = styled.div`
   padding-bottom: 10px;
   min-height: calc(100vh - 55px);

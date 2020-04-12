@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 export const Button = styled.button`
   background-color: transparent;
@@ -12,3 +12,4 @@ export const Button = styled.button`
   align-items: center;
   cursor: pointer;
 `;
+export const Button2 = styled.button``;

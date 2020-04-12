@@ -1,8 +1,8 @@
-import React, {useContext} from "react";
-import {FilterContext} from "../../../../context/GetAndFilterEvents";
-import {Button} from "../../../../../styledComponents";
-import styled from "styled-components";
-import {IoMdOptions} from "react-icons/io";
+import React, { useContext } from 'react';
+import styled from 'styled-components';
+import { IoMdOptions } from 'react-icons/io';
+import { FilterContext } from '../../../../context/GetAndFilterEvents';
+import { Button } from '../../../../../styledComponents';
 
 export interface FiltersHeaderProps {
   openFilterOptions: boolean;
@@ -13,27 +13,25 @@ const FiltersHeader: React.SFC<FiltersHeaderProps> = ({
   openFilterOptions,
   handleOpenFilterOptions,
 }) => {
-  const {eventsFiltered, filters, handleChangeFilters} = useContext(
-    FilterContext
-  );
+  const { eventsFiltered, filters, handleChangeFilters } = useContext(FilterContext);
 
   return (
     <>
       {filters.name ? (
-        <Badge onClick={() => handleChangeFilters(filters.name, "name")}>
-          {filters.name}...
+        <Badge onClick={() => handleChangeFilters(filters.name, 'name')}>
+          {filters.name}
+          ...
         </Badge>
       ) : null}
       {filters.province ? (
-        <Badge
-          onClick={() => handleChangeFilters(filters.province, "province")}
-        >
+        <Badge onClick={() => handleChangeFilters(filters.province, 'province')}>
           {filters.province}
         </Badge>
       ) : null}
       {openFilterOptions ? (
-        <Count style={{marginLeft: "auto"}}>
-          Count:{eventsFiltered.length}
+        <Count style={{ marginLeft: 'auto' }}>
+          Count:
+          {eventsFiltered.length}
         </Count>
       ) : null}
 
@@ -41,11 +39,11 @@ const FiltersHeader: React.SFC<FiltersHeaderProps> = ({
         onClick={() => handleOpenFilterOptions()}
         style={
           openFilterOptions
-            ? {border: "1px solid white", color: "white", margin: "0 5px 0 5px"}
-            : {margin: "0 5px 0 auto"}
+            ? { border: '1px solid white', color: 'white', margin: '0 5px 0 5px' }
+            : { margin: '0 5px 0 auto' }
         }
       >
-        <IoMdOptionsStyled style={openFilterOptions ? {color: "white"} : {}} />
+        <IoMdOptionsStyled style={openFilterOptions ? { color: 'white' } : {}} />
         Filtry
       </Button>
     </>

@@ -1,23 +1,22 @@
-import React from "react";
-import styled from "styled-components";
-import Event from "../../../../state/events/Event";
-import media from "../../../../utils/MediaQueries";
+import React from 'react';
+import styled from 'styled-components';
+import Event from '../../../../state/events/Event';
+import media from '../../../../utils/MediaQueries';
+
 export interface EventItemProps {
   event: Event;
 }
 
-const EventItem: React.SFC<EventItemProps> = ({event}) => {
-  return (
-    <EventItemContainer>
-      <h2>Title</h2>
-      <p>data </p>
-      <p>godzina</p>
-      <p>lokalizacja</p>
-      <p>lista fb</p>
-      <div>nowe</div>
-    </EventItemContainer>
-  );
-};
+const EventItem: React.SFC<EventItemProps> = ({ event }) => (
+  <EventItemContainer>
+    <h2>{event.name}</h2>
+    <p>data </p>
+    <p>godzina</p>
+    <p>lokalizacja</p>
+    <p>lista fb</p>
+    <div>nowe</div>
+  </EventItemContainer>
+);
 
 export default EventItem;
 

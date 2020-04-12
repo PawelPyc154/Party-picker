@@ -1,24 +1,22 @@
-import React from "react";
-import styled from "styled-components";
-import Map from "./map/Map";
-import Events from "./events/Events";
-import media from "../../utils/MediaQueries";
+import React from 'react';
+import styled from 'styled-components';
+import Map from './map/Map';
+import Events from './events/Events';
+import media from '../../utils/MediaQueries';
 
-import GetAndFilterEvent from "../context/GetAndFilterEvents";
+import GetAndFilterEvent from '../context/GetAndFilterEvents';
 //
 
 export interface ContentProps {}
 
-const Content: React.SFC<ContentProps> = () => {
-  return (
-    <GetAndFilterEvent>
-      <ContentContainer>
-        <Map />
-        <Events />
-      </ContentContainer>
-    </GetAndFilterEvent>
-  );
-};
+const Content: React.SFC<ContentProps> = () => (
+  <GetAndFilterEvent>
+    <ContentContainer>
+      <Map />
+      <Events />
+    </ContentContainer>
+  </GetAndFilterEvent>
+);
 
 export default Content;
 

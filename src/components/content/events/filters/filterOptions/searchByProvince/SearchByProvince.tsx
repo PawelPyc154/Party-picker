@@ -1,38 +1,35 @@
-import React, {useContext} from "react";
-import {FilterContext} from "../../../../../context/GetAndFilterEvents";
-import styled from "styled-components";
+import React, { useContext } from 'react';
+import styled from 'styled-components';
+import { FilterContext } from '../../../../../context/GetAndFilterEvents';
+
 export interface SearchByProvinceProps {}
 
 const SearchByProvince: React.SFC<SearchByProvinceProps> = () => {
-  const {filters, handleChangeFilters} = useContext(FilterContext);
+  const { filters, handleChangeFilters } = useContext(FilterContext);
   const provinces = [
-    "dolnośląskie",
-    "kujawsko-pomorskie",
-    "lubuskie",
-    "łódzkie",
-    "małopolskie",
-    "mazowieckie",
-    "opolskie",
-    "podkarpackie",
-    "podlaskie",
-    "pomorskie",
-    "śląskie",
-    "świętokrzyskie",
-    "warmińsko-mazurskie",
-    "wielkopolskie",
-    "zachodniopomorskie",
+    'dolnośląskie',
+    'kujawsko-pomorskie',
+    'lubuskie',
+    'łódzkie',
+    'małopolskie',
+    'mazowieckie',
+    'opolskie',
+    'podkarpackie',
+    'podlaskie',
+    'pomorskie',
+    'śląskie',
+    'świętokrzyskie',
+    'warmińsko-mazurskie',
+    'wielkopolskie',
+    'zachodniopomorskie',
   ];
   return (
     <ProvincesWrapper>
       {provinces.map((province) => (
         <Province
-          onClick={() => handleChangeFilters(province, "province")}
+          onClick={() => handleChangeFilters(province, 'province')}
           key={province}
-          style={
-            province === filters.province
-              ? {border: "1px solid white", color: "white"}
-              : {}
-          }
+          style={province === filters.province ? { border: '1px solid white', color: 'white' } : {}}
         >
           {province}
         </Province>

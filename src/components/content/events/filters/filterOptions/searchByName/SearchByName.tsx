@@ -1,17 +1,17 @@
-import React, {useContext} from "react";
-import {FilterContext} from "../../../../../context/GetAndFilterEvents";
-import styled from "styled-components";
+import React, { useContext } from 'react';
+import styled from 'styled-components';
+import { FilterContext } from '../../../../../context/GetAndFilterEvents';
 
 export interface SearchByNameProps {}
 
 const SearchByName: React.SFC<SearchByNameProps> = () => {
-  const {filters, handleChangeFilters} = useContext(FilterContext);
+  const { filters, handleChangeFilters } = useContext(FilterContext);
 
   return (
     <SearchInput
       placeholder="Nazwa"
       value={filters.name}
-      onChange={(e) => handleChangeFilters(e.target.value, "name")}
+      onChange={(e) => handleChangeFilters(e.target.value, 'name')}
       type="text"
     />
   );

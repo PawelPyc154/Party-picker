@@ -1,5 +1,5 @@
-import {combineReducers} from "redux";
-import EventsReducer from "./events/reducer";
+import { combineReducers } from 'redux';
+import EventsReducer from './events/reducer';
 
 const allReducers = combineReducers({
   EventsReducer,

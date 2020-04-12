@@ -1,9 +1,9 @@
-import React, {useState, useEffect, useRef, useContext} from "react";
-import styled from "styled-components";
-import ReactMapGL, {Marker, FullscreenControl} from "react-map-gl";
+import React, { useState, useEffect, useRef, useContext } from 'react';
+import styled from 'styled-components';
+import ReactMapGL, { Marker, FullscreenControl } from 'react-map-gl';
 
-import {FaOdnoklassniki} from "react-icons/fa";
-import {FilterContext} from "../../context/GetAndFilterEvents";
+import { FaOdnoklassniki } from 'react-icons/fa';
+import { FilterContext } from '../../context/GetAndFilterEvents';
 
 export interface MapProps {}
 interface Viewport {
@@ -13,27 +13,27 @@ interface Viewport {
   height: string | number;
   zoom: number;
 }
+
 const Map: React.SFC<MapProps> = () => {
   const container = useRef<HTMLDivElement>(null);
   const [viewport, setViewport] = useState<Viewport>({
     longitude: 19,
     latitude: 52,
-    width: "100%",
-    height: "100%",
+    width: '100%',
+    height: '100%',
     zoom: 5.7,
   });
 
   // Flex map
   useEffect(() => {
-    const handleResize = () =>
-      setViewport((prev) => ({...prev, width: "100%", height: "100%"}));
-    window.addEventListener("resize", handleResize);
+    const handleResize = () => setViewport((prev) => ({ ...prev, width: '100%', height: '100%' }));
+    window.addEventListener('resize', handleResize);
     return () => {
-      window.removeEventListener("resize", handleResize);
+      window.removeEventListener('resize', handleResize);
     };
   });
 
-  const {eventsFiltered} = useContext(FilterContext);
+  const { eventsFiltered } = useContext(FilterContext);
 
   return (
     <MapContainer ref={container}>
@@ -46,7 +46,7 @@ const Map: React.SFC<MapProps> = () => {
         <FullscreenControlWrapper>
           <FullscreenControl />
         </FullscreenControlWrapper>
-        {eventsFiltered.map(({_id, coordinates}) => (
+        {eventsFiltered.map(({ _id, coordinates }) => (
           <MarkerStyled
             key={_id}
             latitude={coordinates.latitude}

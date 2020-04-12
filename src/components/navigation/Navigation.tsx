@@ -1,21 +1,19 @@
-import React from "react";
-import styled from "styled-components";
-import {Button} from "../../styledComponents";
-import {FaUserAlt} from "react-icons/fa";
+import React from 'react';
+import styled from 'styled-components';
+import { FaUserAlt } from 'react-icons/fa';
+import { Button } from '../../styledComponents';
 
 export interface NavigationProps {}
 
-const Navigation: React.SFC<NavigationProps> = () => {
-  return (
-    <NavigationContainer>
-      <Logo>LOGO</Logo>
-      <Button style={{margin: "0 20px 0 auto"}}>
-        <FaUserAltStyled />
-        ZALOGUJ SIĘ
-      </Button>
-    </NavigationContainer>
-  );
-};
+const Navigation: React.SFC<NavigationProps> = () => (
+  <NavigationContainer>
+    <Logo>LOGO</Logo>
+    <Button style={{ margin: '0 20px 0 auto' }}>
+      <FaUserAltStyled />
+      ZALOGUJ SIĘ
+    </Button>
+  </NavigationContainer>
+);
 
 export default Navigation;
 
