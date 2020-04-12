@@ -9,17 +9,12 @@ const SearchByDate: React.SFC<SearchByDateProps> = () => {
     setValue(newValue);
   };
 
-  function valuetext(value: any) {
-    return `${value}°C`;
-  }
-
   return (
     <Slider
       value={value}
       onChange={handleChange}
       valueLabelDisplay="auto"
       aria-labelledby="range-slider"
-      getAriaValueText={valuetext}
     />
   );
 };

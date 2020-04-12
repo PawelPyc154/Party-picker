@@ -1,7 +1,6 @@
 import React, { useState, useEffect, useRef, useContext } from 'react';
 import styled from 'styled-components';
 import ReactMapGL, { Marker, FullscreenControl } from 'react-map-gl';
-
 import { FaOdnoklassniki } from 'react-icons/fa';
 import { FilterContext } from '../../context/GetAndFilterEvents';
 
