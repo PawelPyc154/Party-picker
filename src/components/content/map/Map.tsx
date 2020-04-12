@@ -1,9 +1,9 @@
-import React, {useState, useEffect, useRef} from "react";
+import React, {useState, useEffect, useRef, useContext} from "react";
 import styled from "styled-components";
 import ReactMapGL, {Marker, FullscreenControl} from "react-map-gl";
-import {AppState} from "../../../state/allReducers";
-import {useSelector} from "react-redux";
+
 import {FaOdnoklassniki} from "react-icons/fa";
+import {FilterContext} from "../../context/GetAndFilterEvents";
 
 export interface MapProps {}
 interface Viewport {
@@ -33,7 +33,7 @@ const Map: React.SFC<MapProps> = () => {
     };
   });
 
-  const events = useSelector((state: AppState) => state.EventsReducer);
+  const {eventsFiltered} = useContext(FilterContext);
 
   return (
     <MapContainer ref={container}>
@@ -46,7 +46,7 @@ const Map: React.SFC<MapProps> = () => {
         <FullscreenControlWrapper>
           <FullscreenControl />
         </FullscreenControlWrapper>
-        {events.map(({_id, coordinates}) => (
+        {eventsFiltered.map(({_id, coordinates}) => (
           <MarkerStyled
             key={_id}
             latitude={coordinates.latitude}
@@ -78,7 +78,6 @@ const FullscreenControlWrapper = styled.div`
 `;
 const MarkerStyled = styled(Marker)`
   z-index: 0;
-
   &:hover {
     z-index: 20;
   }
@@ -90,7 +89,9 @@ const MarkerContent = styled.div`
   border-radius: 20px;
   display: flex;
   align-items: center;
-
+  &:hover {
+    border: 3px solid white;
+  }
   &:hover ~ .markerInfo {
     opacity: 1;
   }
