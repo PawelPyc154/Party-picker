@@ -13,6 +13,7 @@ export const FilterContext = React.createContext(
     eventsFiltered: Event[];
     filters: Filters;
     setFilters: React.Dispatch<React.SetStateAction<Filters>>;
+    handleChangeFilters: (value: string, filterProperty: string) => void;
   }
 );
 
@@ -35,8 +36,19 @@ const GetAndFilterEvent: React.SFC<GetAndFilterEventProps> = ({children}) => {
       )
     );
   }, [events, filters]);
+
+  const handleChangeFilters = (value: string, filterProperty: string) => {
+    setFilters((prev: any) => {
+      if (prev[filterProperty] === value) {
+        return {...prev, [filterProperty]: ""};
+      }
+      return {...prev, [filterProperty]: value};
+    });
+  };
   return (
-    <FilterContext.Provider value={{eventsFiltered, filters, setFilters}}>
+    <FilterContext.Provider
+      value={{eventsFiltered, filters, setFilters, handleChangeFilters}}
+    >
       {children}
     </FilterContext.Provider>
   );
