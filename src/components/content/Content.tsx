@@ -6,7 +6,7 @@ import Map from './map/Map';
 import Events from './pages/home/Home';
 import media from '../../utils/MediaQueries';
 import GetAndFilterEvent from './getAndFilterEvent/GetAndFilterEvents';
-import Loader from './loader/Loader';
+import Loading from './loader/Loading';
 
 const Login = React.lazy(() => import('./pages/login/Login'));
 const Register = React.lazy(() => import('./pages/register/Register'));
@@ -18,7 +18,7 @@ const Content: React.SFC<ContentProps> = () => (
   <GetAndFilterEvent>
     <ContentContainer>
       <Map />
-      <Suspense fallback={<Loader />}>
+      <Suspense fallback={<Loading />}>
         <Switch>
           <Route exact path="/">
             <Events />

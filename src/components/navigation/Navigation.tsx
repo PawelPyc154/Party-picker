@@ -71,6 +71,7 @@ const NavLinkLogInStyled = styled(NavLink)`
   margin: 0 20px 0 auto;
   display: flex;
   align-items: center;
+  font-size: 14px;
   cursor: pointer;
   &:hover {
     border: 1px solid white;
