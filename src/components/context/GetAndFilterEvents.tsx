@@ -51,10 +51,7 @@ const GetAndFilterEvent: React.SFC<GetAndFilterEventProps> = ({ children }) => {
     console.log(events);
   }, [events, filters]);
 
-  const handleChangeFilters = (
-    value: string | number | number[],
-    filterProperty: keyof Filters,
-  ) => {
+  const handleChangeFilters = (value: string, filterProperty: keyof Filters) => {
     setFilters((prev: Filters) => {
       if (prev[filterProperty] === value) {
         return { ...prev, [filterProperty]: '' };
@@ -66,6 +63,7 @@ const GetAndFilterEvent: React.SFC<GetAndFilterEventProps> = ({ children }) => {
   const handleChangeDate = (event: ChangeEvent<{}> | {}, newValue: any) => {
     setFilters((prev: Filters) => ({ ...prev, timeFromTo: newValue }));
   };
+
   return (
     <FilterContext.Provider
       value={{
@@ -73,7 +71,6 @@ const GetAndFilterEvent: React.SFC<GetAndFilterEventProps> = ({ children }) => {
         filters,
         setFilters,
         handleChangeFilters,
-
         handleChangeDate,
       }}
     >
