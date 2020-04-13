@@ -1,7 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
+import { Switch, Route } from 'react-router-dom';
 import Map from './map/Map';
-import Events from './events/Events';
+import Events from './pages/home/Home';
 import media from '../../utils/MediaQueries';
 
 import GetAndFilterEvent from '../context/GetAndFilterEvents';
@@ -13,7 +14,23 @@ const Content: React.SFC<ContentProps> = () => (
   <GetAndFilterEvent>
     <ContentContainer>
       <Map />
-      <Events />
+      <Switch>
+        <Route exact path="/">
+          <Events />
+        </Route>
+        <Route exact path="/login">
+          <Events />
+        </Route>
+        <Route exact path="/register">
+          <Events />
+        </Route>
+        <Route exact path="/add-event">
+          <Events />
+        </Route>
+        <Route path="/contact">
+          <Events />
+        </Route>
+      </Switch>
     </ContentContainer>
   </GetAndFilterEvent>
 );

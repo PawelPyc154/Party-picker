@@ -31,6 +31,6 @@ const Logo = styled.div`
 
 const FaUserAltStyled = styled(FaUserAlt)`
   font-size: 20px;
-  color: #3498db;
+
   margin-right: 7px;
 `;

@@ -11,5 +11,9 @@ export const Button = styled.button`
   display: flex;
   align-items: center;
   cursor: pointer;
+  &:hover {
+    border: 1px solid white;
+    color: white;
+  }
 `;
 export const Button2 = styled.button``;

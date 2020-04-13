@@ -1,10 +1,10 @@
 import { EventsActionTypes, GET_EVENTS } from './actionType';
 
-import Event from './Event';
+import EventType from './EventType';
 
-const initialState: Event[] = [];
+const initialState: EventType[] = [];
 
-const EventsReducer = (state = initialState, action: EventsActionTypes): Event[] => {
+const EventsReducer = (state = initialState, action: EventsActionTypes): EventType[] => {
   switch (action.type) {
     case GET_EVENTS:
       return action.payload;

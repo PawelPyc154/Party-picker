@@ -1,8 +1,8 @@
 import React, { useContext } from 'react';
 import styled from 'styled-components';
 import { IoMdOptions } from 'react-icons/io';
-import { FilterContext } from '../../../../context/GetAndFilterEvents';
-import { Button } from '../../../../../styledComponents';
+import { FilterContext } from '../../../../../context/GetAndFilterEvents';
+import { Button } from '../../../../../../styledComponents';
 
 export interface FiltersHeaderProps {
   openFilterOptions: boolean;
@@ -62,7 +62,6 @@ export default FiltersHeader;
 
 const IoMdOptionsStyled = styled(IoMdOptions)`
   font-size: 20px;
-  color: #3498db;
   margin-right: 7px;
 `;
 
@@ -86,7 +85,7 @@ const Badge = styled.button`
 const Count = styled.div`
   height: 35px;
   padding: 5px;
-  color: #3498db;
+  color: white;
   margin: 0 5px;
   display: flex;
   align-items: center;

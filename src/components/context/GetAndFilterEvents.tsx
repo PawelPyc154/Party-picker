@@ -1,7 +1,7 @@
 import React, { useState, useEffect, ChangeEvent } from 'react';
 import { useSelector } from 'react-redux';
 import { AppState } from '../../state/allReducers';
-import Event from '../../state/events/Event';
+import EventType from '../../state/events/EventType';
 
 export interface Filters {
   name: string;
@@ -11,7 +11,7 @@ export interface Filters {
 
 export const FilterContext = React.createContext(
   {} as {
-    eventsFiltered: Event[];
+    eventsFiltered: EventType[];
     filters: Filters;
     setFilters: React.Dispatch<React.SetStateAction<Filters>>;
     handleChangeFilters: (value: string, filterProperty: keyof Filters) => void;

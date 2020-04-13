@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 import styled from 'styled-components';
-import { FilterContext } from '../../../../../context/GetAndFilterEvents';
+import { FilterContext } from '../../../../../../context/GetAndFilterEvents';
 
 export interface SearchByProvinceProps {}
 
@@ -60,4 +60,8 @@ const Province = styled.button`
   align-items: center;
   letter-spacing: 1px;
   cursor: pointer;
+  &:hover {
+    border: 1px solid white;
+    color: white;
+  }
 `;

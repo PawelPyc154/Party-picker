@@ -1,38 +1,38 @@
 import React, { useContext } from 'react';
 import styled from 'styled-components';
 import Filters from './filters/Filters';
-import EventItem from './eventItem/EventItem';
+import Event from './event/Event';
 
-import media from '../../../utils/MediaQueries';
-import { FilterContext } from '../../context/GetAndFilterEvents';
+import media from '../../../../utils/MediaQueries';
+import { FilterContext } from '../../../context/GetAndFilterEvents';
 
-export interface EventsProps {}
+export interface HomeProps {}
 
-const Events: React.SFC<EventsProps> = () => {
+const Home: React.SFC<HomeProps> = () => {
   // const events = useSelector((state: AppState) => state.EventsReducer);
   const { eventsFiltered } = useContext(FilterContext);
 
   return (
-    <EventsContainer>
+    <HomeContainer>
       <Filters />
-      <EventsList>
+      <Events>
         {eventsFiltered.map((event) => (
-          <EventItem key={event._id} event={event} />
+          <Event key={event._id} event={event} />
         ))}
-      </EventsList>
-    </EventsContainer>
+      </Events>
+    </HomeContainer>
   );
 };
 
-export default Events;
+export default Home;
 
-const EventsContainer = styled.div`
+const HomeContainer = styled.div`
   ${media.tablet} {
     order: -1;
   }
 `;
 
-const EventsList = styled.div`
+const Events = styled.div`
   padding-bottom: 10px;
   min-height: calc(100vh - 55px);
   ${media.tablet} {

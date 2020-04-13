@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import styled from 'styled-components';
 
 import { useDispatch } from 'react-redux';
+import { BrowserRouter as Router } from 'react-router-dom';
 import Navigation from './navigation/Navigation';
 import Content from './content/Content';
 import { getEvents } from '../state/events/action';
@@ -15,10 +16,12 @@ function App() {
   }, [dispatch]);
 
   return (
-    <AppContainer>
-      <Navigation />
-      <Content />
-    </AppContainer>
+    <Router>
+      <AppContainer>
+        <Navigation />
+        <Content />
+      </AppContainer>
+    </Router>
   );
 }
 

@@ -1,4 +1,4 @@
-export default interface Event {
+export default interface EventType {
   _id: number;
   coordinates: {
     longitude: number;

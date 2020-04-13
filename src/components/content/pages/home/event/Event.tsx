@@ -1,27 +1,27 @@
 import React from 'react';
 import styled from 'styled-components';
-import Event from '../../../../state/events/Event';
-import media from '../../../../utils/MediaQueries';
-import getDate from '../../../../utils/getDate';
+import EventType from '../../../../../state/events/EventType';
+import media from '../../../../../utils/MediaQueries';
+import getDate from '../../../../../utils/getDate';
 
-export interface EventItemProps {
-  event: Event;
+export interface EventProps {
+  event: EventType;
 }
 
-const EventItem: React.SFC<EventItemProps> = ({ event }) => (
-  <EventItemContainer>
+const Event: React.SFC<EventProps> = ({ event }) => (
+  <EventContainer>
     <h2>{event.name}</h2>
     <p>{getDate(event.time.start)}</p>
     <p>{getDate(event.time.end)}</p>
     <p>lokalizacja</p>
     <p>lista fb</p>
     <div>nowe</div>
-  </EventItemContainer>
+  </EventContainer>
 );
 
-export default EventItem;
+export default Event;
 
-const EventItemContainer = styled.div`
+const EventContainer = styled.div`
   height: 120px;
   border-bottom: 1px solid #3498db;
   border-top: 1px solid #3498db;

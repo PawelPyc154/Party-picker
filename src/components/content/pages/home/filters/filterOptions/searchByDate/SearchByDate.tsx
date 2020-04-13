@@ -2,7 +2,7 @@ import React, { useContext } from 'react';
 import Slider from '@material-ui/core/Slider';
 import { withStyles } from '@material-ui/core';
 import ValueLabelComponent from './ValueLabelComponent';
-import { FilterContext } from '../../../../../context/GetAndFilterEvents';
+import { FilterContext } from '../../../../../../context/GetAndFilterEvents';
 
 export interface SearchByDateProps {}
 

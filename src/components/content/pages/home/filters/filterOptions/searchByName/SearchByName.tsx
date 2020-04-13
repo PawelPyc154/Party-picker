@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 import styled from 'styled-components';
-import { FilterContext } from '../../../../../context/GetAndFilterEvents';
+import { FilterContext } from '../../../../../../context/GetAndFilterEvents';
 
 export interface SearchByNameProps {}
 
@@ -23,9 +23,12 @@ const SearchInput = styled.input`
   background-color: #181818;
   color: #3498db;
   border: 1px solid #3498db;
-
   height: 35px;
   font-size: 20px;
   width: 100%;
   padding: 5px;
+  &:hover,
+  &:focus {
+    border: 1px solid white;
+  }
 `;
