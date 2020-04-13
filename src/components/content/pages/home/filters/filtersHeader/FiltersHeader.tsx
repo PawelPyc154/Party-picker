@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 import styled from 'styled-components';
 import { IoMdOptions } from 'react-icons/io';
-import { FilterContext } from '../../../../../context/GetAndFilterEvents';
+import { FilterContext } from '../../../../getAndFilterEvent/GetAndFilterEvents';
 import { Button } from '../../../../../../styledComponents';
 
 export interface FiltersHeaderProps {

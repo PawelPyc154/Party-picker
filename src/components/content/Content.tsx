@@ -1,11 +1,12 @@
 import React, { Suspense } from 'react';
 import styled from 'styled-components';
 import { Switch, Route } from 'react-router-dom';
+
 import Map from './map/Map';
 import Events from './pages/home/Home';
 import media from '../../utils/MediaQueries';
-
-import GetAndFilterEvent from '../context/GetAndFilterEvents';
+import GetAndFilterEvent from './getAndFilterEvent/GetAndFilterEvents';
+import Loader from './loader/Loader';
 
 const Login = React.lazy(() => import('./pages/login/Login'));
 const Register = React.lazy(() => import('./pages/register/Register'));
@@ -17,7 +18,7 @@ const Content: React.SFC<ContentProps> = () => (
   <GetAndFilterEvent>
     <ContentContainer>
       <Map />
-      <Suspense fallback={<div>Wczytywanie...</div>}>
+      <Suspense fallback={<Loader />}>
         <Switch>
           <Route exact path="/">
             <Events />

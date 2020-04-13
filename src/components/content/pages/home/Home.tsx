@@ -4,12 +4,11 @@ import Filters from './filters/Filters';
 import Event from './event/Event';
 
 import media from '../../../../utils/MediaQueries';
-import { FilterContext } from '../../../context/GetAndFilterEvents';
+import { FilterContext } from '../../getAndFilterEvent/GetAndFilterEvents';
 
 export interface HomeProps {}
 
 const Home: React.SFC<HomeProps> = () => {
-  // const events = useSelector((state: AppState) => state.EventsReducer);
   const { eventsFiltered } = useContext(FilterContext);
 
   return (
