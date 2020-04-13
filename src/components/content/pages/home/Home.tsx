@@ -26,11 +26,7 @@ const Home: React.SFC<HomeProps> = () => {
 
 export default Home;
 
-const HomeContainer = styled.div`
-  ${media.tablet} {
-    order: -1;
-  }
-`;
+const HomeContainer = styled.div``;
 
 const Events = styled.div`
   padding-bottom: 10px;

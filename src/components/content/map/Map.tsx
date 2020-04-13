@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import ReactMapGL, { Marker, FullscreenControl } from 'react-map-gl';
 import { FaOdnoklassniki } from 'react-icons/fa';
 import { FilterContext } from '../../context/GetAndFilterEvents';
+import media from '../../../utils/MediaQueries';
 
 export interface MapProps {}
 interface Viewport {
@@ -69,6 +70,9 @@ export default Map;
 const MapContainer = styled.div`
   width: 100%;
   height: 100%;
+  ${media.tablet} {
+    order: 1;
+  }
 `;
 const FullscreenControlWrapper = styled.div`
   position: absolute;
