@@ -40,7 +40,7 @@ const Contact: React.SFC<ContactProps> = () => {
         setAnimateVariant('visible');
       }, 1400);
     } catch (err) {
-      console.log(err);
+      Error(err);
     }
   };
 

@@ -12,6 +12,7 @@ export default interface EventType {
   icone: string;
   name: string;
   type: string;
+  fbList: boolean;
   time: {
     start: number;
     end: number;

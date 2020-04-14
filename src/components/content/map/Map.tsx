@@ -4,6 +4,7 @@ import ReactMapGL, { Marker, FullscreenControl } from 'react-map-gl';
 import { FaOdnoklassniki } from 'react-icons/fa';
 import { FilterContext } from '../getAndFilterEvent/GetAndFilterEvents';
 import media from '../../../utils/MediaQueries';
+import EventContent from '../pages/home/event/eventContent/EventContent';
 
 export interface MapProps {}
 interface Viewport {
@@ -46,18 +47,20 @@ const Map: React.SFC<MapProps> = () => {
         <FullscreenControlWrapper>
           <FullscreenControl />
         </FullscreenControlWrapper>
-        {eventsFiltered.map(({ _id, coordinates }) => (
+        {eventsFiltered.map((event) => (
           <MarkerStyled
-            key={_id}
-            latitude={coordinates.latitude}
-            longitude={coordinates.longitude}
-            offsetLeft={-10}
-            offsetTop={-10}
+            key={event._id}
+            latitude={event.coordinates.latitude}
+            longitude={event.coordinates.longitude}
+            offsetLeft={-20}
+            offsetTop={-20}
           >
             <MarkerContent className="markerContent">
               <FaOdnoklassnikiStyled />
             </MarkerContent>
-            <MarkerInfo className="markerInfo">y</MarkerInfo>
+            <MarkerInfo className="markerInfo">
+              <EventContent event={event} />
+            </MarkerInfo>
           </MarkerStyled>
         ))}
       </ReactMapGL>
@@ -92,6 +95,7 @@ const MarkerContent = styled.div`
   border-radius: 20px;
   display: flex;
   align-items: center;
+  justify-content: center;
   &:hover {
     border: 3px solid white;
   }
@@ -103,11 +107,11 @@ const MarkerContent = styled.div`
 const FaOdnoklassnikiStyled = styled(FaOdnoklassniki)`
   font-size: 30px;
   color: black;
-  margin-right: 7px;
-  transform: translateX(5px);
+
+  /* transform: translateX(5px); */
 `;
 const MarkerInfo = styled.div`
-  border: 1px solid #3498db;
+  /* border: 1px solid #3498db; */
   width: 200px;
   height: 150px;
   position: absolute;
@@ -116,5 +120,11 @@ const MarkerInfo = styled.div`
   background-color: #181818;
   pointer-events: none;
   opacity: 0;
-  z-index: 10000;
+  z-index: 100;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+  border-radius: 15px;
+  overflow: hidden;
 `;

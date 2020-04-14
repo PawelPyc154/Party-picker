@@ -9,7 +9,7 @@ import FiltersHeader from './filtersHeader/FiltersHeader';
 export interface FiltersProps {}
 
 const Filters: React.SFC<FiltersProps> = () => {
-  const [openFilterOptions, setOpenFilterOptions] = useState(true);
+  const [openFilterOptions, setOpenFilterOptions] = useState(false);
 
   // Animation scroll and open filter
   const container = useRef<HTMLDivElement>(null);
@@ -42,4 +42,5 @@ const FiltersContainer = styled.div`
   border: 1px solid #313131;
   margin-top: 10px;
   position: relative;
+  z-index: 100;
 `;

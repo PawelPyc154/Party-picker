@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import { Switch, Route } from 'react-router-dom';
 
 import Map from './map/Map';
-import Events from './pages/home/Home';
+import Home from './pages/home/Home';
 import media from '../../utils/MediaQueries';
 import GetAndFilterEvent from './getAndFilterEvent/GetAndFilterEvents';
 import Loading from './loader/Loading';
@@ -21,7 +21,7 @@ const Content: React.SFC<ContentProps> = () => (
       <Suspense fallback={<Loading />}>
         <Switch>
           <Route exact path="/">
-            <Events />
+            <Home />
           </Route>
           <Route exact path="/login">
             <Login />
@@ -30,7 +30,7 @@ const Content: React.SFC<ContentProps> = () => (
             <Register />
           </Route>
           <Route exact path="/add-event">
-            <Events />
+            <Home />
           </Route>
           <Route path="/contact">
             <Contact />
@@ -47,7 +47,8 @@ const ContentContainer = styled.div`
   display: grid;
   grid-template-columns: 1fr;
   grid-template-rows: 50vh auto;
-  margin: 15px 10px 0px 5px;
+  margin: 15px 6px 0px 5px;
+
   ${media.tablet} {
     grid-template-columns: repeat(2, 1fr);
     grid-template-rows: calc(100vh - 50px);

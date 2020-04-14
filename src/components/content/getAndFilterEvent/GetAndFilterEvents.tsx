@@ -16,18 +16,20 @@ export const FilterContext = React.createContext(
     setFilters: React.Dispatch<React.SetStateAction<Filters>>;
     handleChangeFilters: (value: string, filterProperty: keyof Filters) => void;
     handleChangeDate: (event: ChangeEvent<{}> | {}, newValue: any) => void;
+    initialTimeFromTo: number[];
   },
 );
 
 export interface GetAndFilterEventProps {}
 
 const GetAndFilterEvent: React.SFC<GetAndFilterEventProps> = ({ children }) => {
+  const initialTimeFromTo = [7 * 24 * 2, 38 * 24 * 2];
   const events = useSelector((state: AppState) => state.EventsReducer);
   const [eventsFiltered, setEventsFiltered] = useState(events);
   const [filters, setFilters] = useState<Filters>({
     name: '',
     province: '',
-    timeFromTo: [7 * 24 * 2, 38 * 24 * 2],
+    timeFromTo: initialTimeFromTo,
   });
 
   useEffect(() => {
@@ -48,7 +50,6 @@ const GetAndFilterEvent: React.SFC<GetAndFilterEventProps> = ({ children }) => {
         );
       }),
     );
-    console.log(events);
   }, [events, filters]);
 
   const handleChangeFilters = (value: string, filterProperty: keyof Filters) => {
@@ -68,10 +69,12 @@ const GetAndFilterEvent: React.SFC<GetAndFilterEventProps> = ({ children }) => {
     <FilterContext.Provider
       value={{
         eventsFiltered,
+
         filters,
         setFilters,
         handleChangeFilters,
         handleChangeDate,
+        initialTimeFromTo,
       }}
     >
       {children}
