@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, Dispatch, SetStateAction } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Formik, Form } from 'formik';
 import * as yup from 'yup';
@@ -10,12 +10,19 @@ import { setLogin, clearError } from '../../../../../state/auth/action';
 import { AppState } from '../../../../../state/allReducers';
 import Loading from '../../../loader/Loading';
 
-export interface LoginPropsProps {}
+export interface LoginPropsProps {
+  errorServerVisibleOn: string;
+  setErrorServerVisibleOn: Dispatch<SetStateAction<string>>;
+}
 
-const LoginProps: React.SFC<LoginPropsProps> = () => {
+const LoginProps: React.SFC<LoginPropsProps> = ({
+  errorServerVisibleOn,
+  setErrorServerVisibleOn,
+}) => {
   const dispatch = useDispatch();
+
   const { error } = useSelector((state: AppState) => state.AuthReducer);
-  const [errorServerVisible, setErrorServerVisible] = useState(false);
+
   const [animationStop, setAnimationStop] = useState(false);
 
   const validationSchema = yup.object({
@@ -42,7 +49,7 @@ const LoginProps: React.SFC<LoginPropsProps> = () => {
         }}
         onSubmit={async ({ email, password }, { setSubmitting }) => {
           setSubmitting(true);
-          setErrorServerVisible(true);
+          setErrorServerVisibleOn('login');
           setAnimationStop(true);
           try {
             await dispatch(setLogin(email, password));
@@ -67,7 +74,7 @@ const LoginProps: React.SFC<LoginPropsProps> = () => {
               {errors.email && touched.email ? (
                 <Validation>{errors.email}</Validation>
               ) : (
-                errorServerVisible &&
+                errorServerVisibleOn === 'login' &&
                 typeof error !== 'string' &&
                 error?.email && <Validation>{error.email}</Validation>
               )}
@@ -88,7 +95,7 @@ const LoginProps: React.SFC<LoginPropsProps> = () => {
               {errors.password && touched.password ? (
                 <Validation>{errors.password}</Validation>
               ) : (
-                errorServerVisible &&
+                errorServerVisibleOn === 'login' &&
                 typeof error !== 'string' &&
                 error?.password && <Validation>{error.password}</Validation>
               )}

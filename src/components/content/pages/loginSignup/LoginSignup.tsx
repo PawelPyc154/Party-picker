@@ -1,4 +1,4 @@
-import React, { useRef, useEffect } from 'react';
+import React, { useRef, useEffect, useState } from 'react';
 import styled from 'styled-components';
 import Scroll from 'react-scroll';
 import Login from './login/Login';
@@ -11,6 +11,8 @@ import { AppState } from '../../../../state/allReducers';
 export interface LoginSignupProps {}
 
 const LoginSignup: React.SFC<LoginSignupProps> = () => {
+  const [errorServerVisibleOn, setErrorServerVisibleOn] = useState('');
+
   // Scroll animation
   const container = useRef<HTMLDivElement>(null);
   useEffect(() => {
@@ -24,6 +26,7 @@ const LoginSignup: React.SFC<LoginSignupProps> = () => {
       history.push('/');
     }
   }, [user, history]);
+
   return (
     // const reqTest = async () => {
     //   const res = await axiosWithBaseURL.get('/auth/facebook');
@@ -35,8 +38,14 @@ const LoginSignup: React.SFC<LoginSignupProps> = () => {
         fb
       </button> */}
       <FbAndGoogle />
-      <Login />
-      <Signup />
+      <Login
+        errorServerVisibleOn={errorServerVisibleOn}
+        setErrorServerVisibleOn={setErrorServerVisibleOn}
+      />
+      <Signup
+        errorServerVisibleOn={errorServerVisibleOn}
+        setErrorServerVisibleOn={setErrorServerVisibleOn}
+      />
     </LoginSignupContainer>
   );
 };

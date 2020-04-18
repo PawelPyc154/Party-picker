@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, Dispatch, SetStateAction } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Formik, Form } from 'formik';
 import * as yup from 'yup';
@@ -9,12 +9,15 @@ import { setRegister, clearError } from '../../../../../state/auth/action';
 import { AppState } from '../../../../../state/allReducers';
 import Loading from '../../../loader/Loading';
 
-export interface SignupProps {}
+export interface SignupProps {
+  errorServerVisibleOn: string;
+  setErrorServerVisibleOn: Dispatch<SetStateAction<string>>;
+}
 
-const Signup: React.SFC<SignupProps> = () => {
+const Signup: React.SFC<SignupProps> = ({ errorServerVisibleOn, setErrorServerVisibleOn }) => {
   const dispatch = useDispatch();
   const { error } = useSelector((state: AppState) => state.AuthReducer);
-  const [errorServerVisible, setErrorServerVisible] = useState(false);
+
   const [animationStop, setAnimationStop] = useState(false);
 
   const validationSchema = yup.object({
@@ -48,7 +51,7 @@ const Signup: React.SFC<SignupProps> = () => {
         }}
         onSubmit={async ({ name, email, password }, { setSubmitting }) => {
           setSubmitting(true);
-          setErrorServerVisible(true);
+          setErrorServerVisibleOn('signup');
           setAnimationStop(true);
           try {
             await dispatch(setRegister(name, email, password));
@@ -59,7 +62,7 @@ const Signup: React.SFC<SignupProps> = () => {
       >
         {({ values, errors, touched, handleChange, handleBlur, isSubmitting, isValid }) =>
           isSubmitting ? (
-            <Loading height={188} width={80} />
+            <Loading height={360} width={80} />
           ) : (
             <FromStyled>
               <Header
@@ -72,7 +75,7 @@ const Signup: React.SFC<SignupProps> = () => {
               {errors.name && touched.name ? (
                 <Validation>{errors.name}</Validation>
               ) : (
-                errorServerVisible &&
+                errorServerVisibleOn === 'signup' &&
                 typeof error !== 'string' &&
                 error?.name && <Validation>{error.name}</Validation>
               )}
@@ -92,7 +95,7 @@ const Signup: React.SFC<SignupProps> = () => {
               {errors.email && touched.email ? (
                 <Validation>{errors.email}</Validation>
               ) : (
-                errorServerVisible &&
+                errorServerVisibleOn === 'signup' &&
                 typeof error !== 'string' &&
                 error?.email && <Validation>{error.email}</Validation>
               )}
@@ -112,7 +115,7 @@ const Signup: React.SFC<SignupProps> = () => {
               {errors.password && touched.password ? (
                 <Validation>{errors.password}</Validation>
               ) : (
-                errorServerVisible &&
+                errorServerVisibleOn === 'signup' &&
                 typeof error !== 'string' &&
                 error?.password && <Validation>{error.password}</Validation>
               )}
