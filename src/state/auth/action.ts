@@ -14,7 +14,6 @@ const asyncHandlerError = (fn: (dispatch: ThunkDispatch<{}, {}, AuthActionTypes>
   dispatch: ThunkDispatch<{}, {}, AuthActionTypes>,
 ) =>
   Promise.resolve(fn(dispatch)).catch((err) => {
-    console.log(err);
     dispatch({
       type: AUTH_ERROR,
       payload: err.response?.data.error,
@@ -24,7 +23,6 @@ const asyncHandlerError = (fn: (dispatch: ThunkDispatch<{}, {}, AuthActionTypes>
 export const loadUser = () =>
   asyncHandlerError(async (dispatch: Dispatch<AuthActionTypes>) => {
     const res = await axiosWithConfig.get('/auth/me');
-    console.log(res.data.data);
     dispatch({
       type: USER_LOADED,
       payload: { ...res.data.data },

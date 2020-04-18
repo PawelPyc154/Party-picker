@@ -9,7 +9,6 @@ import GetAndFilterEvent from './getAndFilterEvent/GetAndFilterEvents';
 import Loading from './loader/Loading';
 
 const LoginSignup = React.lazy(() => import('./pages/loginSignup/LoginSignup'));
-
 const Contact = React.lazy(() => import('./pages/contact/Contact'));
 
 export interface ContentProps {}
@@ -45,11 +44,9 @@ const ContentContainer = styled.div`
   grid-template-columns: 1fr;
   grid-template-rows: 50vh auto;
   margin: 50px 6px 0px 5px;
-
   ${media.tablet} {
     grid-template-columns: repeat(2, 1fr);
     grid-template-rows: calc(100vh - 50px);
-
     margin: 0;
     padding-top: 50px;
   }
