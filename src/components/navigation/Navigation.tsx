@@ -2,26 +2,37 @@ import React from 'react';
 import styled from 'styled-components';
 import { FaUserAlt } from 'react-icons/fa';
 import { NavLink } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { setLogOut } from '../../state/auth/action';
 
 export interface NavigationProps {}
 
-const Navigation: React.SFC<NavigationProps> = () => (
-  <NavigationContainer>
-    <Logo>LOGO</Logo>
-    <NavLinkContainer>
-      <NavLinkStyled exact to="/" activeClassName="activeLink">
-        home
-      </NavLinkStyled>
-      <NavLinkStyled exact to="/contact" activeClassName="activeLink">
-        kontakt
-      </NavLinkStyled>
-    </NavLinkContainer>
-    <NavLinkLogInStyled exact to="/login-signup" activeClassName="activeLinkLogIn">
-      <FaUserAltStyled />
-      ZALOGUJ SIĘ
-    </NavLinkLogInStyled>
-  </NavigationContainer>
-);
+const Navigation: React.SFC<NavigationProps> = () => {
+  const dispatch = useDispatch();
+  const handleLogout = () => {
+    dispatch(setLogOut());
+  };
+  return (
+    <NavigationContainer>
+      <Logo>LOGO</Logo>
+      <NavLinkContainer>
+        <NavLinkStyled exact to="/" activeClassName="activeLink">
+          home
+        </NavLinkStyled>
+        <NavLinkStyled exact to="/contact" activeClassName="activeLink">
+          kontakt
+        </NavLinkStyled>
+      </NavLinkContainer>
+      <button type="button" onClick={handleLogout}>
+        logout
+      </button>
+      <NavLinkLogInStyled exact to="/login-signup" activeClassName="activeLinkLogIn">
+        <FaUserAltStyled />
+        ZALOGUJ SIĘ
+      </NavLinkLogInStyled>
+    </NavigationContainer>
+  );
+};
 export default Navigation;
 
 const NavigationContainer = styled.div`

@@ -4,7 +4,9 @@ import Scroll from 'react-scroll';
 import Login from './login/Login';
 import Signup from './signup/Signup';
 import FbAndGoogle from './fbAndGoogle/FbAndGoogle';
-// import axiosWithBaseURL from '../../../../utils/axiosWithBaseURL';
+import { useHistory } from 'react-router-dom';
+import { useSelector } from 'react-redux';
+import { AppState } from '../../../../state/allReducers';
 
 export interface LoginSignupProps {}
 
@@ -14,6 +16,14 @@ const LoginSignup: React.SFC<LoginSignupProps> = () => {
   useEffect(() => {
     Scroll.animateScroll.scrollTo(container.current ? container.current.offsetTop - 5 : 0);
   }, []);
+
+  const history = useHistory();
+  const { user } = useSelector((state: AppState) => state.AuthReducer);
+  useEffect(() => {
+    if (user) {
+      history.push('/');
+    }
+  }, [user, history]);
   return (
     // const reqTest = async () => {
     //   const res = await axiosWithBaseURL.get('/auth/facebook');

@@ -8,6 +8,7 @@ import {
   LOGIN_SUCCESS,
   AuthActionTypes,
   CLEAR_ERROR,
+  LOGOUT,
 } from './actionsType';
 import axiosWithConfig from '../../utils/axiosWithConfig';
 
@@ -24,8 +25,6 @@ const asyncHandlerError = (fn: (dispatch: ThunkDispatch<{}, {}, AuthActionTypes>
 export const loadUser = () =>
   asyncHandlerError(async (dispatch: Dispatch<AuthActionTypes>) => {
     const res = await axiosWithConfig.get('/auth/me');
-    console.log(res.data.data);
-
     dispatch({
       type: USER_LOADED,
       payload: { ...res.data.data },
@@ -65,7 +64,7 @@ export const setLogOut = () =>
   asyncHandlerError(async (dispatch: ThunkDispatch<{}, {}, AuthActionTypes>) => {
     const res = await axiosWithConfig.post('/auth/logout');
     dispatch({
-      type: LOGIN_SUCCESS,
+      type: LOGOUT,
       payload: res.data,
     });
   });

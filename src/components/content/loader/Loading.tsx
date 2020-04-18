@@ -3,11 +3,14 @@ import Loader from 'react-loader-spinner';
 
 import styled from 'styled-components';
 
-export interface LoadingProps {}
+export interface LoadingProps {
+  height?: number;
+  width?: number;
+}
 
-const Loading: React.SFC<LoadingProps> = () => (
+const Loading: React.SFC<LoadingProps> = ({ height = 80, width = 80 }) => (
   <Container>
-    <Loader type="Audio" color="#3498db" height={80} width={80} />
+    <Loader type="Audio" color="#3498db" height={height} width={width} />
   </Container>
 );
 
