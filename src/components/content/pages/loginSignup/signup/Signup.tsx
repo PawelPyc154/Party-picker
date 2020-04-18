@@ -1,10 +1,10 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Formik, Form } from 'formik';
 import * as yup from 'yup';
 import { motion } from 'framer-motion';
 import styled from 'styled-components';
-
+import { useHistory } from 'react-router-dom';
 import media from '../../../../../utils/MediaQueries';
 import { setRegister, clearError } from '../../../../../state/auth/action';
 import { AppState } from '../../../../../state/allReducers';
@@ -13,7 +13,10 @@ export interface SignupProps {}
 
 const Signup: React.SFC<SignupProps> = () => {
   const dispatch = useDispatch();
+  const history = useHistory();
   const { error } = useSelector((state: AppState) => state.AuthReducer);
+
+  const [errorServerVisible, setErrorServerVisible] = useState(false);
 
   const validationSchema = yup.object({
     name: yup.string().required('Required'),
@@ -45,11 +48,15 @@ const Signup: React.SFC<SignupProps> = () => {
         }}
         onSubmit={async ({ name, email, password }, { setSubmitting, resetForm }) => {
           await setSubmitting(true);
+          await setErrorServerVisible(true);
           await dispatch(setRegister(name, email, password));
-          if (!error) {
+          if (error !== null) {
             await resetForm();
+            await setSubmitting(false);
+            await history.push('/');
+          } else {
+            await setSubmitting(false);
           }
-          await setSubmitting(false);
         }}
       >
         {({ values, errors, touched, handleChange, handleBlur, isSubmitting, isValid }) => (
@@ -64,13 +71,15 @@ const Signup: React.SFC<SignupProps> = () => {
             {errors.name && touched.name ? (
               <Validation>{errors.name}</Validation>
             ) : (
-              typeof error !== 'string' && error?.name && <Validation>{error.name}</Validation>
+              errorServerVisible &&
+              typeof error !== 'string' &&
+              error?.name && <Validation>{error.name}</Validation>
             )}
             <Input
               autoComplete="off"
               style={errors.name && touched.name ? { border: '1px solid #e74c3c' } : {}}
-              type="email"
-              name="email"
+              type="name"
+              name="name"
               onChange={(e) => handleChangeClearError(e, handleChange)}
               onBlur={handleBlur}
               value={values.name}
@@ -82,7 +91,9 @@ const Signup: React.SFC<SignupProps> = () => {
             {errors.email && touched.email ? (
               <Validation>{errors.email}</Validation>
             ) : (
-              typeof error !== 'string' && error?.email && <Validation>{error.email}</Validation>
+              errorServerVisible &&
+              typeof error !== 'string' &&
+              error?.email && <Validation>{error.email}</Validation>
             )}
             <Input
               autoComplete="off"
@@ -100,6 +111,7 @@ const Signup: React.SFC<SignupProps> = () => {
             {errors.password && touched.password ? (
               <Validation>{errors.password}</Validation>
             ) : (
+              errorServerVisible &&
               typeof error !== 'string' &&
               error?.password && <Validation>{error.password}</Validation>
             )}

@@ -5,19 +5,26 @@ import { GoogleLogin } from 'react-google-login';
 import styled from 'styled-components';
 
 import { FaFacebookSquare, FaGoogle } from 'react-icons/fa';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { motion } from 'framer-motion';
+import { useHistory } from 'react-router-dom';
 import media from '../../../../../utils/MediaQueries';
 
 import { setLoginRegisterGoogleFb } from '../../../../../state/auth/action';
+import { AppState } from '../../../../../state/allReducers';
 
 export interface FbAndGoogleProps {}
 
 const FbAndGoogle: React.SFC<FbAndGoogleProps> = () => {
   const dispatch = useDispatch();
+  const history = useHistory();
+  const { error } = useSelector((state: AppState) => state.AuthReducer);
 
   const handleResponse = async (res: any, strategy: string) => {
     dispatch(setLoginRegisterGoogleFb(res, strategy));
+    if (!error) {
+      history.push('/');
+    }
   };
 
   return (

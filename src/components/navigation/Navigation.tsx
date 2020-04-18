@@ -16,7 +16,6 @@ const Navigation: React.SFC<NavigationProps> = () => (
         kontakt
       </NavLinkStyled>
     </NavLinkContainer>
-
     <NavLinkLogInStyled exact to="/login-signup" activeClassName="activeLinkLogIn">
       <FaUserAltStyled />
       ZALOGUJ SIĘ

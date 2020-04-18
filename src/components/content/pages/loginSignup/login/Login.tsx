@@ -1,10 +1,11 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Formik, Form } from 'formik';
 import * as yup from 'yup';
 import { motion } from 'framer-motion';
 import styled from 'styled-components';
 
+import { useHistory } from 'react-router-dom';
 import media from '../../../../../utils/MediaQueries';
 import { setLogin, clearError } from '../../../../../state/auth/action';
 import { AppState } from '../../../../../state/allReducers';
@@ -13,7 +14,11 @@ export interface LoginPropsProps {}
 
 const LoginProps: React.SFC<LoginPropsProps> = () => {
   const dispatch = useDispatch();
+  const history = useHistory();
   const { error } = useSelector((state: AppState) => state.AuthReducer);
+
+  const [errorServerVisible, setErrorServerVisible] = useState(false);
+
   const validationSchema = yup.object({
     email: yup.string().email('Invalid email').required('Required'),
     password: yup.string().required('Required').min(6, 'Too Short!'),
@@ -38,11 +43,17 @@ const LoginProps: React.SFC<LoginPropsProps> = () => {
         }}
         onSubmit={async ({ email, password }, { setSubmitting, resetForm }) => {
           await setSubmitting(true);
+          await setErrorServerVisible(true);
           await dispatch(setLogin(email, password));
-          if (!error) {
+
+          if (error !== null) {
+            await console.log(error);
             await resetForm();
+            await setSubmitting(false);
+            await history.push('/');
+          } else {
+            await setSubmitting(false);
           }
-          await setSubmitting(false);
         }}
       >
         {({ values, errors, touched, handleChange, handleBlur, isSubmitting, isValid }) => (
@@ -58,7 +69,9 @@ const LoginProps: React.SFC<LoginPropsProps> = () => {
             {errors.email && touched.email ? (
               <Validation>{errors.email}</Validation>
             ) : (
-              typeof error !== 'string' && error?.email && <Validation>{error.email}</Validation>
+              errorServerVisible &&
+              typeof error !== 'string' &&
+              error?.email && <Validation>{error.email}</Validation>
             )}
             <Input
               autoComplete="off"
@@ -77,6 +90,7 @@ const LoginProps: React.SFC<LoginPropsProps> = () => {
             {errors.password && touched.password ? (
               <Validation>{errors.password}</Validation>
             ) : (
+              errorServerVisible &&
               typeof error !== 'string' &&
               error?.password && <Validation>{error.password}</Validation>
             )}

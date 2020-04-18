@@ -1,5 +1,6 @@
 import { Dispatch } from 'redux';
 import { ThunkDispatch } from 'redux-thunk';
+
 import {
   REGISTER_SUCCESS,
   USER_LOADED,
@@ -23,6 +24,8 @@ const asyncHandlerError = (fn: (dispatch: ThunkDispatch<{}, {}, AuthActionTypes>
 export const loadUser = () =>
   asyncHandlerError(async (dispatch: Dispatch<AuthActionTypes>) => {
     const res = await axiosWithConfig.get('/auth/me');
+    console.log(res.data.data);
+
     dispatch({
       type: USER_LOADED,
       payload: { ...res.data.data },
