@@ -16,16 +16,13 @@ const Navigation: React.SFC<NavigationProps> = () => (
         kontakt
       </NavLinkStyled>
     </NavLinkContainer>
-    {/* <NavLinkStyled exact to="/register">
-      rejestracja
-    </NavLinkStyled> */}
-    <NavLinkLogInStyled exact to="/login">
+
+    <NavLinkLogInStyled exact to="/login-signup">
       <FaUserAltStyled />
       ZALOGUJ SIĘ
     </NavLinkLogInStyled>
   </NavigationContainer>
 );
-
 export default Navigation;
 
 const NavigationContainer = styled.div`
@@ -34,6 +31,10 @@ const NavigationContainer = styled.div`
   background-color: #202020;
   display: flex;
   align-items: center;
+  position: fixed;
+  z-index: 500;
+  top: 0;
+  left: 0;
 `;
 const NavLinkContainer = styled.div``;
 

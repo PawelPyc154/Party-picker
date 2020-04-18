@@ -8,8 +8,8 @@ import media from '../../utils/MediaQueries';
 import GetAndFilterEvent from './getAndFilterEvent/GetAndFilterEvents';
 import Loading from './loader/Loading';
 
-const Login = React.lazy(() => import('./pages/login/Login'));
-const Register = React.lazy(() => import('./pages/register/Register'));
+const LoginSignup = React.lazy(() => import('./pages/loginSignup/LoginSignup'));
+
 const Contact = React.lazy(() => import('./pages/contact/Contact'));
 
 export interface ContentProps {}
@@ -23,11 +23,8 @@ const Content: React.SFC<ContentProps> = () => (
           <Route exact path="/">
             <Home />
           </Route>
-          <Route exact path="/login">
-            <Login />
-          </Route>
-          <Route exact path="/register">
-            <Register />
+          <Route exact path="/login-signup">
+            <LoginSignup />
           </Route>
           <Route exact path="/add-event">
             <Home />
@@ -47,11 +44,13 @@ const ContentContainer = styled.div`
   display: grid;
   grid-template-columns: 1fr;
   grid-template-rows: 50vh auto;
-  margin: 15px 6px 0px 5px;
+  margin: 50px 6px 0px 5px;
 
   ${media.tablet} {
     grid-template-columns: repeat(2, 1fr);
     grid-template-rows: calc(100vh - 50px);
+
     margin: 0;
+    padding-top: 50px;
   }
 `;

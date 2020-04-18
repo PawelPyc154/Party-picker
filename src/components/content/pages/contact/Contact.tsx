@@ -1,11 +1,12 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { Formik, Form } from 'formik';
 import * as yup from 'yup';
 import { motion } from 'framer-motion';
-
 import styled from 'styled-components';
+import Scroll from 'react-scroll';
+
 import media from '../../../../utils/MediaQueries';
-import axiosWithBaseURL from '../../../../utils/axiosWithBaseURL';
+import axiosWithConfig from '../../../../utils/axiosWithConfig';
 
 export interface ContactProps {}
 
@@ -28,7 +29,7 @@ const Contact: React.SFC<ContactProps> = () => {
     resetForm: () => void,
   ) => {
     try {
-      await axiosWithBaseURL.post('https://portfolio321123.herokuapp.com/email', {
+      await axiosWithConfig.post('https://portfolio321123.herokuapp.com/email', {
         email,
         subject,
         message,
@@ -44,8 +45,14 @@ const Contact: React.SFC<ContactProps> = () => {
     }
   };
 
+  // Scroll animation
+  const container = useRef<HTMLDivElement>(null);
+  useEffect(() => {
+    Scroll.animateScroll.scrollTo(container.current ? container.current.offsetTop - 5 : 0);
+  }, []);
+
   return (
-    <ContactContainer>
+    <ContactContainer ref={container}>
       <Formik
         validateOnChange
         validationSchema={validationSchema}
@@ -142,7 +149,9 @@ const Contact: React.SFC<ContactProps> = () => {
 
 export default Contact;
 
-const ContactContainer = styled.main``;
+const ContactContainer = styled.main`
+  overflow: hidden;
+`;
 const FromStyled = styled(Form)`
   /* background-color: #202020; */
   width: auto;
@@ -180,6 +189,7 @@ const Button = styled(motion.button)`
   color: #6f6f6f;
   font-size: 20px;
   border: 1px solid #6f6f6f;
+  margin: 0 0 20px 0;
 `;
 const Textarea = styled(motion.textarea)`
   background: #181818;

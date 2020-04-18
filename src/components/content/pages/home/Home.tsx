@@ -1,5 +1,6 @@
 import React, { useContext } from 'react';
 import styled from 'styled-components';
+
 import Filters from './filters/Filters';
 import Event from './event/Event';
 

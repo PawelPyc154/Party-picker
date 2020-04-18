@@ -15,7 +15,7 @@ const Filters: React.SFC<FiltersProps> = () => {
   const container = useRef<HTMLDivElement>(null);
   const handleOpenFilterOptions = () => {
     if (!openFilterOptions) {
-      Scroll.animateScroll.scrollTo(container.current ? container.current.offsetTop - 5 : 0);
+      Scroll.animateScroll.scrollTo(container.current ? container.current.offsetTop - 55 : 0);
     }
     setOpenFilterOptions((prevState) => !prevState);
   };

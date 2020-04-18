@@ -13,7 +13,7 @@ const EventContent: React.SFC<EventContentProps> = ({ event }) => {
 
   return (
     <>
-      {Number(Number(new Date(event.createdAt))) > Date.now() - 1000 * 60 * 60 * 24 * 10 ? (
+      {Number(new Date(event.createdAt)) > Date.now() - 1000 * 60 * 60 * 24 * 10 ? (
         <NewBadge>nowe</NewBadge>
       ) : null}
       <Header>{event.name}</Header>
