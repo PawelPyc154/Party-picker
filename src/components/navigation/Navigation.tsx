@@ -9,15 +9,15 @@ const Navigation: React.SFC<NavigationProps> = () => (
   <NavigationContainer>
     <Logo>LOGO</Logo>
     <NavLinkContainer>
-      <NavLinkStyled exact to="/">
+      <NavLinkStyled exact to="/" activeClassName="activeLink">
         home
       </NavLinkStyled>
-      <NavLinkStyled exact to="/contact">
+      <NavLinkStyled exact to="/contact" activeClassName="activeLink">
         kontakt
       </NavLinkStyled>
     </NavLinkContainer>
 
-    <NavLinkLogInStyled exact to="/login-signup">
+    <NavLinkLogInStyled exact to="/login-signup" activeClassName="activeLinkLogIn">
       <FaUserAltStyled />
       ZALOGUJ SIĘ
     </NavLinkLogInStyled>
@@ -35,6 +35,13 @@ const NavigationContainer = styled.div`
   z-index: 500;
   top: 0;
   left: 0;
+  .activeLink {
+    color: white;
+  }
+  .activeLinkLogIn {
+    border: 1px solid white;
+    color: white;
+  }
 `;
 const NavLinkContainer = styled.div``;
 
