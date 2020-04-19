@@ -39,6 +39,7 @@ const FiltersContainer = styled.div`
   background-color: #202020;
   display: flex;
   align-items: center;
+  justify-content: space-between;
   border: 1px solid #313131;
   margin-top: 10px;
   position: relative;

@@ -6,7 +6,7 @@ import Event from './event/Event';
 
 import media from '../../../../utils/MediaQueries';
 import { FilterContext } from '../../getAndFilterEvent/GetAndFilterEvents';
-import Loading from '../../loader/Loading';
+import Loading from '../../../universalComponents/Loading';
 
 export interface HomeProps {}
 

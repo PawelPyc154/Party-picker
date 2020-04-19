@@ -1,13 +1,19 @@
 import React from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import styled from 'styled-components';
 import { FaUserAlt } from 'react-icons/fa';
+import { GoSignOut } from 'react-icons/go';
+import { IoIosAdd } from 'react-icons/io';
 import { NavLink } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
+
 import { setLogOut } from '../../state/auth/action';
+import { AppState } from '../../state/allReducers';
 
 export interface NavigationProps {}
 
 const Navigation: React.SFC<NavigationProps> = () => {
+  const { user } = useSelector((state: AppState) => state.AuthReducer);
+
   const dispatch = useDispatch();
   const handleLogout = () => {
     dispatch(setLogOut());
@@ -23,13 +29,27 @@ const Navigation: React.SFC<NavigationProps> = () => {
           kontakt
         </NavLinkStyled>
       </NavLinkContainer>
-      <button type="button" onClick={handleLogout}>
-        logout
-      </button>
-      <NavLinkLogInStyled exact to="/login-signup" activeClassName="activeLinkLogIn">
-        <FaUserAltStyled />
-        ZALOGUJ SIĘ
-      </NavLinkLogInStyled>
+
+      {user ? (
+        <UserLogin>
+          <NavLinkUser exact to="/add-event" activeClassName="activeLink">
+            <IoIosAddStyled />
+          </NavLinkUser>
+
+          <LogOutButton type="button" onClick={handleLogout}>
+            <GoSignOutStyled />
+          </LogOutButton>
+
+          <NavLinkUser exact to="/user" activeClassName="activeLink">
+            <FaUserAltStyled />
+          </NavLinkUser>
+        </UserLogin>
+      ) : (
+        <NavLinkLogInStyled exact to="/login-signup" activeClassName="activeLinkLogIn">
+          <FaUserAltStyled style={{ marginRight: 7 }} />
+          ZALOGUJ SIĘ
+        </NavLinkLogInStyled>
+      )}
     </NavigationContainer>
   );
 };
@@ -60,19 +80,14 @@ const Logo = styled.div`
   letter-spacing: 2px;
 `;
 
-const FaUserAltStyled = styled(FaUserAlt)`
-  font-size: 20px;
-  margin-right: 7px;
-`;
 const NavLinkStyled = styled(NavLink)`
   text-decoration: none;
   background-color: transparent;
   border-radius: 0;
   height: 35px;
-  padding: 0px;
+  padding: 10px 0;
   color: #3498db;
-  margin: 0 10px;
-
+  margin: 0px 10px;
   cursor: pointer;
   &:hover {
     color: white;
@@ -95,4 +110,48 @@ const NavLinkLogInStyled = styled(NavLink)`
     border: 1px solid white;
     color: white;
   }
+`;
+const UserLogin = styled.div`
+  display: grid;
+
+  margin: 0 20px 0 auto;
+  grid-template-columns: repeat(3, 40px);
+  grid-template-rows: 40px;
+  grid-gap: 0 5px;
+`;
+const NavLinkUser = styled(NavLink)`
+  border: none;
+  border-radius: 20px;
+  background-color: #181818;
+  color: #3498db;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  &:hover {
+    color: white;
+  }
+`;
+const LogOutButton = styled.button`
+  border: none;
+  border-radius: 20px;
+  background-color: #181818;
+  color: #3498db;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  &:hover {
+    color: white;
+  }
+`;
+
+const FaUserAltStyled = styled(FaUserAlt)`
+  font-size: 20px;
+`;
+const GoSignOutStyled = styled(GoSignOut)`
+  font-size: 22px;
+  margin: 5px 0 0 4px;
+`;
+const IoIosAddStyled = styled(IoIosAdd)`
+  font-size: 30px;
 `;

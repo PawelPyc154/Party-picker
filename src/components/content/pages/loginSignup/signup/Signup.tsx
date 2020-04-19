@@ -7,7 +7,7 @@ import styled from 'styled-components';
 import media from '../../../../../utils/MediaQueries';
 import { setRegister, clearError } from '../../../../../state/auth/action';
 import { AppState } from '../../../../../state/allReducers';
-import Loading from '../../../loader/Loading';
+import Loading from '../../../../universalComponents/Loading';
 
 export interface SignupProps {
   errorServerVisibleOn: string;

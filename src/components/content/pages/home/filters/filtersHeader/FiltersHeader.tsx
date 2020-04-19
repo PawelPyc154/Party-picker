@@ -1,8 +1,10 @@
 import React, { useContext } from 'react';
 import styled from 'styled-components';
-import { IoMdOptions } from 'react-icons/io';
+import { IoMdOptions, IoIosAdd } from 'react-icons/io';
+import { Link } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 import { FilterContext } from '../../../../getAndFilterEvent/GetAndFilterEvents';
-import { Button } from '../../../../../../styledComponents';
+import { AppState } from '../../../../../../state/allReducers';
 
 export interface FiltersHeaderProps {
   openFilterOptions: boolean;
@@ -13,47 +15,52 @@ const FiltersHeader: React.SFC<FiltersHeaderProps> = ({
   openFilterOptions,
   handleOpenFilterOptions,
 }) => {
+  const { user } = useSelector((state: AppState) => state.AuthReducer);
   const { eventsFiltered, filters, handleChangeFilters, handleChangeDate } = useContext(
     FilterContext,
   );
 
   return (
     <>
-      {filters.name ? (
-        <Badge onClick={() => handleChangeFilters(filters.name, 'name')}>
-          {filters.name}
-          ...
-        </Badge>
-      ) : null}
+      <Wraper>
+        {filters.name ? (
+          <Badge onClick={() => handleChangeFilters(filters.name, 'name')}>
+            {filters.name}
+            ...
+          </Badge>
+        ) : null}
 
-      {filters.province ? (
-        <Badge onClick={() => handleChangeFilters(filters.province, 'province')}>
-          {filters.province}
-        </Badge>
-      ) : null}
+        {filters.province ? (
+          <Badge onClick={() => handleChangeFilters(filters.province, 'province')}>
+            {filters.province}
+          </Badge>
+        ) : null}
 
-      {filters.timeFromTo[0] !== 7 * 24 * 2 || filters.timeFromTo[1] !== 38 * 24 * 2 ? (
-        <Badge onClick={() => handleChangeDate({}, [7 * 24 * 2, 38 * 24 * 2])}>data filter</Badge>
-      ) : null}
+        {filters.timeFromTo[0] !== 7 * 24 * 2 || filters.timeFromTo[1] !== 38 * 24 * 2 ? (
+          <Badge onClick={() => handleChangeDate({}, [7 * 24 * 2, 38 * 24 * 2])}>data filter</Badge>
+        ) : null}
+      </Wraper>
+      <Wraper>
+        {user ? (
+          <LinkUser to="/add-event">
+            <IoIosAddStyled />
+          </LinkUser>
+        ) : null}
+        {openFilterOptions ? (
+          <Count>
+            Count:
+            {eventsFiltered.length}
+          </Count>
+        ) : null}
 
-      {openFilterOptions ? (
-        <Count style={{ marginLeft: 'auto' }}>
-          Count:
-          {eventsFiltered.length}
-        </Count>
-      ) : null}
-
-      <Button
-        onClick={() => handleOpenFilterOptions()}
-        style={
-          openFilterOptions
-            ? { border: '1px solid white', color: 'white', margin: '0 5px 0 5px' }
-            : { margin: '0 5px 0 auto' }
-        }
-      >
-        <IoMdOptionsStyled style={openFilterOptions ? { color: 'white' } : {}} />
-        Filtry
-      </Button>
+        <Button
+          onClick={() => handleOpenFilterOptions()}
+          style={openFilterOptions ? { border: '1px solid white', color: 'white' } : {}}
+        >
+          <IoMdOptionsStyled style={openFilterOptions ? { color: 'white' } : {}} />
+          Filtry
+        </Button>
+      </Wraper>
     </>
   );
 };
@@ -90,4 +97,45 @@ const Count = styled.div`
   display: flex;
   align-items: center;
   letter-spacing: 1px;
+`;
+
+const Button = styled.button`
+  justify-self: flex-end;
+  background-color: transparent;
+  border: 1px solid #3498db;
+  border-radius: 0;
+  height: 35px;
+  padding: 5px;
+  color: #3498db;
+  margin: 0 5px 0 5px;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  &:hover {
+    border: 1px solid white;
+    color: white;
+  }
+`;
+const LinkUser = styled(Link)`
+  border: none;
+  border-radius: 20px;
+  background-color: #181818;
+  color: #3498db;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 40px;
+  height: 40px;
+  &:hover {
+    color: white;
+  }
+`;
+
+const IoIosAddStyled = styled(IoIosAdd)`
+  font-size: 30px;
+`;
+const Wraper = styled.div`
+  display: flex;
+  align-items: center;
 `;

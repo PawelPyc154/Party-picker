@@ -8,7 +8,7 @@ import styled from 'styled-components';
 import media from '../../../../../utils/MediaQueries';
 import { setLogin, clearError } from '../../../../../state/auth/action';
 import { AppState } from '../../../../../state/allReducers';
-import Loading from '../../../loader/Loading';
+import Loading from '../../../../universalComponents/Loading';
 
 export interface LoginPropsProps {
   errorServerVisibleOn: string;

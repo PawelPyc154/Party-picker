@@ -1,11 +1,11 @@
 import React, { useRef, useEffect, useState } from 'react';
 import styled from 'styled-components';
 import Scroll from 'react-scroll';
+import { useHistory } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 import Login from './login/Login';
 import Signup from './signup/Signup';
 import FbAndGoogle from './fbAndGoogle/FbAndGoogle';
-import { useHistory } from 'react-router-dom';
-import { useSelector } from 'react-redux';
 import { AppState } from '../../../../state/allReducers';
 
 export interface LoginSignupProps {}
