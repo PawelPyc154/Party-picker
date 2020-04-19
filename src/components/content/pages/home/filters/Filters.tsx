@@ -33,7 +33,7 @@ const Filters: React.SFC<FiltersProps> = () => {
 
 export default Filters;
 
-const FiltersContainer = styled.div`
+const FiltersContainer = styled.section`
   width: 100%;
   height: 50px;
   background-color: #202020;

@@ -33,7 +33,7 @@ const Home: React.SFC<HomeProps> = () => {
 
 export default Home;
 
-const HomeContainer = styled.div``;
+const HomeContainer = styled.main``;
 
 const Events = styled.div`
   padding-bottom: 10px;

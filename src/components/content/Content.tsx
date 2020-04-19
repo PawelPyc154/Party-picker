@@ -7,12 +7,12 @@ import Home from './pages/home/Home';
 import media from '../../utils/MediaQueries';
 import GetAndFilterEvent from './getAndFilterEvent/GetAndFilterEvents';
 import Loading from '../universalComponents/Loading';
-import PrivateRoute from '../universalComponents/PrivateRoute';
-import AddEvent from './pages/addEvent/AddEvent';
-import User from './pages/user/User';
+// import PrivateRoute from '../universalComponents/PrivateRoute';
 
 const LoginSignup = React.lazy(() => import('./pages/loginSignup/LoginSignup'));
 const Contact = React.lazy(() => import('./pages/contact/Contact'));
+const AddEvent = React.lazy(() => import('./pages/addEvent/AddEvent'));
+const User = React.lazy(() => import('./pages/user/User'));
 
 export interface ContentProps {}
 
@@ -26,7 +26,8 @@ const Content: React.SFC<ContentProps> = () => (
           <Route exact path="/login-signup" component={LoginSignup} />
           <Route path="/contact" component={Contact} />
           <Route path="/user" component={User} />
-          <PrivateRoute path="/add-event" component={AddEvent} />
+          {/* <PrivateRoute path="/add-event" component={AddEvent} /> */}
+          <Route path="/add-event" component={AddEvent} />
         </Switch>
       </Suspense>
     </ContentContainer>

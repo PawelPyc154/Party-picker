@@ -18,7 +18,7 @@ function App() {
   }, [dispatch]);
 
   return (
-    <Router>
+    <Router basename={process.env.PUBLIC_URL}>
       <AppContainer>
         <Navigation />
         <Content />

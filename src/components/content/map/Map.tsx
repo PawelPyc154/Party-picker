@@ -4,7 +4,7 @@ import ReactMapGL, { Marker, FullscreenControl } from 'react-map-gl';
 import { FaOdnoklassniki } from 'react-icons/fa';
 import { FilterContext } from '../getAndFilterEvent/GetAndFilterEvents';
 import media from '../../../utils/MediaQueries';
-import EventContent from '../pages/home/event/eventContent/EventContent';
+import EventContent from '../../universalComponents/EventContent';
 
 export interface MapProps {}
 interface Viewport {

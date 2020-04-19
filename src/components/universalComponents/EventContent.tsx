@@ -1,8 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
 import { TiLocation } from 'react-icons/ti';
-import EventType from '../../../../../../state/events/EventType';
-import getDate from '../../../../../../utils/getDate';
+import EventType from '../../state/events/EventType';
+import getDate from '../../utils/getDate';
 
 export interface EventContentProps {
   event: EventType;

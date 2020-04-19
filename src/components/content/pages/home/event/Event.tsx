@@ -3,7 +3,7 @@ import styled from 'styled-components';
 
 import EventType from '../../../../../state/events/EventType';
 import media from '../../../../../utils/MediaQueries';
-import EventContent from './eventContent/EventContent';
+import EventContent from '../../../../universalComponents/EventContent';
 
 export interface EventProps {
   event: EventType;
