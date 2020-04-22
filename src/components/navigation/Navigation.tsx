@@ -5,6 +5,7 @@ import { FaUserAlt } from 'react-icons/fa';
 import { GoSignOut } from 'react-icons/go';
 import { IoIosAdd } from 'react-icons/io';
 import { NavLink } from 'react-router-dom';
+import Tooltip from '@material-ui/core/Tooltip';
 
 import { setLogOut } from '../../state/auth/action';
 import { AppState } from '../../state/allReducers';
@@ -23,7 +24,7 @@ const Navigation: React.SFC<NavigationProps> = () => {
       <Logo>LOGO</Logo>
       <NavLinkContainer>
         <NavLinkStyled exact to="/" activeClassName="activeLink">
-          home
+          wydarzenia
         </NavLinkStyled>
         <NavLinkStyled exact to="/contact" activeClassName="activeLink">
           kontakt
@@ -32,17 +33,23 @@ const Navigation: React.SFC<NavigationProps> = () => {
 
       {user ? (
         <UserLogin>
-          <NavLinkUser exact to="/add-event" activeClassName="activeLink">
-            <IoIosAddStyled />
-          </NavLinkUser>
+          <Tooltip title="Dodaj wydarzenie">
+            <NavLinkUser exact to="/add-event" activeClassName="activeLink">
+              <IoIosAddStyled />
+            </NavLinkUser>
+          </Tooltip>
 
-          <LogOutButton type="button" onClick={handleLogout}>
-            <GoSignOutStyled />
-          </LogOutButton>
+          <Tooltip title="Wyloguj się">
+            <LogOutButton type="button" onClick={handleLogout}>
+              <GoSignOutStyled />
+            </LogOutButton>
+          </Tooltip>
 
-          <NavLinkUser exact to="/user" activeClassName="activeLink">
-            <FaUserAltStyled />
-          </NavLinkUser>
+          <Tooltip title={user.name}>
+            <LogOutButton type="button">
+              <FaUserAltStyled />
+            </LogOutButton>
+          </Tooltip>
         </UserLogin>
       ) : (
         <NavLinkLogInStyled exact to="/login-signup" activeClassName="activeLinkLogIn">

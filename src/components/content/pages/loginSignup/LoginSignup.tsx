@@ -28,15 +28,7 @@ const LoginSignup: React.SFC<LoginSignupProps> = () => {
   }, [user, history]);
 
   return (
-    // const reqTest = async () => {
-    //   const res = await axiosWithBaseURL.get('/auth/facebook');
-    //   console.log(res);
-    // };
-
     <LoginSignupContainer ref={container}>
-      {/* <button type="button" onClick={() => reqTest()}>
-        fb
-      </button> */}
       <FbAndGoogle />
       <Login
         errorServerVisibleOn={errorServerVisibleOn}
@@ -53,4 +45,7 @@ export default LoginSignup;
 
 const LoginSignupContainer = styled.main`
   overflow: hidden;
+  background-color: #202020;
+  margin-top: 10px;
+  border: 1px solid #313131;
 `;

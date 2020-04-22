@@ -21,9 +21,9 @@ const FbAndGoogle: React.SFC<FbAndGoogleProps> = () => {
   const { error } = useSelector((state: AppState) => state.AuthReducer);
 
   const handleResponse = async (res: any, strategy: string) => {
-    dispatch(setLoginRegisterGoogleFb(res, strategy));
+    await dispatch(setLoginRegisterGoogleFb(res, strategy));
     if (!error) {
-      history.push('/');
+      await history.push('/');
     }
   };
 

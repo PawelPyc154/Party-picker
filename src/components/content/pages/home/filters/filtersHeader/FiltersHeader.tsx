@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import { IoMdOptions, IoIosAdd } from 'react-icons/io';
 import { Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
+import Tooltip from '@material-ui/core/Tooltip';
 import { FilterContext } from '../../../../getAndFilterEvent/GetAndFilterEvents';
 import { AppState } from '../../../../../../state/allReducers';
 
@@ -42,9 +43,11 @@ const FiltersHeader: React.SFC<FiltersHeaderProps> = ({
       </Wraper>
       <Wraper>
         {user ? (
-          <LinkUser to="/add-event">
-            <IoIosAddStyled />
-          </LinkUser>
+          <Tooltip title="Add event" aria-label="add event">
+            <LinkUser to="/add-event">
+              <IoIosAddStyled />
+            </LinkUser>
+          </Tooltip>
         ) : null}
         {openFilterOptions ? (
           <Count>

@@ -85,15 +85,13 @@ const AddEvent: React.SFC<AddEventProps> = () => {
         await dispatch(setCoordinates(undefined, undefined));
         resetForm();
       } catch (err) {
-        console.log(err.response.data.error?.limiter);
-
         setServerError(err.response.data.error?.limiter);
       }
     },
   });
 
   return isSubmitting ? (
-    <Loading height={188} width={80} />
+    <Loading height={80} width={80} />
   ) : (
     <FromStyled onSubmit={handleSubmit} animate={animationStop} ref={container}>
       {serverError ? <Validation>{serverError}</Validation> : null}
@@ -351,7 +349,7 @@ const Textarea = styled(motion.textarea)`
   border: 1px solid #3498db;
   flex-basis: 100px;
   resize: none;
-  margin: 0 0px 15px 0px;
+
   ${media.tablet} {
     flex-basis: 100px;
   }

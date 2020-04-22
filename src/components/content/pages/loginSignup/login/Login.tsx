@@ -60,7 +60,9 @@ const LoginProps: React.SFC<LoginPropsProps> = ({
       >
         {({ values, errors, touched, handleChange, handleBlur, isSubmitting, isValid }) =>
           isSubmitting ? (
-            <Loading height={188} width={80} />
+            <div style={{ height: 188 }}>
+              <Loading height={80} width={80} />
+            </div>
           ) : (
             <FromStyled>
               <Header
@@ -119,7 +121,7 @@ const LoginProps: React.SFC<LoginPropsProps> = ({
                     ? {
                         color: 'white',
                         border: '1px solid #3498db',
-                        backgroundColor: isSubmitting ? '#3498db' : 'transparent',
+                        backgroundColor: isSubmitting ? '#3498db' : '#181818',
                       }
                     : {}
                 }

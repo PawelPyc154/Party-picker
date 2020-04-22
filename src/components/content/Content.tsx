@@ -27,7 +27,6 @@ const Content: React.SFC<ContentProps> = () => (
           <Route path="/contact" component={Contact} />
           <Route path="/user" component={User} />
           <PrivateRoute path="/add-event" component={AddEvent} />
-          {/* <Route path="/add-event" component={AddEvent} /> */}
         </Switch>
       </Suspense>
     </ContentContainer>

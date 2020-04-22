@@ -160,6 +160,6 @@ const MarkerInfo = styled.div`
   flex-direction: column;
   justify-content: space-evenly;
   align-items: center;
-  border-radius: 15px;
+  border-radius: 5px;
   overflow: hidden;
 `;

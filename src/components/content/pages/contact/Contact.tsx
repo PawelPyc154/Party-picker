@@ -151,6 +151,9 @@ export default Contact;
 
 const ContactContainer = styled.main`
   overflow: hidden;
+  background-color: #202020;
+  margin-top: 10px;
+  border: 1px solid #313131;
 `;
 const FromStyled = styled(Form)`
   /* background-color: #202020; */
@@ -186,11 +189,13 @@ const Validation = styled.div`
 
 const Button = styled(motion.button)`
   background: #181818;
-  height: 40px;
   color: #6f6f6f;
   font-size: 20px;
   border: 1px solid #6f6f6f;
-  margin: 0 0 20px 0;
+  height: 35px;
+  width: 20%;
+  align-self: flex-end;
+  margin: 0 0 50px;
 `;
 const Textarea = styled(motion.textarea)`
   background: #181818;
