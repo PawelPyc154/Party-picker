@@ -90,172 +90,189 @@ const AddEvent: React.SFC<AddEventProps> = () => {
     },
   });
 
-  return isSubmitting ? (
-    <Loading height={80} width={80} />
-  ) : (
-    <FromStyled onSubmit={handleSubmit} animate={animationStop} ref={container}>
-      {serverError ? <Validation>{serverError}</Validation> : null}
-      <motion.h3
-        initial="hidden"
-        variants={{
-          visible: { x: 0, opacity: 1, transition: { delay: 0, duration: 0.2 } },
-          hidden: { x: 100, opacity: 0, transition: { delay: 0, duration: 0.2 } },
-        }}
-      >
-        Nazwa wydarzenia *
-      </motion.h3>
-      {errors.name && touched.name && <Validation>{errors.name}</Validation>}
-      <Input
-        autoComplete="off"
-        style={errors.name && touched.name ? { border: '1px solid #e74c3c' } : {}}
-        type="text"
-        name="name"
-        onChange={handleChange}
-        onBlur={handleBlur}
-        value={values.name}
-        initial="hidden"
-        variants={{
-          visible: { x: 0, opacity: 1, transition: { delay: 0.1, duration: 0.2 } },
-          hidden: { x: 100, opacity: 0, transition: { delay: 0.1, duration: 0.2 } },
-        }}
-      />
-      <motion.h3
-        initial="hidden"
-        variants={{
-          visible: { x: 0, opacity: 1, transition: { delay: 0.2, duration: 0.2 } },
-          hidden: { x: 100, opacity: 0, transition: { delay: 0.2, duration: 0.2 } },
-        }}
-      >
-        Współrzędne geograficzne *
-      </motion.h3>
-      <Wrapper>
-        <Coordinate
-          initial="hidden"
-          variants={{
-            visible: { x: 0, opacity: 1, transition: { delay: 0.3, duration: 0.2 } },
-            hidden: { x: 100, opacity: 0, transition: { delay: 0.3, duration: 0.2 } },
-          }}
-        >
-          {longitude || 'kliknij w mapę'}
-        </Coordinate>
-        <Coordinate
-          initial="hidden"
-          variants={{
-            visible: { x: 0, opacity: 1, transition: { delay: 0.4, duration: 0.2 } },
-            hidden: { x: 100, opacity: 0, transition: { delay: 0.4, duration: 0.2 } },
-          }}
-        >
-          {latitude || 'kliknij w mapę'}
-        </Coordinate>
-      </Wrapper>
+  return (
+    <AddEventContainer>
+      {isSubmitting ? (
+        <Loading height={80} width={80} />
+      ) : (
+        <FromStyled onSubmit={handleSubmit} animate={animationStop} ref={container}>
+          {serverError ? <Validation>{serverError}</Validation> : null}
+          <motion.h3
+            initial="hidden"
+            variants={{
+              visible: { x: 0, opacity: 1, transition: { delay: 0, duration: 0.2 } },
+              hidden: { x: 100, opacity: 0, transition: { delay: 0, duration: 0.2 } },
+            }}
+          >
+            Nazwa wydarzenia *
+          </motion.h3>
+          {errors.name && touched.name && <Validation>{errors.name}</Validation>}
+          <Input
+            autoComplete="off"
+            style={errors.name && touched.name ? { border: '1px solid #e74c3c' } : {}}
+            type="text"
+            name="name"
+            onChange={handleChange}
+            onBlur={handleBlur}
+            value={values.name}
+            initial="hidden"
+            variants={{
+              visible: { x: 0, opacity: 1, transition: { delay: 0.1, duration: 0.2 } },
+              hidden: { x: 100, opacity: 0, transition: { delay: 0.1, duration: 0.2 } },
+            }}
+          />
+          <motion.h3
+            initial="hidden"
+            variants={{
+              visible: { x: 0, opacity: 1, transition: { delay: 0.2, duration: 0.2 } },
+              hidden: { x: 100, opacity: 0, transition: { delay: 0.2, duration: 0.2 } },
+            }}
+          >
+            Współrzędne geograficzne *
+          </motion.h3>
+          <Wrapper>
+            <Coordinate
+              initial="hidden"
+              variants={{
+                visible: { x: 0, opacity: 1, transition: { delay: 0.3, duration: 0.2 } },
+                hidden: { x: 100, opacity: 0, transition: { delay: 0.3, duration: 0.2 } },
+              }}
+            >
+              {longitude || 'kliknij w mapę'}
+            </Coordinate>
+            <Coordinate
+              initial="hidden"
+              variants={{
+                visible: { x: 0, opacity: 1, transition: { delay: 0.4, duration: 0.2 } },
+                hidden: { x: 100, opacity: 0, transition: { delay: 0.4, duration: 0.2 } },
+              }}
+            >
+              {latitude || 'kliknij w mapę'}
+            </Coordinate>
+          </Wrapper>
 
-      <motion.h3
-        initial="hidden"
-        variants={{
-          visible: { x: 0, opacity: 1, transition: { delay: 0.5, duration: 0.2 } },
-          hidden: { x: 100, opacity: 0, transition: { delay: 0.5, duration: 0.2 } },
-        }}
-      >
-        Data początku *
-      </motion.h3>
-      <motion.div
-        initial="hidden"
-        variants={{
-          visible: { x: 0, opacity: 1, transition: { delay: 0.6, duration: 0.2 } },
-          hidden: { x: 100, opacity: 0, transition: { delay: 0.6, duration: 0.2 } },
-        }}
-      >
-        <DatePickerStyled
-          selected={startDate}
-          onChange={(date: Date) => setStartDate(date)}
-          showTimeSelect
-          timeFormat="p"
-          timeIntervals={15}
-          timeCaption="time"
-          dateFormat="p MMMM d, yyyy"
-          locale={pl}
-          withPortal
-          minDate={new Date()}
-        />
-      </motion.div>
+          <motion.h3
+            initial="hidden"
+            variants={{
+              visible: { x: 0, opacity: 1, transition: { delay: 0.5, duration: 0.2 } },
+              hidden: { x: 100, opacity: 0, transition: { delay: 0.5, duration: 0.2 } },
+            }}
+          >
+            Data początku *
+          </motion.h3>
+          <motion.div
+            initial="hidden"
+            variants={{
+              visible: { x: 0, opacity: 1, transition: { delay: 0.6, duration: 0.2 } },
+              hidden: { x: 100, opacity: 0, transition: { delay: 0.6, duration: 0.2 } },
+            }}
+          >
+            <DatePickerStyled
+              selected={startDate}
+              onChange={(date: Date) => setStartDate(date)}
+              showTimeSelect
+              timeFormat="p"
+              timeIntervals={15}
+              timeCaption="time"
+              dateFormat="p MMMM d, yyyy"
+              locale={pl}
+              withPortal
+              minDate={new Date()}
+            />
+          </motion.div>
 
-      <motion.h3
-        initial="hidden"
-        variants={{
-          visible: { x: 0, opacity: 1, transition: { delay: 0.9, duration: 0.2 } },
-          hidden: { x: 100, opacity: 0, transition: { delay: 0.9, duration: 0.2 } },
-        }}
-      >
-        Typ wydarzenia *
-      </motion.h3>
-      {errors.typeOfEvent && touched.typeOfEvent && <Validation>{errors.typeOfEvent}</Validation>}
-      <TypeOfEvent setFieldValue={setFieldValue} typeOfEventChosen={values.typeOfEvent} />
+          <motion.h3
+            initial="hidden"
+            variants={{
+              visible: { x: 0, opacity: 1, transition: { delay: 0.9, duration: 0.2 } },
+              hidden: { x: 100, opacity: 0, transition: { delay: 0.9, duration: 0.2 } },
+            }}
+          >
+            Typ wydarzenia *
+          </motion.h3>
+          {errors.typeOfEvent && touched.typeOfEvent && (
+            <Validation>{errors.typeOfEvent}</Validation>
+          )}
+          <TypeOfEvent setFieldValue={setFieldValue} typeOfEventChosen={values.typeOfEvent} />
 
-      <motion.h3
-        initial="hidden"
-        variants={{
-          visible: { x: 0, opacity: 1, transition: { delay: 1.1, duration: 0.2 } },
-          hidden: { x: 100, opacity: 0, transition: { delay: 1.1, duration: 0.2 } },
-        }}
-      >
-        Opis wydarzenia
-      </motion.h3>
-      {errors.describe && touched.describe && <Validation>{errors.describe}</Validation>}
-      <Textarea
-        style={errors.describe && touched.describe ? { border: '1px solid #e74c3c' } : {}}
-        name="describe"
-        onChange={handleChange}
-        onBlur={handleBlur}
-        value={values.describe}
-        initial="hidden"
-        animate={animationStop}
-        variants={{
-          visible: { x: 0, opacity: 1, transition: { delay: 1.2, duration: 0.2 } },
-          hidden: { x: 100, opacity: 0, transition: { delay: 1.2, duration: 0.2 } },
-        }}
-      />
+          <motion.h3
+            initial="hidden"
+            variants={{
+              visible: { x: 0, opacity: 1, transition: { delay: 1.1, duration: 0.2 } },
+              hidden: { x: 100, opacity: 0, transition: { delay: 1.1, duration: 0.2 } },
+            }}
+          >
+            Opis wydarzenia
+          </motion.h3>
+          {errors.describe && touched.describe && <Validation>{errors.describe}</Validation>}
+          <Textarea
+            style={errors.describe && touched.describe ? { border: '1px solid #e74c3c' } : {}}
+            name="describe"
+            onChange={handleChange}
+            onBlur={handleBlur}
+            value={values.describe}
+            initial="hidden"
+            animate={animationStop}
+            variants={{
+              visible: { x: 0, opacity: 1, transition: { delay: 1.2, duration: 0.2 } },
+              hidden: { x: 100, opacity: 0, transition: { delay: 1.2, duration: 0.2 } },
+            }}
+          />
 
-      <CheckBoxWrapper
-        initial="hidden"
-        variants={{
-          visible: { x: 0, opacity: 1, transition: { delay: 1.3, duration: 0.2 } },
-          hidden: { x: 100, opacity: 0, transition: { delay: 1.3, duration: 0.2 } },
-        }}
-      >
-        <FormControlLabel
-          control={<CheckboxStyled checked={values.listFb} onChange={handleChange} name="listFb" />}
-          label="Lista FB"
-          labelPlacement="start"
-        />
-      </CheckBoxWrapper>
-
-      <Button
-        style={
-          values.name && longitude && latitude && values.typeOfEvent
-            ? {
-                color: 'white',
-                border: '1px solid #3498db',
-                backgroundColor: isSubmitting ? '#3498db' : 'transparent',
+          <CheckBoxWrapper
+            initial="hidden"
+            variants={{
+              visible: { x: 0, opacity: 1, transition: { delay: 1.3, duration: 0.2 } },
+              hidden: { x: 100, opacity: 0, transition: { delay: 1.3, duration: 0.2 } },
+            }}
+          >
+            <FormControlLabel
+              control={
+                <CheckboxStyled checked={values.listFb} onChange={handleChange} name="listFb" />
               }
-            : {}
-        }
-        disabled={isSubmitting || !values.name || !longitude || !latitude || !values.typeOfEvent}
-        type="submit"
-        initial="hidden"
-        variants={{
-          visible: { x: 0, opacity: 1, transition: { delay: 1.4, duration: 0.2 } },
-          hidden: { x: 100, opacity: 0, transition: { delay: 1.4, duration: 0.2 } },
-        }}
-      >
-        Wyślij
-      </Button>
-      {/* <pre style={{ color: 'white' }}>{JSON.stringify(values, null, 2)}</pre>
+              label="Lista FB"
+              labelPlacement="start"
+            />
+          </CheckBoxWrapper>
+
+          <Button
+            style={
+              values.name && longitude && latitude && values.typeOfEvent
+                ? {
+                    color: 'white',
+                    border: '1px solid #3498db',
+                    backgroundColor: isSubmitting ? '#3498db' : 'transparent',
+                  }
+                : {}
+            }
+            disabled={
+              isSubmitting || !values.name || !longitude || !latitude || !values.typeOfEvent
+            }
+            type="submit"
+            initial="hidden"
+            variants={{
+              visible: { x: 0, opacity: 1, transition: { delay: 1.4, duration: 0.2 } },
+              hidden: { x: 100, opacity: 0, transition: { delay: 1.4, duration: 0.2 } },
+            }}
+          >
+            Wyślij
+          </Button>
+          {/* <pre style={{ color: 'white' }}>{JSON.stringify(values, null, 2)}</pre>
       <pre style={{ color: 'white' }}>{JSON.stringify(errors, null, 2)}</pre> */}
-    </FromStyled>
+        </FromStyled>
+      )}
+    </AddEventContainer>
   );
 };
 
 export default AddEvent;
+
+const AddEventContainer = styled.main`
+  overflow: hidden;
+  background-color: #202020;
+  margin-top: 10px;
+  border: 1px solid #313131;
+`;
 
 const FromStyled = styled(motion.form)`
   width: 100%;
@@ -305,7 +322,7 @@ const Wrapper = styled.div`
 `;
 
 const Coordinate = styled(motion.div)`
-  background: #181818;
+  background: #202020;
   height: 40px;
   color: #3498db;
   margin: 0 0px 15px 0px;

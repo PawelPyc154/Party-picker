@@ -82,8 +82,8 @@ const Contact: React.SFC<ContactProps> = () => {
               initial="hidden"
               animate={animateVariant}
               variants={{
-                visible: { x: 0, opacity: 1, transition: { delay: 0.6, duration: 0.8 } },
-                hidden: { x: 100, opacity: 0, transition: { delay: 0.6, duration: 0.8 } },
+                visible: { x: 0, opacity: 1, transition: { delay: 0.3, duration: 0.2 } },
+                hidden: { x: 100, opacity: 0, transition: { delay: 0.3, duration: 0.2 } },
               }}
             />
 
@@ -100,8 +100,8 @@ const Contact: React.SFC<ContactProps> = () => {
               initial="hidden"
               animate={animateVariant}
               variants={{
-                visible: { x: 0, opacity: 1, transition: { delay: 0.4, duration: 0.8 } },
-                hidden: { x: 100, opacity: 0, transition: { delay: 0.4, duration: 0.8 } },
+                visible: { x: 0, opacity: 1, transition: { delay: 0.2, duration: 0.2 } },
+                hidden: { x: 100, opacity: 0, transition: { delay: 0.2, duration: 0.2 } },
               }}
             />
             {errors.message && touched.message && <Validation>{errors.message}</Validation>}
@@ -115,8 +115,8 @@ const Contact: React.SFC<ContactProps> = () => {
               initial="hidden"
               animate={animateVariant}
               variants={{
-                visible: { x: 0, opacity: 1, transition: { delay: 0.2, duration: 0.8 } },
-                hidden: { x: 100, opacity: 0, transition: { delay: 0.2, duration: 0.8 } },
+                visible: { x: 0, opacity: 1, transition: { delay: 0.1, duration: 0.2 } },
+                hidden: { x: 100, opacity: 0, transition: { delay: 0.1, duration: 0.2 } },
               }}
             />
             <Button
@@ -134,8 +134,8 @@ const Contact: React.SFC<ContactProps> = () => {
               initial="hidden"
               animate={animateVariant}
               variants={{
-                visible: { x: 0, opacity: 1, transition: { delay: 0, duration: 0.8 } },
-                hidden: { x: 100, opacity: 0, transition: { delay: 0, duration: 0.8 } },
+                visible: { x: 0, opacity: 1, transition: { delay: 0, duration: 0.2 } },
+                hidden: { x: 100, opacity: 0, transition: { delay: 0, duration: 0.2 } },
               }}
             >
               Wyślij

@@ -72,6 +72,8 @@ const NavigationContainer = styled.div`
   z-index: 500;
   top: 0;
   left: 0;
+  border: 1px solid #313131;
+
   .activeLink {
     color: white;
   }
