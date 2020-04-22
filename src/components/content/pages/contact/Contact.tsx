@@ -155,10 +155,10 @@ const ContactContainer = styled.main`
 const FromStyled = styled(Form)`
   /* background-color: #202020; */
   width: auto;
-  margin: 10px 5px 5px;
+  margin: 10px 0 5px;
   display: flex;
   flex-direction: column;
-
+  padding: 5px;
   ${media.tablet} {
     margin: 10vh auto 5px;
     max-width: 500px;
@@ -166,7 +166,7 @@ const FromStyled = styled(Form)`
 `;
 const Input = styled(motion.input)`
   background: #181818;
-  height: 30px;
+  height: 40px;
   color: #3498db;
   margin: 0 0px 15px 0px;
 
@@ -186,6 +186,7 @@ const Validation = styled.div`
 
 const Button = styled(motion.button)`
   background: #181818;
+  height: 40px;
   color: #6f6f6f;
   font-size: 20px;
   border: 1px solid #6f6f6f;
