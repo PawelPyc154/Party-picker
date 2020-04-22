@@ -1,155 +1,273 @@
 import React, { useState, useRef, useEffect } from 'react';
-// import { useDispatch } from 'react-redux';
-import { Formik, Form } from 'formik';
+
+import { useFormik } from 'formik';
 import * as yup from 'yup';
 import { motion } from 'framer-motion';
 import Scroll from 'react-scroll';
 import styled from 'styled-components';
 
-import Loading from '../../../universalComponents/Loading';
+import DatePicker from 'react-datepicker';
+import 'react-datepicker/dist/react-datepicker.css';
+import 'react-datepicker/dist/react-datepicker-cssmodules.min.css';
+import pl from 'date-fns/locale/pl'; // the locale you want
+
+import { withStyles } from '@material-ui/core';
+
+import Checkbox, { CheckboxProps } from '@material-ui/core/Checkbox';
+import FormControlLabel from '@material-ui/core/FormControlLabel';
+import { useSelector, useDispatch } from 'react-redux';
+
 import media from '../../../../utils/MediaQueries';
-import Provinces from './provinces/Provinces';
+import Loading from '../../../universalComponents/Loading';
+import TypeOfEvent from './typeOfEvent/TypeOfEvent';
+import { AppState } from '../../../../state/allReducers';
+import { setCoordinates } from '../../../../state/positionAddEvent/action';
+import axiosWithConfig from '../../../../utils/axiosWithConfig';
+import { getEvents } from '../../../../state/events/action';
 
 export interface AddEventProps {}
 
 const AddEvent: React.SFC<AddEventProps> = () => {
-  //   const dispatch = useDispatch();
+  const [animationStop, setAnimationStop] = useState('hidden');
+  const { longitude, latitude } = useSelector((state: AppState) => state.PositionAddEventReducer);
+  const [startDate, setStartDate] = useState(new Date());
 
-  const [animationStop, setAnimationStop] = useState(false);
+  const [serverError, setServerError] = useState('');
 
-  const validationSchema = yup.object({
-    email: yup.string().email('Invalid email').required('Required'),
-    password: yup.string().required('Required').min(6, 'Too Short!'),
+  const dispatch = useDispatch();
+  const container = useRef<HTMLFormElement>(null);
+  useEffect(() => {
+    // Animation init
+    Scroll.animateScroll.scrollTo(container.current ? container.current.offsetTop - 5 : 0);
+    setAnimationStop('visible');
+    return () => {
+      dispatch(setCoordinates(undefined, undefined));
+    };
+  }, [dispatch]);
+
+  const {
+    isSubmitting,
+    errors,
+    touched,
+    handleChange,
+    handleBlur,
+    values,
+    setFieldValue,
+    handleSubmit,
+  } = useFormik({
+    initialValues: {
+      name: '',
+      listFb: false,
+      typeOfEvent: 'dance',
+      describe: '',
+    },
+    validationSchema: yup.object({
+      name: yup.string().required('Required').max(50, 'Too Long!'),
+      describe: yup.string().max(500, 'Too Long!'),
+      typeOfEvent: yup.string().required('Required'),
+    }),
+    onSubmit: async (value, { resetForm }) => {
+      try {
+        await axiosWithConfig.post('/events', {
+          name: value.name,
+          describe: value.describe,
+          coordinates: {
+            longitude,
+            latitude,
+          },
+          date: Date.parse(startDate.toString()),
+
+          fbList: value.listFb,
+          type: value.typeOfEvent,
+        });
+
+        await dispatch(getEvents());
+        await dispatch(setCoordinates(undefined, undefined));
+        resetForm();
+      } catch (err) {
+        console.log(err.response.data.error?.limiter);
+
+        setServerError(err.response.data.error?.limiter);
+      }
+    },
   });
 
-  // Scroll animation
-  const container = useRef<HTMLDivElement>(null);
-  useEffect(() => {
-    Scroll.animateScroll.scrollTo(container.current ? container.current.offsetTop - 5 : 0);
-  }, []);
-
-  return (
-    <AddEventContainer>
-      <Formik
-        validateOnChange
-        validationSchema={validationSchema}
-        initialValues={{
-          name: '',
-          place: '',
-          province: '',
-        }}
-        onSubmit={async ({ name, place }, { setSubmitting }) => {
-          setSubmitting(true);
-          setAnimationStop(true);
-          try {
-            // await dispatch(setLogin(email, password));
-          } catch {
-            setSubmitting(false);
-          }
+  return isSubmitting ? (
+    <Loading height={188} width={80} />
+  ) : (
+    <FromStyled onSubmit={handleSubmit} animate={animationStop} ref={container}>
+      {serverError ? <Validation>{serverError}</Validation> : null}
+      <motion.h3
+        initial="hidden"
+        variants={{
+          visible: { x: 0, opacity: 1, transition: { delay: 0, duration: 0.2 } },
+          hidden: { x: 100, opacity: 0, transition: { delay: 0, duration: 0.2 } },
         }}
       >
-        {({
-          values,
-          errors,
-          touched,
-          handleChange,
-          handleBlur,
-          isSubmitting,
-          isValid,
-          setFieldValue,
-        }) =>
-          isSubmitting ? (
-            <Loading height={188} width={80} />
-          ) : (
-            <FromStyled>
-              {/* <Header
-                initial={animationStop ? {} : { x: 100, opacity: 0 }}
-                animate={animationStop ? {} : { x: [100, 0], opacity: [0, 1] }}
-                transition={{ delay: 0.9, duration: 0.2 }}
-              >
-                Dodaj wydarzenie
-              </Header> */}
+        Nazwa wydarzenia *
+      </motion.h3>
+      {errors.name && touched.name && <Validation>{errors.name}</Validation>}
+      <Input
+        autoComplete="off"
+        style={errors.name && touched.name ? { border: '1px solid #e74c3c' } : {}}
+        type="text"
+        name="name"
+        onChange={handleChange}
+        onBlur={handleBlur}
+        value={values.name}
+        initial="hidden"
+        variants={{
+          visible: { x: 0, opacity: 1, transition: { delay: 0.1, duration: 0.2 } },
+          hidden: { x: 100, opacity: 0, transition: { delay: 0.1, duration: 0.2 } },
+        }}
+      />
+      <motion.h3
+        initial="hidden"
+        variants={{
+          visible: { x: 0, opacity: 1, transition: { delay: 0.2, duration: 0.2 } },
+          hidden: { x: 100, opacity: 0, transition: { delay: 0.2, duration: 0.2 } },
+        }}
+      >
+        Współrzędne geograficzne *
+      </motion.h3>
+      <Wrapper>
+        <Coordinate
+          initial="hidden"
+          variants={{
+            visible: { x: 0, opacity: 1, transition: { delay: 0.3, duration: 0.2 } },
+            hidden: { x: 100, opacity: 0, transition: { delay: 0.3, duration: 0.2 } },
+          }}
+        >
+          {longitude || 'kliknij w mapę'}
+        </Coordinate>
+        <Coordinate
+          initial="hidden"
+          variants={{
+            visible: { x: 0, opacity: 1, transition: { delay: 0.4, duration: 0.2 } },
+            hidden: { x: 100, opacity: 0, transition: { delay: 0.4, duration: 0.2 } },
+          }}
+        >
+          {latitude || 'kliknij w mapę'}
+        </Coordinate>
+      </Wrapper>
 
-              {errors.name && touched.name && <Validation>{errors.name}</Validation>}
-              <Input
-                autoComplete="off"
-                style={errors.name && touched.name ? { border: '1px solid #e74c3c' } : {}}
-                type="name"
-                name="name"
-                onChange={handleChange}
-                onBlur={handleBlur}
-                value={values.name}
-                placeholder="Nazwa *"
-                initial={animationStop ? {} : { x: 100, opacity: 0 }}
-                animate={animationStop ? {} : { x: [100, 0], opacity: [0, 1] }}
-                transition={{ delay: 0.8, duration: 0.2 }}
-              />
+      <motion.h3
+        initial="hidden"
+        variants={{
+          visible: { x: 0, opacity: 1, transition: { delay: 0.5, duration: 0.2 } },
+          hidden: { x: 100, opacity: 0, transition: { delay: 0.5, duration: 0.2 } },
+        }}
+      >
+        Data początku *
+      </motion.h3>
+      <motion.div
+        initial="hidden"
+        variants={{
+          visible: { x: 0, opacity: 1, transition: { delay: 0.6, duration: 0.2 } },
+          hidden: { x: 100, opacity: 0, transition: { delay: 0.6, duration: 0.2 } },
+        }}
+      >
+        <DatePickerStyled
+          selected={startDate}
+          onChange={(date: Date) => setStartDate(date)}
+          showTimeSelect
+          timeFormat="p"
+          timeIntervals={15}
+          timeCaption="time"
+          dateFormat="p MMMM d, yyyy"
+          locale={pl}
+          withPortal
+          minDate={new Date()}
+        />
+      </motion.div>
 
-              {errors.place && touched.place && <Validation>{errors.place}</Validation>}
-              <Input
-                autoComplete="off"
-                style={errors.place && touched.place ? { border: '1px solid #e74c3c' } : {}}
-                type=""
-                name="place"
-                onChange={handleChange}
-                onBlur={handleBlur}
-                value={values.place}
-                placeholder="Miejscowość *"
-                initial={animationStop ? {} : { x: 100, opacity: 0 }}
-                animate={animationStop ? {} : { x: [100, 0], opacity: [0, 1] }}
-                transition={{ delay: 0.7, duration: 0.2 }}
-              />
+      <motion.h3
+        initial="hidden"
+        variants={{
+          visible: { x: 0, opacity: 1, transition: { delay: 0.9, duration: 0.2 } },
+          hidden: { x: 100, opacity: 0, transition: { delay: 0.9, duration: 0.2 } },
+        }}
+      >
+        Typ wydarzenia *
+      </motion.h3>
+      {errors.typeOfEvent && touched.typeOfEvent && <Validation>{errors.typeOfEvent}</Validation>}
+      <TypeOfEvent setFieldValue={setFieldValue} typeOfEventChosen={values.typeOfEvent} />
 
-              <Provinces
-                setFieldValue={setFieldValue}
-                provinceChosen={values.province}
-                setAnimationStop={setAnimationStop}
-              />
+      <motion.h3
+        initial="hidden"
+        variants={{
+          visible: { x: 0, opacity: 1, transition: { delay: 1.1, duration: 0.2 } },
+          hidden: { x: 100, opacity: 0, transition: { delay: 1.1, duration: 0.2 } },
+        }}
+      >
+        Opis wydarzenia
+      </motion.h3>
+      {errors.describe && touched.describe && <Validation>{errors.describe}</Validation>}
+      <Textarea
+        style={errors.describe && touched.describe ? { border: '1px solid #e74c3c' } : {}}
+        name="describe"
+        onChange={handleChange}
+        onBlur={handleBlur}
+        value={values.describe}
+        initial="hidden"
+        animate={animationStop}
+        variants={{
+          visible: { x: 0, opacity: 1, transition: { delay: 1.2, duration: 0.2 } },
+          hidden: { x: 100, opacity: 0, transition: { delay: 1.2, duration: 0.2 } },
+        }}
+      />
 
-              <Button
-                style={
-                  isValid && values.name && values.place
-                    ? {
-                        color: 'white',
-                        border: '1px solid #3498db',
-                        backgroundColor: isSubmitting ? '#3498db' : 'transparent',
-                      }
-                    : {}
-                }
-                disabled={isValid && isSubmitting}
-                type="submit"
-                initial={animationStop ? {} : { x: 100, opacity: 0 }}
-                animate={animationStop ? {} : { x: [100, 0], opacity: [0, 1] }}
-                transition={{ delay: 0.6, duration: 0.2 }}
-              >
-                Wyślij
-              </Button>
-              <pre style={{ color: 'white' }}>{JSON.stringify(values, null, 2)}</pre>
-            </FromStyled>
-          )
+      <CheckBoxWrapper
+        initial="hidden"
+        variants={{
+          visible: { x: 0, opacity: 1, transition: { delay: 1.3, duration: 0.2 } },
+          hidden: { x: 100, opacity: 0, transition: { delay: 1.3, duration: 0.2 } },
+        }}
+      >
+        <FormControlLabel
+          control={<CheckboxStyled checked={values.listFb} onChange={handleChange} name="listFb" />}
+          label="Lista FB"
+          labelPlacement="start"
+        />
+      </CheckBoxWrapper>
+
+      <Button
+        style={
+          values.name && longitude && latitude && values.typeOfEvent
+            ? {
+                color: 'white',
+                border: '1px solid #3498db',
+                backgroundColor: isSubmitting ? '#3498db' : 'transparent',
+              }
+            : {}
         }
-      </Formik>
-    </AddEventContainer>
+        disabled={isSubmitting || !values.name || !longitude || !latitude || !values.typeOfEvent}
+        type="submit"
+        initial="hidden"
+        variants={{
+          visible: { x: 0, opacity: 1, transition: { delay: 1.4, duration: 0.2 } },
+          hidden: { x: 100, opacity: 0, transition: { delay: 1.4, duration: 0.2 } },
+        }}
+      >
+        Wyślij
+      </Button>
+      {/* <pre style={{ color: 'white' }}>{JSON.stringify(values, null, 2)}</pre>
+      <pre style={{ color: 'white' }}>{JSON.stringify(errors, null, 2)}</pre> */}
+    </FromStyled>
   );
 };
 
 export default AddEvent;
 
-const AddEventContainer = styled.main`
-  overflow: hidden;
-  padding: 5px;
-`;
-// const Header = styled(motion.h2)`
-//   margin-bottom: 10px;
-// `;
-const FromStyled = styled(Form)`
-  width: auto;
-  margin: 10px 5px 5px;
+const FromStyled = styled(motion.form)`
+  width: 100%;
+  margin: 10px 0 5px;
   display: flex;
   flex-direction: column;
-
+  padding: 5px;
   ${media.tablet} {
-    margin: 10px auto 5px;
+    margin: 40px auto 5px;
+    max-width: 600px;
   }
 `;
 const Input = styled(motion.input)`
@@ -161,15 +279,57 @@ const Input = styled(motion.input)`
   border: 1px solid #3498db;
   padding: 2px;
   font-size: 16px;
+  width: 100%;
+
+  &:disabled {
+    border: 1px solid #667575;
+  }
   &:focus {
     outline: none;
   }
 `;
-const Validation = styled.div`
+const Validation = styled(motion.div)`
   color: #e74c3c;
   font-size: 12px;
   margin: 0 0 5px 0;
 `;
+const CheckBoxWrapper = styled(motion.div)`
+  align-self: flex-end;
+  margin: 10px 0;
+`;
+const Wrapper = styled.div`
+  display: grid;
+  grid-template-columns: 1fr;
+  ${media.tablet} {
+    grid-template-columns: repeat(2, 1fr);
+    grid-gap: 0 10px;
+  }
+`;
+
+const Coordinate = styled(motion.div)`
+  background: #181818;
+  height: 40px;
+  color: #3498db;
+  margin: 0 0px 15px 0px;
+  border: none;
+  border: 1px solid #667575;
+  padding: 2px;
+  font-size: 16px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  padding: 0 5px;
+`;
+
+const CheckboxStyled = withStyles({
+  root: {
+    color: '#3498db',
+    '&$checked': {
+      color: 'white',
+    },
+  },
+  checked: {},
+})((props: CheckboxProps) => <Checkbox color="default" {...props} />);
 
 const Button = styled(motion.button)`
   background: #181818;
@@ -179,70 +339,31 @@ const Button = styled(motion.button)`
   height: 35px;
   width: 20%;
   align-self: flex-end;
+  margin-bottom: 50px;
 `;
 
-// name: {
-//   type: String,
-//   trim: true,
-//   required: [true, 'Please add a name'],
-// },
-// slug: String,
-// coordinates: {
-//   longitude: {
-//     type: Number,
-//     required: [true, 'Please add a longitude'],
-//   },
-//   latitude: {
-//     type: Number,
-//     required: [true, 'Please add a longitude'],
-//   },
-// },
-// place: {
-//   trim: true,
-//   type: String,
-//   required: [true, 'Please add place'],
-// },
-// province: {
-//   trim: true,
-//   type: String,
-//   enum: [
-//     'dolnośląskie',
-//     'kujawsko-pomorskie',
-//     'lubuskie',
-//     'łódzkie',
-//     'małopolskie',
-//     'mazowieckie',
-//     'opolskie',
-//     'podkarpackie',
-//     'podlaskie',
-//     'pomorskie',
-//     'śląskie',
-//     'świętokrzyskie',
-//     'warmińsko-mazurskie',
-//     'wielkopolskie',
-//     'zachodniopomorskie',
-//   ],
-//   required: [true, 'Please add province'],
-// },
-// time: {
-//   start: {
-//     type: Number,
-//     required: [true, 'Please add event time start'],
-//   },
-//   end: {
-//     type: Number,
-//   },
-// },
-// type: {
-//   type: String,
-//   enum: ['dance', 'picnic'],
-//   default: 'dance',
-// },
-// attractions: {
-//   type: [String],
-//   enum: ['dance', 'picnic'],
-// },
-// fbList: {
-//   type: Boolean,
-//   default: false,
-// },
+const Textarea = styled(motion.textarea)`
+  background: #181818;
+  color: #3498db;
+  font-size: 20px;
+  font-family: inherit;
+  font-weight: 400;
+  border: 1px solid #3498db;
+  flex-basis: 100px;
+  resize: none;
+  margin: 0 0px 15px 0px;
+  ${media.tablet} {
+    flex-basis: 100px;
+  }
+`;
+const DatePickerStyled = styled(DatePicker)`
+  background: #181818;
+  height: 40px;
+  color: #3498db;
+  margin: 0 0px 15px 0px;
+  border: none;
+  border: 1px solid #3498db;
+  padding: 2px;
+  font-size: 16px;
+  width: 100%;
+`;
