@@ -5,17 +5,15 @@ import * as yup from 'yup';
 import { motion } from 'framer-motion';
 import Scroll from 'react-scroll';
 import styled from 'styled-components';
-
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import 'react-datepicker/dist/react-datepicker-cssmodules.min.css';
 import pl from 'date-fns/locale/pl'; // the locale you want
-
 import { withStyles } from '@material-ui/core';
-
 import Checkbox, { CheckboxProps } from '@material-ui/core/Checkbox';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import { useSelector, useDispatch } from 'react-redux';
+import { useHistory } from 'react-router-dom';
 
 import media from '../../../../utils/MediaQueries';
 import Loading from '../../../universalComponents/Loading';
@@ -31,8 +29,9 @@ const AddEvent: React.SFC<AddEventProps> = () => {
   const [animationStop, setAnimationStop] = useState('hidden');
   const { longitude, latitude } = useSelector((state: AppState) => state.PositionAddEventReducer);
   const [startDate, setStartDate] = useState(new Date());
-
   const [serverError, setServerError] = useState('');
+
+  const history = useHistory();
 
   const dispatch = useDispatch();
   const container = useRef<HTMLFormElement>(null);
@@ -66,7 +65,7 @@ const AddEvent: React.SFC<AddEventProps> = () => {
       describe: yup.string().max(500, 'Too Long!'),
       typeOfEvent: yup.string().required('Required'),
     }),
-    onSubmit: async (value, { resetForm }) => {
+    onSubmit: async (value) => {
       try {
         await axiosWithConfig.post('/events', {
           name: value.name,
@@ -82,10 +81,8 @@ const AddEvent: React.SFC<AddEventProps> = () => {
 
         await dispatch(getEvents());
         await dispatch(setCoordinates(undefined, undefined));
-        resetForm();
+        history.push('/');
       } catch (err) {
-        console.log(err.response);
-
         setServerError(err.response.data.error?.limiter);
       }
     },
