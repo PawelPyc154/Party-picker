@@ -8,8 +8,7 @@ export interface EventContentProps {
   event: EventType;
 }
 const EventContent: React.SFC<EventContentProps> = ({ event }) => {
-  const [minutesStart, hoursStart, dayStart, dayNameStart, monthStart] = getDate(event.time.start);
-  const [minutesEnd, hoursEnd] = getDate(event.time.end);
+  const [minutesStart, hoursStart, dayStart, dayNameStart, monthStart] = getDate(event.date);
 
   return (
     <>
@@ -18,14 +17,14 @@ const EventContent: React.SFC<EventContentProps> = ({ event }) => {
       ) : null}
       <Header>{event.name}</Header>
       <Location>
-        lokalizacja
+        {event.place}
         <TiLocation />
       </Location>
       <DateWrapper>
         <p>{`${dayStart}.${monthStart} ${dayNameStart}`}</p>
-        <p>{`${hoursStart}:${minutesStart} - ${hoursEnd}:${minutesEnd}`}</p>
+        <p>{`${hoursStart}:${minutesStart}`}</p>
       </DateWrapper>
-      {event.fbList ? <FbBadge>lista fb</FbBadge> : null}
+      {event.fbList ? <FbBadge>lista FB</FbBadge> : null}
     </>
   );
 };

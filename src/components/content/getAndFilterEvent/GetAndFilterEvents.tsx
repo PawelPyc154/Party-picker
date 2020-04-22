@@ -37,16 +37,13 @@ const GetAndFilterEvent: React.SFC<GetAndFilterEventProps> = ({ children }) => {
       events.filter((event) => {
         const timeFrom =
           Date.now() - 1000 * 60 * 60 * 24 * 8 + filters.timeFromTo[0] * ((1000 * 60 * 60) / 2);
-
         const timeTo =
           Date.now() - 1000 * 60 * 60 * 24 * 8 + filters.timeFromTo[1] * ((1000 * 60 * 60) / 2);
         return (
           event.name.includes(filters.name) &&
           event.province.includes(filters.province) &&
-          event.time.start >= timeFrom &&
-          event.time.start <= timeTo &&
-          event.time.end >= timeFrom &&
-          event.time.end <= timeTo
+          event.date >= timeFrom &&
+          event.date <= timeTo
         );
       }),
     );

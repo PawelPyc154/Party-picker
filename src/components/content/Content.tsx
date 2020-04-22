@@ -7,7 +7,7 @@ import Home from './pages/home/Home';
 import media from '../../utils/MediaQueries';
 import GetAndFilterEvent from './getAndFilterEvent/GetAndFilterEvents';
 import Loading from '../universalComponents/Loading';
-// import PrivateRoute from '../universalComponents/PrivateRoute';
+import PrivateRoute from '../universalComponents/PrivateRoute';
 
 const LoginSignup = React.lazy(() => import('./pages/loginSignup/LoginSignup'));
 const Contact = React.lazy(() => import('./pages/contact/Contact'));
@@ -26,8 +26,8 @@ const Content: React.SFC<ContentProps> = () => (
           <Route exact path="/login-signup" component={LoginSignup} />
           <Route path="/contact" component={Contact} />
           <Route path="/user" component={User} />
-          {/* <PrivateRoute path="/add-event" component={AddEvent} /> */}
-          <Route path="/add-event" component={AddEvent} />
+          <PrivateRoute path="/add-event" component={AddEvent} />
+          {/* <Route path="/add-event" component={AddEvent} /> */}
         </Switch>
       </Suspense>
     </ContentContainer>
@@ -41,6 +41,7 @@ const ContentContainer = styled.div`
   grid-template-columns: 1fr;
   grid-template-rows: 50vh auto;
   margin: 50px 6px 0px 5px;
+  overflow: hidden;
   ${media.tablet} {
     grid-template-columns: repeat(2, 1fr);
     grid-template-rows: calc(100vh - 50px);
