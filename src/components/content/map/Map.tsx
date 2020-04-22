@@ -69,7 +69,7 @@ const Map: React.SFC<MapProps> = () => {
             latitude={event.coordinates.latitude}
             longitude={event.coordinates.longitude}
             offsetLeft={-20}
-            offsetTop={-20}
+            offsetTop={-30}
           >
             <MarkerContent className="markerContent">
               <FaOdnoklassnikiStyled />

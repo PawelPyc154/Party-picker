@@ -76,7 +76,6 @@ const AddEvent: React.SFC<AddEventProps> = () => {
             latitude,
           },
           date: Date.parse(startDate.toString()),
-
           fbList: value.listFb,
           type: value.typeOfEvent,
         });
@@ -85,6 +84,8 @@ const AddEvent: React.SFC<AddEventProps> = () => {
         await dispatch(setCoordinates(undefined, undefined));
         resetForm();
       } catch (err) {
+        console.log(err.response);
+
         setServerError(err.response.data.error?.limiter);
       }
     },
@@ -257,8 +258,6 @@ const AddEvent: React.SFC<AddEventProps> = () => {
           >
             Wyślij
           </Button>
-          {/* <pre style={{ color: 'white' }}>{JSON.stringify(values, null, 2)}</pre>
-      <pre style={{ color: 'white' }}>{JSON.stringify(errors, null, 2)}</pre> */}
         </FromStyled>
       )}
     </AddEventContainer>
