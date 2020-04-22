@@ -131,7 +131,7 @@ const UserLogin = styled.div`
 const NavLinkUser = styled(NavLink)`
   border: none;
   border-radius: 20px;
-  background-color: #181818;
+
   color: #3498db;
   display: flex;
   align-items: center;
@@ -142,8 +142,8 @@ const NavLinkUser = styled(NavLink)`
 `;
 const LogOutButton = styled.button`
   border: none;
-  border-radius: 20px;
-  background-color: #181818;
+
+  background-color: #202020;
   color: #3498db;
   display: flex;
   align-items: center;

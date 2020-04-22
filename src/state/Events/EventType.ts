@@ -1,5 +1,5 @@
 export default interface EventType {
-  _id: number;
+  _id: string;
   coordinates: {
     longitude: number;
     latitude: number;
@@ -12,4 +12,8 @@ export default interface EventType {
   type: string;
   fbList: boolean;
   date: number;
+  user: {
+    _id: string;
+    name: string;
+  };
 }

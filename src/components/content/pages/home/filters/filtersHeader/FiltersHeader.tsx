@@ -121,13 +121,10 @@ const Button = styled.button`
 `;
 const LinkUser = styled(Link)`
   border: none;
-  border-radius: 20px;
-  background-color: #181818;
   color: #3498db;
   display: flex;
   align-items: center;
   justify-content: center;
-
   width: 40px;
   height: 40px;
   &:hover {
