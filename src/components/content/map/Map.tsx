@@ -2,9 +2,15 @@ import React, { useState, useEffect, useRef, useContext } from 'react';
 import styled from 'styled-components';
 import ReactMapGL, { Marker, FullscreenControl } from 'react-map-gl';
 import { FaOdnoklassniki } from 'react-icons/fa';
+import { TiLocation } from 'react-icons/ti';
+import { useDispatch, useSelector } from 'react-redux';
+import { useLocation } from 'react-router-dom';
 import { FilterContext } from '../getAndFilterEvent/GetAndFilterEvents';
 import media from '../../../utils/MediaQueries';
 import EventContent from '../../universalComponents/EventContent';
+import { setCoordinates } from '../../../state/positionAddEvent/action';
+
+import { AppState } from '../../../state/allReducers';
 
 export interface MapProps {}
 interface Viewport {
@@ -16,6 +22,7 @@ interface Viewport {
 }
 
 const Map: React.SFC<MapProps> = () => {
+  const location = useLocation();
   const container = useRef<HTMLDivElement>(null);
   const [viewport, setViewport] = useState<Viewport>({
     longitude: 19,
@@ -25,7 +32,7 @@ const Map: React.SFC<MapProps> = () => {
     zoom: 5.7,
   });
 
-  // Flex map
+  // resize map
   useEffect(() => {
     const handleResize = () => setViewport((prev) => ({ ...prev, width: '100%', height: '100%' }));
     window.addEventListener('resize', handleResize);
@@ -36,6 +43,14 @@ const Map: React.SFC<MapProps> = () => {
 
   const { eventsFiltered } = useContext(FilterContext);
 
+  // set position add event
+  const { longitude, latitude } = useSelector((state: AppState) => state.PositionAddEventReducer);
+  const dispatch = useDispatch();
+  const setPositionAddEvent = ([long, lat]: number[]) => {
+    if (location.pathname === '/add-event') {
+      dispatch(setCoordinates(long, lat));
+    }
+  };
   return (
     <MapContainer ref={container}>
       <ReactMapGL
@@ -43,6 +58,7 @@ const Map: React.SFC<MapProps> = () => {
         {...viewport}
         onViewportChange={setViewport}
         mapboxApiAccessToken={process.env.REACT_APP_MAPBOX_TOKEN}
+        onClick={(e) => setPositionAddEvent(e.lngLat)}
       >
         <FullscreenControlWrapper>
           <FullscreenControl />
@@ -63,6 +79,19 @@ const Map: React.SFC<MapProps> = () => {
             </MarkerInfo>
           </MarkerStyled>
         ))}
+
+        {location.pathname === '/add-event' && latitude && longitude ? (
+          <Marker
+            draggable
+            latitude={latitude}
+            longitude={longitude}
+            offsetLeft={-25}
+            offsetTop={-50}
+            onDragEnd={(e) => setPositionAddEvent(e.lngLat)}
+          >
+            <TiLocationStyled />
+          </Marker>
+        ) : null}
       </ReactMapGL>
     </MapContainer>
   );
@@ -107,6 +136,12 @@ const MarkerContent = styled.div`
 const FaOdnoklassnikiStyled = styled(FaOdnoklassniki)`
   font-size: 30px;
   color: black;
+
+  /* transform: translateX(5px); */
+`;
+const TiLocationStyled = styled(TiLocation)`
+  font-size: 50px;
+  color: #3498db;
 
   /* transform: translateX(5px); */
 `;
