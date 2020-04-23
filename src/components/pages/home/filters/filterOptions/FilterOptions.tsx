@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { motion } from 'framer-motion';
-import media from '../../../../../../utils/MediaQueries';
+import media from '../../../../../utils/MediaQueries';
 
 import SearchByName from './searchByName/SearchByName';
 import SearchByProvince from './searchByProvince/SearchByProvince';

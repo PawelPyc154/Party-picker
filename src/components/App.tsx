@@ -21,15 +21,15 @@ function App() {
 
   return (
     <Router basename={process.env.PUBLIC_URL}>
-      <GetAndFilterEventContext>
-        <AppContainer>
-          <Navigation />
+      <AppContainer>
+        <Navigation />
+        <GetAndFilterEventContext>
           <ContentWraper>
             <Map />
             <Pages />
           </ContentWraper>
-        </AppContainer>
-      </GetAndFilterEventContext>
+        </GetAndFilterEventContext>
+      </AppContainer>
     </Router>
   );
 }

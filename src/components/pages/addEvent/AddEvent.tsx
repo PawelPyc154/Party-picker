@@ -14,14 +14,13 @@ import Checkbox, { CheckboxProps } from '@material-ui/core/Checkbox';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import { useSelector, useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
-
-import media from '../../../../utils/MediaQueries';
-import Loading from '../../../universalComponents/Loading';
+import { AppState } from '../../../state/allReducers';
+import { setCoordinates } from '../../../state/positionAddEvent/action';
+import axiosWithConfig from '../../../utils/axiosWithConfig';
+import { getEvents } from '../../../state/events/action';
+import Loading from '../../universalComponents/Loading';
 import TypeOfEvent from './typeOfEvent/TypeOfEvent';
-import { AppState } from '../../../../state/allReducers';
-import { setCoordinates } from '../../../../state/positionAddEvent/action';
-import axiosWithConfig from '../../../../utils/axiosWithConfig';
-import { getEvents } from '../../../../state/events/action';
+import media from '../../../utils/MediaQueries';
 
 export interface AddEventProps {}
 

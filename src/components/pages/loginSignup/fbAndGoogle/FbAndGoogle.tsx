@@ -6,9 +6,8 @@ import styled from 'styled-components';
 import { FaFacebookSquare, FaGoogle } from 'react-icons/fa';
 import { useDispatch } from 'react-redux';
 import { motion } from 'framer-motion';
-
-import media from '../../../../../utils/MediaQueries';
-import { setLoginRegisterGoogleFb } from '../../../../../state/auth/action';
+import { setLoginRegisterGoogleFb } from '../../../../state/auth/action';
+import media from '../../../../utils/MediaQueries';
 
 export interface FbAndGoogleProps {}
 

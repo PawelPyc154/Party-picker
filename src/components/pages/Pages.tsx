@@ -1,9 +1,9 @@
 import React, { Suspense } from 'react';
 import { Switch, Route } from 'react-router-dom';
 
-import Loading from '../../universalComponents/Loading';
 import Home from './home/Home';
-import PrivateRoute from '../../universalComponents/PrivateRoute';
+import Loading from '../universalComponents/Loading';
+import PrivateRoute from '../universalComponents/PrivateRoute';
 
 const LoginSignup = React.lazy(() => import('./loginSignup/LoginSignup'));
 const Contact = React.lazy(() => import('./contact/Contact'));

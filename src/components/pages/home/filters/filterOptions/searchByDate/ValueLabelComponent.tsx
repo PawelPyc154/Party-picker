@@ -1,7 +1,7 @@
 import React from 'react';
 
 import Tooltip from '@material-ui/core/Tooltip';
-import getDate from '../../../../../../../utils/getDate';
+import getDate from '../../../../../../utils/getDate';
 
 const ValueLabelComponent = (props: any) => {
   const { children, open, value } = props;

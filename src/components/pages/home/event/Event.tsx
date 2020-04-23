@@ -3,12 +3,11 @@ import styled from 'styled-components';
 
 import { useSelector } from 'react-redux';
 
-import EventType from '../../../../../state/events/EventType';
-import media from '../../../../../utils/MediaQueries';
-import EventContent from '../../../../universalComponents/EventContent';
-import { AppState } from '../../../../../state/allReducers';
-
+import EventType from '../../../../state/events/EventType';
 import DeleteButton from './deleteButton/DeleteButton';
+import { AppState } from '../../../../state/allReducers';
+import EventContent from '../../../universalComponents/EventContent';
+import media from '../../../../utils/MediaQueries';
 
 export interface EventProps {
   event: EventType;

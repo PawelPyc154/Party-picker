@@ -6,7 +6,7 @@ import { useSelector } from 'react-redux';
 import Login from './login/Login';
 import Signup from './signup/Signup';
 import FbAndGoogle from './fbAndGoogle/FbAndGoogle';
-import { AppState } from '../../../../state/allReducers';
+import { AppState } from '../../../state/allReducers';
 
 export interface LoginSignupProps {}
 
@@ -20,6 +20,7 @@ const LoginSignup: React.SFC<LoginSignupProps> = () => {
   }, []);
 
   const history = useHistory();
+
   const { user } = useSelector((state: AppState) => state.AuthReducer);
   useEffect(() => {
     if (user) {

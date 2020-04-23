@@ -4,11 +4,10 @@ import { Formik, Form } from 'formik';
 import * as yup from 'yup';
 import { motion } from 'framer-motion';
 import styled from 'styled-components';
-
-import media from '../../../../../utils/MediaQueries';
-import { setLogin, clearError } from '../../../../../state/auth/action';
-import { AppState } from '../../../../../state/allReducers';
-import Loading from '../../../../universalComponents/Loading';
+import { AppState } from '../../../../state/allReducers';
+import { clearError, setLogin } from '../../../../state/auth/action';
+import Loading from '../../../universalComponents/Loading';
+import media from '../../../../utils/MediaQueries';
 
 export interface LoginPropsProps {
   errorServerVisibleOn: string;

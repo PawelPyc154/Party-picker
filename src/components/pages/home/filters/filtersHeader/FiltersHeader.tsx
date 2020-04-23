@@ -4,8 +4,8 @@ import { IoMdOptions, IoIosAdd } from 'react-icons/io';
 import { Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import Tooltip from '@material-ui/core/Tooltip';
-import { FilterContext } from '../../../../../../context/GetAndFilterEvents';
-import { AppState } from '../../../../../../state/allReducers';
+import { AppState } from '../../../../../state/allReducers';
+import { FilterContext } from '../../../../../context/GetAndFilterEvents';
 
 export interface FiltersHeaderProps {
   openFilterOptions: boolean;

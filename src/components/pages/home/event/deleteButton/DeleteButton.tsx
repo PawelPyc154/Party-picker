@@ -11,8 +11,8 @@ import {
   Button,
   withStyles,
 } from '@material-ui/core';
-import { getEvents } from '../../../../../../state/events/action';
-import axiosWithConfig from '../../../../../../utils/axiosWithConfig';
+import axiosWithConfig from '../../../../../utils/axiosWithConfig';
+import { getEvents } from '../../../../../state/events/action';
 
 export interface DeleteButtonProps {
   eventId: string;

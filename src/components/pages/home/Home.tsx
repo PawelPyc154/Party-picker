@@ -3,10 +3,9 @@ import styled from 'styled-components';
 
 import Filters from './filters/Filters';
 import Event from './event/Event';
-
-import media from '../../../../utils/MediaQueries';
-import { FilterContext } from '../../../../context/GetAndFilterEvents';
-import Loading from '../../../universalComponents/Loading';
+import { FilterContext } from '../../../context/GetAndFilterEvents';
+import Loading from '../../universalComponents/Loading';
+import media from '../../../utils/MediaQueries';
 
 export interface HomeProps {}
 

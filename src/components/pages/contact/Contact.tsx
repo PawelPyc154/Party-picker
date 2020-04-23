@@ -4,9 +4,8 @@ import * as yup from 'yup';
 import { motion } from 'framer-motion';
 import styled from 'styled-components';
 import Scroll from 'react-scroll';
-
-import media from '../../../../utils/MediaQueries';
-import axiosWithConfig from '../../../../utils/axiosWithConfig';
+import axiosWithConfig from '../../../utils/axiosWithConfig';
+import media from '../../../utils/MediaQueries';
 
 export interface ContactProps {}
 
