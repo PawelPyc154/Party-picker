@@ -5,7 +5,7 @@ import { FaOdnoklassniki } from 'react-icons/fa';
 import { TiLocation } from 'react-icons/ti';
 import { useDispatch, useSelector } from 'react-redux';
 import { useLocation } from 'react-router-dom';
-import { FilterContext } from '../getAndFilterEvent/GetAndFilterEvents';
+import { FilterContext } from '../../../context/GetAndFilterEvents';
 import media from '../../../utils/MediaQueries';
 import EventContent from '../../universalComponents/EventContent';
 import { setCoordinates } from '../../../state/positionAddEvent/action';

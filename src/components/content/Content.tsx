@@ -5,7 +5,7 @@ import { Switch, Route } from 'react-router-dom';
 import Map from './map/Map';
 import Home from './pages/home/Home';
 import media from '../../utils/MediaQueries';
-import GetAndFilterEvent from './getAndFilterEvent/GetAndFilterEvents';
+import GetAndFilterEvent from '../../context/GetAndFilterEvents';
 import Loading from '../universalComponents/Loading';
 import PrivateRoute from '../universalComponents/PrivateRoute';
 

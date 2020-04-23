@@ -5,7 +5,7 @@ import Filters from './filters/Filters';
 import Event from './event/Event';
 
 import media from '../../../../utils/MediaQueries';
-import { FilterContext } from '../../getAndFilterEvent/GetAndFilterEvents';
+import { FilterContext } from '../../../../context/GetAndFilterEvents';
 import Loading from '../../../universalComponents/Loading';
 
 export interface HomeProps {}

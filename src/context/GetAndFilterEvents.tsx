@@ -1,7 +1,7 @@
 import React, { useState, useEffect, ChangeEvent } from 'react';
 import { useSelector } from 'react-redux';
-import { AppState } from '../../../state/allReducers';
-import EventType from '../../../state/events/EventType';
+import { AppState } from '../state/allReducers';
+import EventType from '../state/events/EventType';
 
 export interface Filters {
   name: string;
@@ -70,7 +70,6 @@ const GetAndFilterEvent: React.SFC<GetAndFilterEventProps> = ({ children }) => {
     <FilterContext.Provider
       value={{
         eventsFiltered,
-
         filters,
         setFilters,
         handleChangeFilters,
