@@ -7,8 +7,8 @@ import { IoIosAdd } from 'react-icons/io';
 import { NavLink } from 'react-router-dom';
 import Tooltip from '@material-ui/core/Tooltip';
 
-import { setLogOut } from '../../state/auth/action';
-import { AppState } from '../../state/allReducers';
+import { setLogOut } from '../../../state/auth/action';
+import { AppState } from '../../../state/allReducers';
 
 export interface NavigationProps {}
 
