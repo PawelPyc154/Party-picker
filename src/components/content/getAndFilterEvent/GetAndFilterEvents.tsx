@@ -26,6 +26,8 @@ const GetAndFilterEvent: React.SFC<GetAndFilterEventProps> = ({ children }) => {
   const initialTimeFromTo = [7 * 24 * 2, 38 * 24 * 2];
   const events = useSelector((state: AppState) => state.EventsReducer);
   const [eventsFiltered, setEventsFiltered] = useState(events);
+  const { user } = useSelector((state: AppState) => state.AuthReducer);
+
   const [filters, setFilters] = useState<Filters>({
     name: '',
     province: '',
@@ -34,20 +36,22 @@ const GetAndFilterEvent: React.SFC<GetAndFilterEventProps> = ({ children }) => {
 
   useEffect(() => {
     setEventsFiltered(
-      events.filter((event) => {
-        const timeFrom =
-          Date.now() - 1000 * 60 * 60 * 24 * 8 + filters.timeFromTo[0] * ((1000 * 60 * 60) / 2);
-        const timeTo =
-          Date.now() - 1000 * 60 * 60 * 24 * 8 + filters.timeFromTo[1] * ((1000 * 60 * 60) / 2);
-        return (
-          event.name.includes(filters.name) &&
-          event.province.includes(filters.province) &&
-          event.date >= timeFrom &&
-          event.date <= timeTo
-        );
-      }),
+      events
+        .filter((event) => {
+          const timeFrom =
+            Date.now() - 1000 * 60 * 60 * 24 * 8 + filters.timeFromTo[0] * ((1000 * 60 * 60) / 2);
+          const timeTo =
+            Date.now() - 1000 * 60 * 60 * 24 * 8 + filters.timeFromTo[1] * ((1000 * 60 * 60) / 2);
+          return (
+            event.name.includes(filters.name) &&
+            event.province.includes(filters.province) &&
+            event.date >= timeFrom &&
+            event.date <= timeTo
+          );
+        })
+        .sort((event) => (user?._id !== event.user._id ? 1 : -1)),
     );
-  }, [events, filters]);
+  }, [events, filters, user]);
 
   const handleChangeFilters = (value: string, filterProperty: keyof Filters) => {
     setFilters((prev: Filters) => {

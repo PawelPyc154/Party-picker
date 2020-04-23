@@ -12,6 +12,7 @@ import PrivateRoute from '../universalComponents/PrivateRoute';
 const LoginSignup = React.lazy(() => import('./pages/loginSignup/LoginSignup'));
 const Contact = React.lazy(() => import('./pages/contact/Contact'));
 const AddEvent = React.lazy(() => import('./pages/addEvent/AddEvent'));
+const AddEvent2 = React.lazy(() => import('./pages/addEvent/AddEvent2'));
 const User = React.lazy(() => import('./pages/user/User'));
 
 export interface ContentProps {}
@@ -26,6 +27,7 @@ const Content: React.SFC<ContentProps> = () => (
           <Route exact path="/login-signup" component={LoginSignup} />
           <Route path="/contact" component={Contact} />
           <Route path="/user" component={User} />
+          <Route path="/add-event2" component={AddEvent2} />
           <PrivateRoute path="/add-event" component={AddEvent} />
         </Switch>
       </Suspense>
@@ -38,7 +40,7 @@ export default Content;
 const ContentContainer = styled.div`
   display: grid;
   grid-template-columns: 1fr;
-  grid-template-rows: 50vh auto;
+  grid-template-rows: 50vh 1fr;
   margin: 50px 6px 0px 5px;
   overflow: hidden;
   ${media.tablet} {

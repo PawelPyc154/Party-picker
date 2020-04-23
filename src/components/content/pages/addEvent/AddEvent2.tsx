@@ -94,9 +94,16 @@ const AddEvent: React.SFC<AddEventProps> = () => {
         <Loading height={80} width={80} />
       ) : (
         <FromStyled onSubmit={handleSubmit} animate={animationStop} ref={container}>
-          <H2> Dodaj wydarzenie</H2>
-          <br />
           {serverError ? <Validation>{serverError}</Validation> : null}
+          <motion.h3
+            initial="hidden"
+            variants={{
+              visible: { x: 0, opacity: 1, transition: { delay: 0, duration: 0.2 } },
+              hidden: { x: 100, opacity: 0, transition: { delay: 0, duration: 0.2 } },
+            }}
+          >
+            Nazwa wydarzenia *
+          </motion.h3>
           {errors.name && touched.name && <Validation>{errors.name}</Validation>}
           <Input
             autoComplete="off"
@@ -106,60 +113,59 @@ const AddEvent: React.SFC<AddEventProps> = () => {
             onChange={handleChange}
             onBlur={handleBlur}
             value={values.name}
-            placeholder="Nazwa wydarzenia *"
             initial="hidden"
             variants={{
               visible: { x: 0, opacity: 1, transition: { delay: 0.1, duration: 0.2 } },
               hidden: { x: 100, opacity: 0, transition: { delay: 0.1, duration: 0.2 } },
             }}
           />
-
-          {longitude && latitude ? (
-            <Wrapper>
-              <Coordinate
-                initial="hidden"
-                variants={{
-                  visible: { x: 0, opacity: 1, transition: { delay: 0, duration: 0.2 } },
-                  hidden: { x: 100, opacity: 0, transition: { delay: 0, duration: 0.2 } },
-                }}
-              >
-                {longitude}
-              </Coordinate>
-              <Coordinate
-                initial="hidden"
-                variants={{
-                  visible: { x: 0, opacity: 1, transition: { delay: 0.1, duration: 0.2 } },
-                  hidden: { x: 100, opacity: 0, transition: { delay: 0.1, duration: 0.2 } },
-                }}
-              >
-                {longitude}
-              </Coordinate>
-            </Wrapper>
-          ) : (
+          <motion.h3
+            initial="hidden"
+            variants={{
+              visible: { x: 0, opacity: 1, transition: { delay: 0.2, duration: 0.2 } },
+              hidden: { x: 100, opacity: 0, transition: { delay: 0.2, duration: 0.2 } },
+            }}
+          >
+            Współrzędne geograficzne *
+          </motion.h3>
+          <Wrapper>
             <Coordinate
               initial="hidden"
               variants={{
-                visible: { x: 0, opacity: 1, transition: { delay: 0.2, duration: 0.2 } },
-                hidden: { x: 100, opacity: 0, transition: { delay: 0.2, duration: 0.2 } },
+                visible: { x: 0, opacity: 1, transition: { delay: 0.3, duration: 0.2 } },
+                hidden: { x: 100, opacity: 0, transition: { delay: 0.3, duration: 0.2 } },
               }}
             >
-              kliknij w mapę aby pobrać współrzędne geograficzne
+              {longitude || 'kliknij w mapę'}
             </Coordinate>
-          )}
+            <Coordinate
+              initial="hidden"
+              variants={{
+                visible: { x: 0, opacity: 1, transition: { delay: 0.4, duration: 0.2 } },
+                hidden: { x: 100, opacity: 0, transition: { delay: 0.4, duration: 0.2 } },
+              }}
+            >
+              {latitude || 'kliknij w mapę'}
+            </Coordinate>
+          </Wrapper>
 
-          {/* Data początku * */}
-
-          <WrapperDate
+          <motion.h3
             initial="hidden"
             variants={{
-              visible: { x: 0, opacity: 1, transition: { delay: 0.3, duration: 0.2 } },
-              hidden: { x: 100, opacity: 0, transition: { delay: 0.3, duration: 0.2 } },
+              visible: { x: 0, opacity: 1, transition: { delay: 0.5, duration: 0.2 } },
+              hidden: { x: 100, opacity: 0, transition: { delay: 0.5, duration: 0.2 } },
             }}
           >
-            <LabelDate htmlFor="DatePicker">Data początku:</LabelDate>
-
+            Data początku *
+          </motion.h3>
+          <motion.div
+            initial="hidden"
+            variants={{
+              visible: { x: 0, opacity: 1, transition: { delay: 0.6, duration: 0.2 } },
+              hidden: { x: 100, opacity: 0, transition: { delay: 0.6, duration: 0.2 } },
+            }}
+          >
             <DatePickerStyled
-              id="DatePicker"
               selected={startDate}
               onChange={(date: Date) => setStartDate(date)}
               showTimeSelect
@@ -171,13 +177,31 @@ const AddEvent: React.SFC<AddEventProps> = () => {
               withPortal
               minDate={new Date()}
             />
-          </WrapperDate>
+          </motion.div>
 
+          <motion.h3
+            initial="hidden"
+            variants={{
+              visible: { x: 0, opacity: 1, transition: { delay: 0.9, duration: 0.2 } },
+              hidden: { x: 100, opacity: 0, transition: { delay: 0.9, duration: 0.2 } },
+            }}
+          >
+            Typ wydarzenia *
+          </motion.h3>
           {errors.typeOfEvent && touched.typeOfEvent && (
             <Validation>{errors.typeOfEvent}</Validation>
           )}
           <TypeOfEvent setFieldValue={setFieldValue} typeOfEventChosen={values.typeOfEvent} />
 
+          <motion.h3
+            initial="hidden"
+            variants={{
+              visible: { x: 0, opacity: 1, transition: { delay: 1.1, duration: 0.2 } },
+              hidden: { x: 100, opacity: 0, transition: { delay: 1.1, duration: 0.2 } },
+            }}
+          >
+            Opis wydarzenia
+          </motion.h3>
           {errors.describe && touched.describe && <Validation>{errors.describe}</Validation>}
           <Textarea
             style={errors.describe && touched.describe ? { border: '1px solid #e74c3c' } : {}}
@@ -185,20 +209,19 @@ const AddEvent: React.SFC<AddEventProps> = () => {
             onChange={handleChange}
             onBlur={handleBlur}
             value={values.describe}
-            placeholder="Opis wydarzenia"
             initial="hidden"
             animate={animationStop}
             variants={{
-              visible: { x: 0, opacity: 1, transition: { delay: 0.5, duration: 0.2 } },
-              hidden: { x: 100, opacity: 0, transition: { delay: 0.5, duration: 0.2 } },
+              visible: { x: 0, opacity: 1, transition: { delay: 1.2, duration: 0.2 } },
+              hidden: { x: 100, opacity: 0, transition: { delay: 1.2, duration: 0.2 } },
             }}
           />
 
           <CheckBoxWrapper
             initial="hidden"
             variants={{
-              visible: { x: 0, opacity: 1, transition: { delay: 0.6, duration: 0.2 } },
-              hidden: { x: 100, opacity: 0, transition: { delay: 0.6, duration: 0.2 } },
+              visible: { x: 0, opacity: 1, transition: { delay: 1.3, duration: 0.2 } },
+              hidden: { x: 100, opacity: 0, transition: { delay: 1.3, duration: 0.2 } },
             }}
           >
             <FormControlLabel
@@ -226,8 +249,8 @@ const AddEvent: React.SFC<AddEventProps> = () => {
             type="submit"
             initial="hidden"
             variants={{
-              visible: { x: 0, opacity: 1, transition: { delay: 0.7, duration: 0.2 } },
-              hidden: { x: 100, opacity: 0, transition: { delay: 0.7, duration: 0.2 } },
+              visible: { x: 0, opacity: 1, transition: { delay: 1.4, duration: 0.2 } },
+              hidden: { x: 100, opacity: 0, transition: { delay: 1.4, duration: 0.2 } },
             }}
           >
             Wyślij
@@ -246,9 +269,6 @@ const AddEventContainer = styled.main`
   margin-top: 10px;
   border: 1px solid #313131;
 `;
-const H2 = styled(motion.h2)`
-  margin: 10px auto;
-`;
 
 const FromStyled = styled(motion.form)`
   width: 100%;
@@ -263,7 +283,7 @@ const FromStyled = styled(motion.form)`
 `;
 const Input = styled(motion.input)`
   background: #181818;
-  height: 35px;
+  height: 40px;
   color: #3498db;
   margin: 0 0px 15px 0px;
   border: none;
@@ -296,29 +316,10 @@ const Wrapper = styled.div`
     grid-gap: 0 10px;
   }
 `;
-const WrapperDate = styled(motion.div)`
-  display: grid;
-  grid-template-columns: 109px 1fr;
-`;
-const LabelDate = styled.label`
-  background: #181818;
-  height: 35px;
-  color: #3498db;
-  margin: 0 0px 0px 0px;
-  border: none;
-  border: 1px solid #3498db;
-  border-right: none;
-  padding: 2px;
-  font-size: 16px;
-  display: flex;
-  align-items: center;
-  padding: 0 5px;
-  cursor: text;
-`;
 
 const Coordinate = styled(motion.div)`
   background: #202020;
-  height: 35px;
+  height: 40px;
   color: #3498db;
   margin: 0 0px 15px 0px;
   border: none;
@@ -328,7 +329,6 @@ const Coordinate = styled(motion.div)`
   width: 100%;
   display: flex;
   align-items: center;
-  justify-content: center;
   padding: 0 5px;
 `;
 
@@ -369,12 +369,11 @@ const Textarea = styled(motion.textarea)`
 `;
 const DatePickerStyled = styled(DatePicker)`
   background: #181818;
-  height: 35px;
+  height: 40px;
   color: #3498db;
-  margin: 0 0px 0px 0px;
+  margin: 0 0px 15px 0px;
   border: none;
   border: 1px solid #3498db;
-  border-left: none;
   padding: 2px;
   font-size: 16px;
   width: 100%;

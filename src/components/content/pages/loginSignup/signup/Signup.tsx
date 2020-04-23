@@ -193,7 +193,7 @@ const FromStyled = styled(Form)`
 `;
 const Input = styled(motion.input)`
   background: #181818;
-  height: 40px;
+  height: 35px;
   color: #3498db;
   margin: 0 0px 15px 0px;
 

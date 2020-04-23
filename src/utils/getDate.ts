@@ -9,4 +9,3 @@ export default (value: number) => {
 
   return [minutes, hours, day, dayName, month];
 };
-// `${hours}:${minutes} ${day}.${month} ${dayName}`

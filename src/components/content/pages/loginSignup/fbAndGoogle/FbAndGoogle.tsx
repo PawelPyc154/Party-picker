@@ -77,7 +77,7 @@ const FbAndGoogleContainer = styled.section`
 
   .facebookLogin {
     width: 100%;
-    height: 40px;
+    height: 35px;
     background-color: #415dae;
     border: none;
     margin: 0 0 15px 0;
@@ -101,7 +101,7 @@ const FaFacebookSquareStyled = styled(FaFacebookSquare)`
 `;
 const GoogleLoginStyled = styled.button`
   width: 100%;
-  height: 40px;
+  height: 35px;
   background-color: #d9534f;
   border: none;
   margin: 0 0 15px 0;

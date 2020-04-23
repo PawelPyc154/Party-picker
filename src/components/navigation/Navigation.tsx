@@ -44,12 +44,12 @@ const Navigation: React.SFC<NavigationProps> = () => {
               <GoSignOutStyled />
             </LogOutButton>
           </Tooltip>
-
+          {/*
           <Tooltip title={user.name}>
             <LogOutButton type="button">
               <FaUserAltStyled />
             </LogOutButton>
-          </Tooltip>
+          </Tooltip> */}
         </UserLogin>
       ) : (
         <NavLinkLogInStyled exact to="/login-signup" activeClassName="activeLinkLogIn">
@@ -124,7 +124,7 @@ const UserLogin = styled.div`
   display: grid;
 
   margin: 0 20px 0 auto;
-  grid-template-columns: repeat(3, 40px);
+  grid-template-columns: repeat(2, 40px);
   grid-template-rows: 40px;
   grid-gap: 0 5px;
 `;

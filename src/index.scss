@@ -1,29 +1,30 @@
 *,
 *::before,
 *::after {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
 body {
-    color: white;
-    box-sizing: border-box;
+  color: white;
+  box-sizing: border-box;
+  background-color: #202020;
 }
 
 .colorPicker {
-    color: #3498db77;
+  color: #3498db77;
 }
 
 input:focus,
 select:focus,
 textarea:focus,
 button:focus {
-    outline: none;
+  outline: none;
 }
 
-span[data-index="1"]+.MuiSlider-markLabel {
-    @media (max-width: 768px) {
-        transform: translate(-50%, -12px);
-    }
+span[data-index='1'] + .MuiSlider-markLabel {
+  @media (max-width: 768px) {
+    transform: translate(-50%, -12px);
+  }
 }

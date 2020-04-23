@@ -29,12 +29,12 @@ const TypeOfEvent: React.SFC<TypeOfEventProps> = ({ setFieldValue, typeOfEventCh
               visible: {
                 x: 0,
                 opacity: 1,
-                transition: { delay: index * 0.05 + 0.9, duration: 0.2 },
+                transition: { delay: index * 0.05 + 0.4, duration: 0.2 },
               },
               hidden: {
                 x: 100,
                 opacity: 0,
-                transition: { delay: index * 0.05 + 0.9, duration: 0.2 },
+                transition: { delay: index * 0.05 + 0.4, duration: 0.2 },
               },
             }}
           >
@@ -67,7 +67,7 @@ const EventType = styled(motion.button)`
   height: 35px;
   padding: 5px;
   color: #3498db;
-  margin: 10px 10px;
+  margin: 15px 10px;
   display: flex;
   align-items: center;
   letter-spacing: 1px;
