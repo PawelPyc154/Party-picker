@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef, useContext } from 'react';
 import styled from 'styled-components';
 import ReactMapGL, { Marker, FullscreenControl } from 'react-map-gl';
-import { FaOdnoklassniki } from 'react-icons/fa';
+
 import { TiLocation } from 'react-icons/ti';
 import { useDispatch, useSelector } from 'react-redux';
 import { useLocation } from 'react-router-dom';
@@ -9,7 +9,6 @@ import { FilterContext } from '../../../context/GetAndFilterEvents';
 import media from '../../../utils/MediaQueries';
 import EventContent from '../../universalComponents/EventContent';
 import { setCoordinates } from '../../../state/positionAddEvent/action';
-
 import { AppState } from '../../../state/allReducers';
 
 export interface MapProps {}
@@ -51,6 +50,7 @@ const Map: React.SFC<MapProps> = () => {
       dispatch(setCoordinates(long, lat));
     }
   };
+
   return (
     <MapContainer ref={container}>
       <ReactMapGL
@@ -68,12 +68,13 @@ const Map: React.SFC<MapProps> = () => {
             key={event._id}
             latitude={event.coordinates.latitude}
             longitude={event.coordinates.longitude}
-            offsetLeft={-20}
-            offsetTop={-30}
+            offsetLeft={-25}
+            offsetTop={-50}
           >
-            <MarkerContent className="markerContent">
-              <FaOdnoklassnikiStyled />
+            <MarkerContent>
+              <TiLocationStyled />
             </MarkerContent>
+
             <MarkerInfo className="markerInfo">
               <EventContent event={event} />
             </MarkerInfo>
@@ -89,7 +90,7 @@ const Map: React.SFC<MapProps> = () => {
             offsetTop={-50}
             onDragEnd={(e) => setPositionAddEvent(e.lngLat)}
           >
-            <TiLocationStyled />
+            <TiLocationStyled style={{ color: '#3498db' }} />
           </Marker>
         ) : null}
       </ReactMapGL>
@@ -118,35 +119,21 @@ const MarkerStyled = styled(Marker)`
   }
 `;
 const MarkerContent = styled.div`
-  width: 40px;
-  height: 40px;
-  background-color: #f1c40f;
-  border-radius: 20px;
   display: flex;
   align-items: center;
   justify-content: center;
-  &:hover {
-    border: 3px solid white;
-  }
+
   &:hover ~ .markerInfo {
     opacity: 1;
   }
 `;
 
-const FaOdnoklassnikiStyled = styled(FaOdnoklassniki)`
-  font-size: 30px;
-  color: black;
-
-  /* transform: translateX(5px); */
-`;
 const TiLocationStyled = styled(TiLocation)`
   font-size: 50px;
-  color: #3498db;
-
-  /* transform: translateX(5px); */
+  /* color: #3498db; */
+  color: #f1c40f;
 `;
 const MarkerInfo = styled.div`
-  /* border: 1px solid #3498db; */
   width: 200px;
   height: 150px;
   position: absolute;

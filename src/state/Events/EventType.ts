@@ -12,6 +12,7 @@ export default interface EventType {
   type: string;
   fbList: boolean;
   date: number;
+  color: string;
   user: {
     _id: string;
     name: string;

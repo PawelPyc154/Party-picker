@@ -19,7 +19,7 @@ import { setCoordinates } from '../../../state/positionAddEvent/action';
 import axiosWithConfig from '../../../utils/axiosWithConfig';
 import { getEvents } from '../../../state/events/action';
 import Loading from '../../universalComponents/Loading';
-import TypeOfEvent from './typeOfEvent/TypeOfEvent';
+// import TypeOfEvent from './typeOfEvent/TypeOfEvent';
 import media from '../../../utils/MediaQueries';
 
 export interface AddEventProps {}
@@ -50,19 +50,19 @@ const AddEvent: React.SFC<AddEventProps> = () => {
     handleChange,
     handleBlur,
     values,
-    setFieldValue,
+    // setFieldValue,
     handleSubmit,
   } = useFormik({
     initialValues: {
       name: '',
       listFb: false,
-      typeOfEvent: 'dance',
+      // typeOfEvent: 'dance',
       describe: '',
     },
     validationSchema: yup.object({
       name: yup.string().required('Required').max(50, 'Too Long!'),
       describe: yup.string().max(500, 'Too Long!'),
-      typeOfEvent: yup.string().required('Required'),
+      // typeOfEvent: yup.string().required('Required'),
     }),
     onSubmit: async (value) => {
       try {
@@ -75,7 +75,7 @@ const AddEvent: React.SFC<AddEventProps> = () => {
           },
           date: Date.parse(startDate.toString()),
           fbList: value.listFb,
-          type: value.typeOfEvent,
+          // type: value.typeOfEvent,
         });
 
         await dispatch(getEvents());
@@ -171,11 +171,11 @@ const AddEvent: React.SFC<AddEventProps> = () => {
               minDate={new Date()}
             />
           </WrapperDate>
-
+          {/*
           {errors.typeOfEvent && touched.typeOfEvent && (
             <Validation>{errors.typeOfEvent}</Validation>
           )}
-          <TypeOfEvent setFieldValue={setFieldValue} typeOfEventChosen={values.typeOfEvent} />
+          <TypeOfEvent setFieldValue={setFieldValue} typeOfEventChosen={values.typeOfEvent} /> */}
 
           {errors.describe && touched.describe && <Validation>{errors.describe}</Validation>}
           <Textarea
@@ -211,7 +211,7 @@ const AddEvent: React.SFC<AddEventProps> = () => {
 
           <Button
             style={
-              values.name && longitude && latitude && values.typeOfEvent
+              values.name && longitude && latitude
                 ? {
                     color: 'white',
                     border: '1px solid #3498db',
@@ -219,9 +219,7 @@ const AddEvent: React.SFC<AddEventProps> = () => {
                   }
                 : {}
             }
-            disabled={
-              isSubmitting || !values.name || !longitude || !latitude || !values.typeOfEvent
-            }
+            disabled={isSubmitting || !values.name || !longitude || !latitude}
             type="submit"
             initial="hidden"
             variants={{
@@ -229,7 +227,7 @@ const AddEvent: React.SFC<AddEventProps> = () => {
               hidden: { x: 100, opacity: 0, transition: { delay: 0.7, duration: 0.2 } },
             }}
           >
-            Wyślij
+            Dodaj
           </Button>
         </FromStyled>
       )}
@@ -361,6 +359,7 @@ const Textarea = styled(motion.textarea)`
   border: 1px solid #3498db;
   flex-basis: 100px;
   resize: none;
+  margin: 15px 0 0 0;
 
   ${media.tablet} {
     flex-basis: 100px;

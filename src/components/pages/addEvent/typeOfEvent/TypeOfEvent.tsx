@@ -8,7 +8,7 @@ export interface TypeOfEventProps {
 }
 
 const TypeOfEvent: React.SFC<TypeOfEventProps> = ({ setFieldValue, typeOfEventChosen }) => {
-  const typesOfEvent = ['dance', 'picnic'];
+  const typesOfEvent = ['club', 'piknik', 'koncert', 'zlot', 'targi', 'impreza taneczka', 'inne'];
 
   const handleClick = (typeOfEvent: string) => {
     setFieldValue('typeOfEvent', typeOfEvent);
@@ -54,7 +54,7 @@ const TypeOfEventContainer = styled.div`
 
 const EventTypeWrapper = styled.div`
   display: flex;
-  /* justify-content: space-between; */
+  justify-content: space-between;
   flex-wrap: wrap;
 
   width: calc(100% + 20px);
