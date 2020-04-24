@@ -9,6 +9,7 @@ import Tooltip from '@material-ui/core/Tooltip';
 
 import { setLogOut } from '../../../state/auth/action';
 import { AppState } from '../../../state/allReducers';
+import media from '../../../utils/MediaQueries';
 
 export interface NavigationProps {}
 
@@ -24,10 +25,10 @@ const Navigation: React.SFC<NavigationProps> = () => {
       <Logo>LOGO</Logo>
       <NavLinkContainer>
         <NavLinkStyled exact to="/" activeClassName="activeLink">
-          wydarzenia
+          Wydarzenia
         </NavLinkStyled>
         <NavLinkStyled exact to="/contact" activeClassName="activeLink">
-          kontakt
+          Kontakt
         </NavLinkStyled>
       </NavLinkContainer>
 
@@ -87,6 +88,10 @@ const NavLinkContainer = styled.div``;
 const Logo = styled.div`
   margin: 0 20px;
   letter-spacing: 2px;
+  display: none;
+  ${media.tablet} {
+    display: initial;
+  }
 `;
 
 const NavLinkStyled = styled(NavLink)`
@@ -110,11 +115,14 @@ const NavLinkLogInStyled = styled(NavLink)`
   height: 35px;
   padding: 5px;
   color: #3498db;
-  margin: 0 20px 0 auto;
+  margin: 0 5px 0 auto;
   display: flex;
   align-items: center;
   font-size: 14px;
   cursor: pointer;
+  ${media.tablet} {
+    margin: 0 20px 0 auto;
+  }
   &:hover {
     border: 1px solid white;
     color: white;
@@ -156,6 +164,12 @@ const LogOutButton = styled.button`
 
 const FaUserAltStyled = styled(FaUserAlt)`
   font-size: 20px;
+
+
+  /* display: none;
+  ${media.tablet} {
+    display: initial;
+  } */
 `;
 const GoSignOutStyled = styled(GoSignOut)`
   font-size: 22px;

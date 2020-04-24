@@ -38,7 +38,7 @@ const Map: React.SFC<MapProps> = () => {
     return () => {
       window.removeEventListener('resize', handleResize);
     };
-  });
+  }, []);
 
   const { eventsFiltered } = useContext(FilterContext);
 
@@ -111,6 +111,10 @@ const FullscreenControlWrapper = styled.div`
   position: absolute;
   right: 10px;
   bottom: 30px;
+  display: none;
+  ${media.tablet} {
+    display: block;
+  }
 `;
 const MarkerStyled = styled(Marker)`
   z-index: 0;

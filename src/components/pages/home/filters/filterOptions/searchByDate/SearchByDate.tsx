@@ -49,7 +49,7 @@ const SliderStyled = withStyles({
     color: '#3498db',
     height: 2,
     padding: '15px 0',
-    marginTop: 20,
+    margin: '20px 0 100px',
   },
   thumb: {
     height: 20,

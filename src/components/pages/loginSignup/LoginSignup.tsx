@@ -7,6 +7,7 @@ import Login from './login/Login';
 import Signup from './signup/Signup';
 import FbAndGoogle from './fbAndGoogle/FbAndGoogle';
 import { AppState } from '../../../state/allReducers';
+import media from '../../../utils/MediaQueries';
 
 export interface LoginSignupProps {}
 
@@ -49,4 +50,17 @@ const LoginSignupContainer = styled.main`
   background-color: #202020;
   margin-top: 10px;
   border: 1px solid #313131;
+  ${media.tablet} {
+    overflow-y: scroll;
+    &::-webkit-scrollbar {
+      width: 3px;
+    }
+    &::-webkit-scrollbar-track {
+      /* box-shadow: inset 0 0 6px gray; */
+    }
+    &::-webkit-scrollbar-thumb {
+      background-color: gray;
+      outline: 1px solid gray;
+    }
+  }
 `;

@@ -37,12 +37,14 @@ export default FilterOptions;
 const FilterOptionsWrapper = styled(motion.div)`
   position: absolute;
   background-color: #202020;
-  height: calc(100vh - 55px);
   width: calc(100% + 4px);
   top: 49px;
   left: -2px;
   transform: translateX(calc(-100% - 10px));
   padding: 10px 5px;
+  border: 1px solid #313131;
+  border-top: none;
+
   ${media.tablet} {
     height: calc(100vh - 110px);
   }
