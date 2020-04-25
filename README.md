@@ -3,6 +3,8 @@
  [Demo](https://pawelpyc154.github.io/Party-picker/).
 
 
+Uwagi:
+Wolny backend przy pierwszym zapytaniu, ładowaniu wydarzeń.
 
 
 
