@@ -44,10 +44,10 @@ const Signup: React.SFC<SignupProps> = ({ errorServerVisibleOn, setErrorServerVi
         validateOnChange
         validationSchema={validationSchema}
         initialValues={{
-          name: 'elo',
-          email: 'elo@gmail.com',
-          password: '123456',
-          password2: '123456',
+          name: '',
+          email: '',
+          password: '',
+          password2: '',
         }}
         onSubmit={async ({ name, email, password }, { setSubmitting }) => {
           setSubmitting(true);

@@ -43,8 +43,8 @@ const LoginProps: React.SFC<LoginPropsProps> = ({
         validateOnChange
         validationSchema={validationSchema}
         initialValues={{
-          email: 'elo@gmail.com',
-          password: '123456',
+          email: '',
+          password: '',
         }}
         onSubmit={async ({ email, password }, { setSubmitting }) => {
           setSubmitting(true);
