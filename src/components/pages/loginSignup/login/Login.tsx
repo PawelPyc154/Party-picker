@@ -1,20 +1,20 @@
-import React, { useState, Dispatch, SetStateAction } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { Formik, Form } from 'formik';
-import * as yup from 'yup';
+import { Form, Formik } from 'formik';
 import { motion } from 'framer-motion';
+import React, { Dispatch, SetStateAction, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import styled from 'styled-components';
+import * as yup from 'yup';
 import { AppState } from '../../../../state/allReducers';
 import { clearError, setLogin } from '../../../../state/auth/action';
-import Loading from '../../../universalComponents/Loading';
 import media from '../../../../utils/MediaQueries';
+import Loading from '../../../universalComponents/Loading';
 
 export interface LoginPropsProps {
   errorServerVisibleOn: string;
   setErrorServerVisibleOn: Dispatch<SetStateAction<string>>;
 }
 
-const LoginProps: React.SFC<LoginPropsProps> = ({
+const LoginProps: React.FC<LoginPropsProps> = ({
   errorServerVisibleOn,
   setErrorServerVisibleOn,
 }) => {

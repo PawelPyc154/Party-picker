@@ -1,15 +1,15 @@
-import React, { useState, useEffect, useRef } from 'react';
-import { Formik, Form } from 'formik';
-import * as yup from 'yup';
+import { Form, Formik } from 'formik';
 import { motion } from 'framer-motion';
-import styled from 'styled-components';
+import React, { useEffect, useRef, useState } from 'react';
 import Scroll from 'react-scroll';
+import styled from 'styled-components';
+import * as yup from 'yup';
 import axiosWithConfig from '../../../utils/axiosWithConfig';
 import media from '../../../utils/MediaQueries';
 
 export interface ContactProps {}
 
-const Contact: React.SFC<ContactProps> = () => {
+const Contact: React.FC<ContactProps> = () => {
   const [animateVariant, setAnimateVariant] = useState('hidden');
   useEffect(() => {
     setAnimateVariant('visible');

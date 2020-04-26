@@ -4,7 +4,7 @@ import { FilterContext } from '../../../../../../context/GetAndFilterEvents';
 
 export interface SearchByProvinceProps {}
 
-const SearchByProvince: React.SFC<SearchByProvinceProps> = () => {
+const SearchByProvince: React.FC<SearchByProvinceProps> = () => {
   const { filters, handleChangeFilters } = useContext(FilterContext);
   const provinces = [
     'dolnośląskie',

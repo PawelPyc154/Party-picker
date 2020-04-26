@@ -1,18 +1,16 @@
 import React from 'react';
-import styled from 'styled-components';
-
 import { useSelector } from 'react-redux';
-
-import EventType from '../../../../state/events/EventType';
-import DeleteButton from './deleteButton/DeleteButton';
+import styled from 'styled-components';
 import { AppState } from '../../../../state/allReducers';
-import EventContent from '../../../universalComponents/EventContent';
+import EventType from '../../../../state/events/EventType';
 import media from '../../../../utils/MediaQueries';
+import EventContent from '../../../universalComponents/EventContent';
+import DeleteButton from './deleteButton/DeleteButton';
 
 export interface EventProps {
   event: EventType;
 }
-const Event: React.SFC<EventProps> = ({ event }) => {
+const Event: React.FC<EventProps> = ({ event }) => {
   const { user } = useSelector((state: AppState) => state.AuthReducer);
 
   return (

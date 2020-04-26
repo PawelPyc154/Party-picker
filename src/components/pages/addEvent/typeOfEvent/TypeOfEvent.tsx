@@ -1,13 +1,13 @@
+import { motion } from 'framer-motion';
 import React from 'react';
 import styled from 'styled-components';
-import { motion } from 'framer-motion';
 
 export interface TypeOfEventProps {
   setFieldValue: (field: string, value: any, shouldValidate?: boolean | undefined) => void;
   typeOfEventChosen: string;
 }
 
-const TypeOfEvent: React.SFC<TypeOfEventProps> = ({ setFieldValue, typeOfEventChosen }) => {
+const TypeOfEvent: React.FC<TypeOfEventProps> = ({ setFieldValue, typeOfEventChosen }) => {
   const typesOfEvent = ['club', 'piknik', 'koncert', 'zlot', 'targi', 'impreza taneczka', 'inne'];
 
   const handleClick = (typeOfEvent: string) => {

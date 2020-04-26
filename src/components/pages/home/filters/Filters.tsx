@@ -1,14 +1,12 @@
-import React, { useState, useRef } from 'react';
-import styled from 'styled-components';
-
+import React, { useRef, useState } from 'react';
 import Scroll from 'react-scroll';
-
+import styled from 'styled-components';
 import FilterOptions from './filterOptions/FilterOptions';
 import FiltersHeader from './filtersHeader/FiltersHeader';
 
 export interface FiltersProps {}
 
-const Filters: React.SFC<FiltersProps> = () => {
+const Filters: React.FC<FiltersProps> = () => {
   const [openFilterOptions, setOpenFilterOptions] = useState(false);
 
   // Animation scroll and open filter

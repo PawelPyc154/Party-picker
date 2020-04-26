@@ -1,17 +1,17 @@
 /* eslint-disable react/jsx-one-expression-per-line */
+import { motion } from 'framer-motion';
 import React from 'react';
 import FacebookLogin from 'react-facebook-login';
 import { GoogleLogin } from 'react-google-login';
-import styled from 'styled-components';
 import { FaFacebookSquare, FaGoogle } from 'react-icons/fa';
 import { useDispatch } from 'react-redux';
-import { motion } from 'framer-motion';
+import styled from 'styled-components';
 import { setLoginRegisterGoogleFb } from '../../../../state/auth/action';
 import media from '../../../../utils/MediaQueries';
 
 export interface FbAndGoogleProps {}
 
-const FbAndGoogle: React.SFC<FbAndGoogleProps> = () => {
+const FbAndGoogle: React.FC<FbAndGoogleProps> = () => {
   const dispatch = useDispatch();
 
   const handleResponse = async (res: any, strategy: string) => {

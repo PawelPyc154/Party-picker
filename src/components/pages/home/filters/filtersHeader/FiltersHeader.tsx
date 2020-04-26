@@ -1,18 +1,18 @@
-import React, { useContext } from 'react';
-import styled from 'styled-components';
-import { IoMdOptions, IoIosAdd } from 'react-icons/io';
-import { Link } from 'react-router-dom';
-import { useSelector } from 'react-redux';
 import Tooltip from '@material-ui/core/Tooltip';
-import { AppState } from '../../../../../state/allReducers';
+import React, { useContext } from 'react';
+import { IoIosAdd, IoMdOptions } from 'react-icons/io';
+import { useSelector } from 'react-redux';
+import { Link } from 'react-router-dom';
+import styled from 'styled-components';
 import { FilterContext } from '../../../../../context/GetAndFilterEvents';
+import { AppState } from '../../../../../state/allReducers';
 
 export interface FiltersHeaderProps {
   openFilterOptions: boolean;
   handleOpenFilterOptions: () => void;
 }
 
-const FiltersHeader: React.SFC<FiltersHeaderProps> = ({
+const FiltersHeader: React.FC<FiltersHeaderProps> = ({
   openFilterOptions,
   handleOpenFilterOptions,
 }) => {

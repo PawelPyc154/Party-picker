@@ -1,12 +1,12 @@
-import React, { useContext } from 'react';
-import Slider from '@material-ui/core/Slider';
 import { withStyles } from '@material-ui/core';
-import ValueLabelComponent from './ValueLabelComponent';
+import Slider from '@material-ui/core/Slider';
+import React, { useContext } from 'react';
 import { FilterContext } from '../../../../../../context/GetAndFilterEvents';
+import ValueLabelComponent from './ValueLabelComponent';
 
 export interface SearchByDateProps {}
 
-const SearchByDate: React.SFC<SearchByDateProps> = () => {
+const SearchByDate: React.FC<SearchByDateProps> = () => {
   const { filters, handleChangeDate } = useContext(FilterContext);
 
   const marks = [

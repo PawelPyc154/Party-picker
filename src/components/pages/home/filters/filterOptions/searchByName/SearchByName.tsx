@@ -4,7 +4,7 @@ import { FilterContext } from '../../../../../../context/GetAndFilterEvents';
 
 export interface SearchByNameProps {}
 
-const SearchByName: React.SFC<SearchByNameProps> = () => {
+const SearchByName: React.FC<SearchByNameProps> = () => {
   const { filters, handleChangeFilters } = useContext(FilterContext);
 
   return (

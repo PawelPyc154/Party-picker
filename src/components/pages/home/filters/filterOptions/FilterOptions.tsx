@@ -1,17 +1,16 @@
+import { motion } from 'framer-motion';
 import React from 'react';
 import styled from 'styled-components';
-import { motion } from 'framer-motion';
 import media from '../../../../../utils/MediaQueries';
-
+import SearchByDate from './searchByDate/SearchByDate';
 import SearchByName from './searchByName/SearchByName';
 import SearchByProvince from './searchByProvince/SearchByProvince';
-import SearchByDate from './searchByDate/SearchByDate';
 
 export interface FilterOptionsProps {
   openFilterOptions: boolean;
 }
 
-const FilterOptions: React.SFC<FilterOptionsProps> = ({ openFilterOptions }) => {
+const FilterOptions: React.FC<FilterOptionsProps> = ({ openFilterOptions }) => {
   const variants = {
     open: {
       x: 0,

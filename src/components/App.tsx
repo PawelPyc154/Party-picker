@@ -1,16 +1,14 @@
 import React, { useEffect } from 'react';
-import styled from 'styled-components';
 import { useDispatch } from 'react-redux';
 import { BrowserRouter as Router } from 'react-router-dom';
-
+import styled from 'styled-components';
 import GetAndFilterEventContext from '../context/GetAndFilterEvents';
-import Navigation from './layout/navigation/Navigation';
-
+import { loadUser } from '../state/auth/action';
 import { getEvents } from '../state/events/action';
 import media from '../utils/MediaQueries';
-import { loadUser } from '../state/auth/action';
-import Pages from './pages/Pages';
 import Map from './layout/map/Map';
+import Navigation from './layout/navigation/Navigation';
+import Pages from './pages/Pages';
 
 function App() {
   const dispatch = useDispatch();

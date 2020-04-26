@@ -1,9 +1,8 @@
 import React, { Suspense } from 'react';
-import { Switch, Route } from 'react-router-dom';
-
-import Home from './home/Home';
+import { Route, Switch } from 'react-router-dom';
 import Loading from '../universalComponents/Loading';
 import PrivateRoute from '../universalComponents/PrivateRoute';
+import Home from './home/Home';
 
 const LoginSignup = React.lazy(() => import('./loginSignup/LoginSignup'));
 const Contact = React.lazy(() => import('./contact/Contact'));
@@ -12,7 +11,7 @@ const User = React.lazy(() => import('./user/User'));
 
 export interface PagesProps {}
 
-const Pages: React.SFC<PagesProps> = () => (
+const Pages: React.FC<PagesProps> = () => (
   <Suspense fallback={<Loading />}>
     <Switch>
       <Route exact path="/" component={Home} />

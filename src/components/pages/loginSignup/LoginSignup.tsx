@@ -1,17 +1,17 @@
-import React, { useRef, useEffect, useState } from 'react';
-import styled from 'styled-components';
-import Scroll from 'react-scroll';
-import { useHistory } from 'react-router-dom';
+import React, { useEffect, useRef, useState } from 'react';
 import { useSelector } from 'react-redux';
-import Login from './login/Login';
-import Signup from './signup/Signup';
-import FbAndGoogle from './fbAndGoogle/FbAndGoogle';
+import { useHistory } from 'react-router-dom';
+import Scroll from 'react-scroll';
+import styled from 'styled-components';
 import { AppState } from '../../../state/allReducers';
 import media from '../../../utils/MediaQueries';
+import FbAndGoogle from './fbAndGoogle/FbAndGoogle';
+import Login from './login/Login';
+import Signup from './signup/Signup';
 
 export interface LoginSignupProps {}
 
-const LoginSignup: React.SFC<LoginSignupProps> = () => {
+const LoginSignup: React.FC<LoginSignupProps> = () => {
   const [errorServerVisibleOn, setErrorServerVisibleOn] = useState('');
 
   // Scroll animation

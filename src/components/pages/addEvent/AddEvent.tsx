@@ -1,30 +1,28 @@
-import React, { useState, useRef, useEffect } from 'react';
-
-import { useFormik } from 'formik';
-import * as yup from 'yup';
-import { motion } from 'framer-motion';
-import Scroll from 'react-scroll';
-import styled from 'styled-components';
-import DatePicker from 'react-datepicker';
-import 'react-datepicker/dist/react-datepicker.css';
-import 'react-datepicker/dist/react-datepicker-cssmodules.min.css';
-import pl from 'date-fns/locale/pl'; // the locale you want
 import { withStyles } from '@material-ui/core';
 import Checkbox, { CheckboxProps } from '@material-ui/core/Checkbox';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
-import { useSelector, useDispatch } from 'react-redux';
+import pl from 'date-fns/locale/pl';
+import { useFormik } from 'formik';
+import { motion } from 'framer-motion';
+import React, { useEffect, useRef, useState } from 'react';
+import DatePicker from 'react-datepicker';
+import 'react-datepicker/dist/react-datepicker-cssmodules.min.css';
+import 'react-datepicker/dist/react-datepicker.css';
+import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
+import Scroll from 'react-scroll';
+import styled from 'styled-components';
+import * as yup from 'yup';
 import { AppState } from '../../../state/allReducers';
+import { getEvents } from '../../../state/events/action';
 import { setCoordinates } from '../../../state/positionAddEvent/action';
 import axiosWithConfig from '../../../utils/axiosWithConfig';
-import { getEvents } from '../../../state/events/action';
-import Loading from '../../universalComponents/Loading';
-// import TypeOfEvent from './typeOfEvent/TypeOfEvent';
 import media from '../../../utils/MediaQueries';
+import Loading from '../../universalComponents/Loading';
 
 export interface AddEventProps {}
 
-const AddEvent: React.SFC<AddEventProps> = () => {
+const AddEvent: React.FC<AddEventProps> = () => {
   const [animationStop, setAnimationStop] = useState('hidden');
   const { longitude, latitude } = useSelector((state: AppState) => state.PositionAddEventReducer);
   const [startDate, setStartDate] = useState(new Date());

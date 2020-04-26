@@ -1,4 +1,4 @@
-import React, { useState, useEffect, ChangeEvent } from 'react';
+import React, { ChangeEvent, useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { AppState } from '../state/allReducers';
 import EventType from '../state/events/EventType';
@@ -22,7 +22,7 @@ export const FilterContext = React.createContext(
 
 export interface GetAndFilterEventProps {}
 
-const GetAndFilterEvent: React.SFC<GetAndFilterEventProps> = ({ children }) => {
+const GetAndFilterEvent: React.FC<GetAndFilterEventProps> = ({ children }) => {
   const initialTimeFromTo = [7 * 24 * 2, 38 * 24 * 2];
   const events = useSelector((state: AppState) => state.EventsReducer);
   const [eventsFiltered, setEventsFiltered] = useState(events);

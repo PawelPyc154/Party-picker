@@ -1,24 +1,24 @@
-import React from 'react';
-import { useDispatch } from 'react-redux';
-import Tooltip from '@material-ui/core/Tooltip';
-import styled from 'styled-components';
-import { RiDeleteBin2Line } from 'react-icons/ri';
-import Dialog from '@material-ui/core/Dialog';
 import {
+  Button,
+  DialogActions,
   DialogContent,
   DialogContentText,
-  DialogActions,
-  Button,
   withStyles,
 } from '@material-ui/core';
-import axiosWithConfig from '../../../../../utils/axiosWithConfig';
+import Dialog from '@material-ui/core/Dialog';
+import Tooltip from '@material-ui/core/Tooltip';
+import React from 'react';
+import { RiDeleteBin2Line } from 'react-icons/ri';
+import { useDispatch } from 'react-redux';
+import styled from 'styled-components';
 import { getEvents } from '../../../../../state/events/action';
+import axiosWithConfig from '../../../../../utils/axiosWithConfig';
 
 export interface DeleteButtonProps {
   eventId: string;
 }
 
-const DeleteButton: React.SFC<DeleteButtonProps> = ({ eventId }) => {
+const DeleteButton: React.FC<DeleteButtonProps> = ({ eventId }) => {
   const [open, setOpen] = React.useState(false);
 
   const handleClickOpen = () => {

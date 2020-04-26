@@ -1,15 +1,14 @@
 import React, { useContext } from 'react';
 import styled from 'styled-components';
-
-import Filters from './filters/Filters';
-import Event from './event/Event';
 import { FilterContext } from '../../../context/GetAndFilterEvents';
-import Loading from '../../universalComponents/Loading';
 import media from '../../../utils/MediaQueries';
+import Loading from '../../universalComponents/Loading';
+import Event from './event/Event';
+import Filters from './filters/Filters';
 
 export interface HomeProps {}
 
-const Home: React.SFC<HomeProps> = () => {
+const Home: React.FC<HomeProps> = () => {
   const { eventsFiltered, filters, initialTimeFromTo } = useContext(FilterContext);
 
   return (
