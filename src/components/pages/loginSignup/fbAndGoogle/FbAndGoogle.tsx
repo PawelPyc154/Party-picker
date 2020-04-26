@@ -70,7 +70,7 @@ const FbAndGoogleContainer = styled.section`
   display: flex;
   flex-direction: column;
   ${media.tablet} {
-    margin: 10vh auto 5px;
+    margin: 5vh auto 5px;
     max-width: 500px;
   }
 

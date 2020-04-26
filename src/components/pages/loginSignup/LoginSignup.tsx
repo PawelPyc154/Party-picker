@@ -54,9 +54,6 @@ const LoginSignupContainer = styled.main`
     &::-webkit-scrollbar {
       width: 3px;
     }
-    &::-webkit-scrollbar-track {
-      /* box-shadow: inset 0 0 6px gray; */
-    }
     &::-webkit-scrollbar-thumb {
       background-color: gray;
       outline: 1px solid gray;
