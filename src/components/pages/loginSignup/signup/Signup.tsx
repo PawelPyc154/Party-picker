@@ -82,9 +82,9 @@ const Signup: React.FC<SignupProps> = ({ errorServerVisibleOn, setErrorServerVis
                 error?.name && <Validation>{error.name}</Validation>
               )}
               <Input
-                autoComplete="off"
+                autoComplete="nope"
                 style={errors.name && touched.name ? { border: '1px solid #e74c3c' } : {}}
-                type="name"
+                type="text"
                 name="name"
                 onChange={(e) => handleChangeClearError(e, handleChange)}
                 onBlur={handleBlur}
@@ -102,7 +102,7 @@ const Signup: React.FC<SignupProps> = ({ errorServerVisibleOn, setErrorServerVis
                 error?.email && <Validation>{error.email}</Validation>
               )}
               <Input
-                autoComplete="off"
+                autoComplete="nope"
                 style={errors.email && touched.email ? { border: '1px solid #e74c3c' } : {}}
                 type="email"
                 name="email"
@@ -158,7 +158,13 @@ const Signup: React.FC<SignupProps> = ({ errorServerVisibleOn, setErrorServerVis
                       }
                     : {}
                 }
-                disabled={isValid && isSubmitting}
+                disabled={
+                  isSubmitting ||
+                  !values.name ||
+                  !values.email ||
+                  !values.password ||
+                  !values.password2
+                }
                 type="submit"
                 initial={animationStop ? {} : { x: 100, opacity: 0 }}
                 animate={animationStop ? {} : { x: [100, 0], opacity: [0, 1] }}

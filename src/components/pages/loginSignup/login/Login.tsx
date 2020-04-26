@@ -19,9 +19,7 @@ const LoginProps: React.FC<LoginPropsProps> = ({
   setErrorServerVisibleOn,
 }) => {
   const dispatch = useDispatch();
-
   const { error } = useSelector((state: AppState) => state.AuthReducer);
-
   const [animationStop, setAnimationStop] = useState(false);
 
   const validationSchema = yup.object({
@@ -124,7 +122,7 @@ const LoginProps: React.FC<LoginPropsProps> = ({
                       }
                     : {}
                 }
-                disabled={isValid && isSubmitting}
+                disabled={isSubmitting || !values.email || !values.password}
                 type="submit"
                 initial={animationStop ? {} : { x: 100, opacity: 0 }}
                 animate={animationStop ? {} : { x: [100, 0], opacity: [0, 1] }}
