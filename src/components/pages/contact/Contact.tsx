@@ -70,7 +70,7 @@ const Contact: React.FC<ContactProps> = () => {
           <FromStyled>
             {errors.email && touched.email && <Validation>{errors.email}</Validation>}
             <Input
-              autoComplete="off"
+              autoComplete="nope"
               style={errors.email && touched.email ? { border: '1px solid #e74c3c' } : {}}
               type="email"
               name="email"
@@ -155,7 +155,6 @@ const ContactContainer = styled.main`
   border: 1px solid #313131;
 `;
 const FromStyled = styled(Form)`
-  /* background-color: #202020; */
   width: auto;
   margin: 10px 0 5px;
   display: flex;
@@ -167,7 +166,7 @@ const FromStyled = styled(Form)`
   }
 `;
 const Input = styled(motion.input)`
-  background: #181818;
+  background: #202020;
   height: 35px;
   color: #3498db;
   margin: 0 0px 15px 0px;
@@ -188,7 +187,7 @@ const Validation = styled.div`
 `;
 
 const Button = styled(motion.button)`
-  background: #181818;
+  background: #202020;
   color: #6f6f6f;
   font-size: 20px;
   border: 1px solid #6f6f6f;
@@ -198,7 +197,7 @@ const Button = styled(motion.button)`
   margin: 0 0 50px;
 `;
 const Textarea = styled(motion.textarea)`
-  background: #181818;
+  background: #202020;
   color: #3498db;
   font-size: 20px;
   font-family: inherit;

@@ -198,7 +198,7 @@ const FromStyled = styled(Form)`
   }
 `;
 const Input = styled(motion.input)`
-  background: #181818;
+  background: #202020;
   height: 35px;
   color: #3498db;
   margin: 0 0px 15px 0px;
@@ -220,7 +220,7 @@ const Validation = styled.div`
 `;
 
 const Button = styled(motion.button)`
-  background: #181818;
+  background: #202020;
   color: #6f6f6f;
   font-size: 20px;
   border: 1px solid #6f6f6f;

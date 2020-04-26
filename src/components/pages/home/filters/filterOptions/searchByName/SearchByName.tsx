@@ -20,7 +20,7 @@ const SearchByName: React.FC<SearchByNameProps> = () => {
 export default SearchByName;
 
 const SearchInput = styled.input`
-  background-color: #181818;
+  background: #202020;
   color: #3498db;
   border: 1px solid #3498db;
   height: 35px;
