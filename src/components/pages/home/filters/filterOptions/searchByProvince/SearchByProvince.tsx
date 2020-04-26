@@ -1,6 +1,7 @@
 import React, { useContext } from 'react';
 import styled from 'styled-components';
 import { FilterContext } from '../../../../../../context/GetAndFilterEvents';
+import Button from '../../../../../universalComponents/Button';
 
 export interface SearchByProvinceProps {}
 
@@ -26,13 +27,14 @@ const SearchByProvince: React.FC<SearchByProvinceProps> = () => {
   return (
     <ProvincesWrapper>
       {provinces.map((province) => (
-        <Province
+        <Button
+          margin="10px 10px"
           onClick={() => handleChangeFilters(province, 'province')}
           key={province}
           style={province === filters.province ? { border: '1px solid white', color: 'white' } : {}}
         >
           {province}
-        </Province>
+        </Button>
       ))}
     </ProvincesWrapper>
   );
@@ -47,21 +49,4 @@ const ProvincesWrapper = styled.div`
   margin: 20px 0;
   width: calc(100% + 20px);
   transform: translateX(-10px);
-`;
-const Province = styled.button`
-  background-color: transparent;
-  border: 1px solid #3498db;
-  border-radius: 0;
-  height: 35px;
-  padding: 5px;
-  color: #3498db;
-  margin: 10px 10px;
-  display: flex;
-  align-items: center;
-  letter-spacing: 1px;
-  cursor: pointer;
-  &:hover {
-    border: 1px solid white;
-    color: white;
-  }
 `;

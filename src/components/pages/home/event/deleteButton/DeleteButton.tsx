@@ -37,6 +37,7 @@ const DeleteButton: React.FC<DeleteButtonProps> = ({ eventId }) => {
       console.log(err.response.data);
     }
   };
+
   return (
     <>
       <Tooltip title="Usuń wydarzenie">

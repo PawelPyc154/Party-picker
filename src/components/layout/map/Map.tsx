@@ -1,15 +1,14 @@
-import React, { useState, useEffect, useRef, useContext } from 'react';
-import styled from 'styled-components';
-import ReactMapGL, { Marker, FullscreenControl } from 'react-map-gl';
-
+import React, { useContext, useEffect, useRef, useState } from 'react';
 import { TiLocation } from 'react-icons/ti';
+import ReactMapGL, { FullscreenControl, Marker } from 'react-map-gl';
 import { useDispatch, useSelector } from 'react-redux';
 import { useLocation } from 'react-router-dom';
+import styled from 'styled-components';
 import { FilterContext } from '../../../context/GetAndFilterEvents';
+import { AppState } from '../../../state/allReducers';
+import { setCoordinates } from '../../../state/positionAddEvent/action';
 import media from '../../../utils/MediaQueries';
 import EventContent from '../../universalComponents/EventContent';
-import { setCoordinates } from '../../../state/positionAddEvent/action';
-import { AppState } from '../../../state/allReducers';
 
 export interface MapProps {}
 interface Viewport {

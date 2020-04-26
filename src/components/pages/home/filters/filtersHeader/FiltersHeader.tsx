@@ -6,6 +6,7 @@ import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import { FilterContext } from '../../../../../context/GetAndFilterEvents';
 import { AppState } from '../../../../../state/allReducers';
+import Button from '../../../../universalComponents/Button';
 
 export interface FiltersHeaderProps {
   openFilterOptions: boolean;
@@ -25,20 +26,34 @@ const FiltersHeader: React.FC<FiltersHeaderProps> = ({
     <>
       <Wraper>
         {filters.name ? (
-          <Badge onClick={() => handleChangeFilters(filters.name, 'name')}>
+          <Button
+            className="hoverRed"
+            margin="0 5px"
+            onClick={() => handleChangeFilters(filters.name, 'name')}
+          >
             {filters.name}
             ...
-          </Badge>
+          </Button>
         ) : null}
 
         {filters.province ? (
-          <Badge onClick={() => handleChangeFilters(filters.province, 'province')}>
+          <Button
+            className="hoverRed"
+            margin="0 5px"
+            onClick={() => handleChangeFilters(filters.province, 'province')}
+          >
             {filters.province}
-          </Badge>
+          </Button>
         ) : null}
 
         {filters.timeFromTo[0] !== 7 * 24 * 2 || filters.timeFromTo[1] !== 38 * 24 * 2 ? (
-          <Badge onClick={() => handleChangeDate({}, [7 * 24 * 2, 38 * 24 * 2])}>data filter</Badge>
+          <Button
+            className="hoverRed"
+            margin="0 5px"
+            onClick={() => handleChangeDate({}, [7 * 24 * 2, 38 * 24 * 2])}
+          >
+            data filter
+          </Button>
         ) : null}
       </Wraper>
       <Wraper>
@@ -57,6 +72,7 @@ const FiltersHeader: React.FC<FiltersHeaderProps> = ({
         ) : null}
 
         <Button
+          margin="0 5px"
           onClick={() => handleOpenFilterOptions()}
           style={openFilterOptions ? { border: '1px solid white', color: 'white' } : {}}
         >
@@ -75,23 +91,6 @@ const IoMdOptionsStyled = styled(IoMdOptions)`
   margin-right: 7px;
 `;
 
-const Badge = styled.button`
-  background-color: transparent;
-  border: 1px solid #3498db;
-  border-radius: 0;
-  height: 35px;
-  padding: 5px;
-  color: #3498db;
-  margin: 0 5px;
-  display: flex;
-  align-items: center;
-  letter-spacing: 1px;
-  cursor: pointer;
-  &:hover {
-    border: 1px solid #e74c3c;
-    color: #e74c3c;
-  }
-`;
 const Count = styled.div`
   height: 35px;
   padding: 5px;
@@ -102,23 +101,6 @@ const Count = styled.div`
   letter-spacing: 1px;
 `;
 
-const Button = styled.button`
-  justify-self: flex-end;
-  background-color: transparent;
-  border: 1px solid #3498db;
-  border-radius: 0;
-  height: 35px;
-  padding: 5px;
-  color: #3498db;
-  margin: 0 5px 0 5px;
-  display: flex;
-  align-items: center;
-  cursor: pointer;
-  &:hover {
-    border: 1px solid white;
-    color: white;
-  }
-`;
 const LinkUser = styled(Link)`
   border: none;
   color: #3498db;
