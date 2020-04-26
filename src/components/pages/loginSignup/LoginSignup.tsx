@@ -21,7 +21,6 @@ const LoginSignup: React.FC<LoginSignupProps> = () => {
   }, []);
 
   const history = useHistory();
-
   const { user } = useSelector((state: AppState) => state.AuthReducer);
   useEffect(() => {
     if (user) {

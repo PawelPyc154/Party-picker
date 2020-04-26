@@ -171,13 +171,14 @@ const Input = styled(motion.input)`
   height: 35px;
   color: #3498db;
   margin: 0 0px 15px 0px;
-
   border: none;
   border: 1px solid #3498db;
   padding: 2px;
   font-size: 16px;
+  &:hover,
   &:focus {
     outline: none;
+    border: 1px solid white;
   }
 `;
 const Validation = styled.div`
@@ -208,5 +209,10 @@ const Textarea = styled(motion.textarea)`
   margin: 0 0px 15px 0px;
   ${media.tablet} {
     flex-basis: 300px;
+  }
+  &:hover,
+  &:focus {
+    outline: none;
+    border: 1px solid white;
   }
 `;

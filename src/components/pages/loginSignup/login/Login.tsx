@@ -166,10 +166,13 @@ const Input = styled(motion.input)`
   border: 1px solid #3498db;
   padding: 2px;
   font-size: 16px;
+  &:hover,
   &:focus {
     outline: none;
+    border: 1px solid white;
   }
 `;
+
 const Validation = styled.div`
   color: #e74c3c;
   font-size: 12px;
