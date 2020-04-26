@@ -66,7 +66,7 @@ const FiltersHeader: React.FC<FiltersHeaderProps> = ({
         ) : null}
         {openFilterOptions ? (
           <Count>
-            Count:
+            Ilość:
             {eventsFiltered.length}
           </Count>
         ) : null}

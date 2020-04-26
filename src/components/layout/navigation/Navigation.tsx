@@ -1,14 +1,13 @@
+import Tooltip from '@material-ui/core/Tooltip';
 import React from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import styled from 'styled-components';
 import { FaUserAlt } from 'react-icons/fa';
 import { GoSignOut } from 'react-icons/go';
 import { IoIosAdd } from 'react-icons/io';
+import { useDispatch, useSelector } from 'react-redux';
 import { NavLink } from 'react-router-dom';
-import Tooltip from '@material-ui/core/Tooltip';
-
-import { setLogOut } from '../../../state/auth/action';
+import styled from 'styled-components';
 import { AppState } from '../../../state/allReducers';
+import { setLogOut } from '../../../state/auth/action';
 import media from '../../../utils/MediaQueries';
 
 export interface NavigationProps {}
@@ -118,7 +117,7 @@ const NavLinkLogInStyled = styled(NavLink)`
   margin: 0 5px 0 auto;
   display: flex;
   align-items: center;
-  font-size: 14px;
+  font-size: 12px;
   cursor: pointer;
   ${media.tablet} {
     margin: 0 20px 0 auto;

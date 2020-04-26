@@ -70,7 +70,7 @@ const Contact: React.FC<ContactProps> = () => {
           <FromStyled>
             {errors.email && touched.email && <Validation>{errors.email}</Validation>}
             <Input
-              autoComplete="nope"
+              autoComplete="off"
               style={errors.email && touched.email ? { border: '1px solid #e74c3c' } : {}}
               type="email"
               name="email"
