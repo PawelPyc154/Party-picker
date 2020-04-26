@@ -33,7 +33,6 @@ const AddEvent: React.FC<AddEventProps> = () => {
   const dispatch = useDispatch();
   const container = useRef<HTMLFormElement>(null);
   useEffect(() => {
-    // Animation init
     Scroll.animateScroll.scrollTo(container.current ? container.current.offsetTop - 5 : 0);
     setAnimationStop('visible');
     return () => {
@@ -48,19 +47,16 @@ const AddEvent: React.FC<AddEventProps> = () => {
     handleChange,
     handleBlur,
     values,
-    // setFieldValue,
     handleSubmit,
   } = useFormik({
     initialValues: {
       name: '',
       listFb: false,
-      // typeOfEvent: 'dance',
       describe: '',
     },
     validationSchema: yup.object({
       name: yup.string().required('Required').max(50, 'Too Long!'),
       describe: yup.string().max(500, 'Too Long!'),
-      // typeOfEvent: yup.string().required('Required'),
     }),
     onSubmit: async (value) => {
       try {
@@ -73,7 +69,6 @@ const AddEvent: React.FC<AddEventProps> = () => {
           },
           date: Date.parse(startDate.toString()),
           fbList: value.listFb,
-          // type: value.typeOfEvent,
         });
 
         await dispatch(getEvents());
@@ -144,8 +139,6 @@ const AddEvent: React.FC<AddEventProps> = () => {
             </Coordinate>
           )}
 
-          {/* Data początku * */}
-
           <WrapperDate
             initial="hidden"
             variants={{
@@ -169,12 +162,6 @@ const AddEvent: React.FC<AddEventProps> = () => {
               minDate={new Date()}
             />
           </WrapperDate>
-          {/*
-          {errors.typeOfEvent && touched.typeOfEvent && (
-            <Validation>{errors.typeOfEvent}</Validation>
-          )}
-          <TypeOfEvent setFieldValue={setFieldValue} typeOfEventChosen={values.typeOfEvent} /> */}
-
           {errors.describe && touched.describe && <Validation>{errors.describe}</Validation>}
           <Textarea
             style={errors.describe && touched.describe ? { border: '1px solid #e74c3c' } : {}}
