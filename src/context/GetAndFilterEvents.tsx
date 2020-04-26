@@ -37,19 +37,19 @@ const GetAndFilterEvent: React.FC<GetAndFilterEventProps> = ({ children }) => {
   useEffect(() => {
     setEventsFiltered(
       events
-        .filter((event) => {
+        .filter((item) => {
           const timeFrom =
             Date.now() - 1000 * 60 * 60 * 24 * 8 + filters.timeFromTo[0] * ((1000 * 60 * 60) / 2);
           const timeTo =
             Date.now() - 1000 * 60 * 60 * 24 * 8 + filters.timeFromTo[1] * ((1000 * 60 * 60) / 2);
           return (
-            event.name.includes(filters.name) &&
-            event.province.includes(filters.province) &&
-            event.date >= timeFrom &&
-            event.date <= timeTo
+            item.name.includes(filters.name) &&
+            item.province.includes(filters.province) &&
+            item.date >= timeFrom &&
+            item.date <= timeTo
           );
         })
-        .sort((event) => (user?._id !== event.user._id ? 1 : -1)),
+        .sort((item) => (user?._id !== item.user._id ? 1 : -1)),
     );
   }, [events, filters, user]);
 
