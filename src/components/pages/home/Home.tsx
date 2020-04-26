@@ -20,7 +20,7 @@ const Home: React.FC<HomeProps> = () => {
         filters.province !== '' ||
         filters.timeFromTo[0] !== initialTimeFromTo[0] ||
         filters.timeFromTo[1] !== initialTimeFromTo[1] ? (
-          eventsFiltered.map((event) => <Event key={event._id} event={event} />)
+          eventsFiltered.map((item) => <Event key={item._id} event={item} />)
         ) : (
           <Loading />
         )}

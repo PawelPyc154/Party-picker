@@ -62,11 +62,11 @@ const Map: React.SFC<MapProps> = () => {
         <FullscreenControlWrapper>
           <FullscreenControl />
         </FullscreenControlWrapper>
-        {eventsFiltered.map((event) => (
+        {eventsFiltered.map((item) => (
           <MarkerStyled
-            key={event._id}
-            latitude={event.coordinates.latitude}
-            longitude={event.coordinates.longitude}
+            key={item._id}
+            latitude={item.coordinates.latitude}
+            longitude={item.coordinates.longitude}
             offsetLeft={-25}
             offsetTop={-50}
           >
@@ -75,7 +75,7 @@ const Map: React.SFC<MapProps> = () => {
             </MarkerContent>
 
             <MarkerInfo className="markerInfo">
-              <EventContent event={event} />
+              <EventContent event={item} />
             </MarkerInfo>
           </MarkerStyled>
         ))}

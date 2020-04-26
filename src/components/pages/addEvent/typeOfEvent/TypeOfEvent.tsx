@@ -16,14 +16,12 @@ const TypeOfEvent: React.FC<TypeOfEventProps> = ({ setFieldValue, typeOfEventCho
   return (
     <TypeOfEventContainer>
       <EventTypeWrapper>
-        {typesOfEvent.map((typeOfEvent, index) => (
+        {typesOfEvent.map((item, index) => (
           <EventType
             type="button"
-            onClick={() => handleClick(typeOfEvent)}
-            key={typeOfEvent}
-            style={
-              typeOfEvent === typeOfEventChosen ? { border: '1px solid white', color: 'white' } : {}
-            }
+            onClick={() => handleClick(item)}
+            key={item}
+            style={item === typeOfEventChosen ? { border: '1px solid white', color: 'white' } : {}}
             initial="hidden"
             variants={{
               visible: {
@@ -38,7 +36,7 @@ const TypeOfEvent: React.FC<TypeOfEventProps> = ({ setFieldValue, typeOfEventCho
               },
             }}
           >
-            {typeOfEvent}
+            {item}
           </EventType>
         ))}
       </EventTypeWrapper>
