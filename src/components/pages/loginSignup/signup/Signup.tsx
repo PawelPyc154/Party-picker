@@ -41,6 +41,7 @@ const Signup: React.FC<SignupProps> = ({ errorServerVisibleOn, setErrorServerVis
   return (
     <SignupContainer>
       <Formik
+        validateOnMount
         validateOnChange
         validationSchema={validationSchema}
         initialValues={{
@@ -60,7 +61,7 @@ const Signup: React.FC<SignupProps> = ({ errorServerVisibleOn, setErrorServerVis
           }
         }}
       >
-        {({ values, errors, touched, handleChange, handleBlur, isSubmitting }) =>
+        {({ values, errors, touched, handleChange, handleBlur, isSubmitting, isValid }) =>
           isSubmitting ? (
             <div style={{ height: 360 }}>
               <Loading height={80} width={80} />
@@ -149,13 +150,7 @@ const Signup: React.FC<SignupProps> = ({ errorServerVisibleOn, setErrorServerVis
                 transition={{ delay: 0.1, duration: 0.2 }}
               />
               <Button
-                disabled={
-                  isSubmitting ||
-                  !values.name ||
-                  !values.email ||
-                  !values.password ||
-                  !values.password2
-                }
+                disabled={isSubmitting || !isValid}
                 type="submit"
                 initial={animationStop ? {} : { x: 100, opacity: 0 }}
                 animate={animationStop ? {} : { x: [100, 0], opacity: [0, 1] }}

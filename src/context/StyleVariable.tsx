@@ -69,9 +69,7 @@ const colors = {
     },
   },
 };
-const size = {
-  h1: '10px',
-};
+const size = {};
 
 const StyleVariable: React.FC<StyleVariableProps> = ({ children }) => {
   const [isDarkMode, setIsDarkMode] = useState(true);

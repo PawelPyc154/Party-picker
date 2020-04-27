@@ -48,6 +48,7 @@ const AddEvent: React.FC<AddEventProps> = () => {
     handleBlur,
     values,
     handleSubmit,
+    isValid,
   } = useFormik({
     initialValues: {
       name: '',
@@ -195,7 +196,7 @@ const AddEvent: React.FC<AddEventProps> = () => {
           </CheckBoxWrapper>
 
           <Button
-            disabled={isSubmitting || !values.name || !longitude || !latitude}
+            disabled={isSubmitting || !isValid || !longitude || !latitude}
             type="submit"
             initial="hidden"
             variants={{

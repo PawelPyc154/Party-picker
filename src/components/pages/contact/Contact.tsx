@@ -53,6 +53,7 @@ const Contact: React.FC<ContactProps> = () => {
   return (
     <ContactContainer ref={container}>
       <Formik
+        validateOnMount
         validateOnChange
         validationSchema={validationSchema}
         initialValues={{
@@ -66,7 +67,7 @@ const Contact: React.FC<ContactProps> = () => {
           await setSubmitting(false);
         }}
       >
-        {({ values, errors, touched, handleChange, handleBlur, isSubmitting }) => (
+        {({ values, errors, touched, handleChange, handleBlur, isSubmitting, isValid }) => (
           <FromStyled>
             {errors.email && touched.email && <Validation>{errors.email}</Validation>}
             <Input
@@ -119,7 +120,7 @@ const Contact: React.FC<ContactProps> = () => {
               }}
             />
             <Button
-              disabled={isSubmitting || !values.message || !values.subject || !values.email}
+              disabled={isSubmitting || !isValid}
               type="submit"
               initial="hidden"
               animate={animateVariant}

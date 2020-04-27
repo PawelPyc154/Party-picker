@@ -38,6 +38,7 @@ const LoginProps: React.FC<LoginPropsProps> = ({
   return (
     <LoginContainer>
       <Formik
+        validateOnMount
         validateOnChange
         validationSchema={validationSchema}
         initialValues={{
@@ -55,7 +56,7 @@ const LoginProps: React.FC<LoginPropsProps> = ({
           }
         }}
       >
-        {({ values, errors, touched, handleChange, handleBlur, isSubmitting }) =>
+        {({ values, errors, touched, handleChange, handleBlur, isSubmitting, isValid }) =>
           isSubmitting ? (
             <div style={{ height: 188 }}>
               <Loading height={80} width={80} />
@@ -113,7 +114,7 @@ const LoginProps: React.FC<LoginPropsProps> = ({
               />
 
               <Button
-                disabled={isSubmitting || !values.email || !values.password}
+                disabled={isSubmitting || !isValid}
                 type="submit"
                 initial={animationStop ? {} : { x: 100, opacity: 0 }}
                 animate={animationStop ? {} : { x: [100, 0], opacity: [0, 1] }}
