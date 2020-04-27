@@ -60,7 +60,7 @@ const Signup: React.FC<SignupProps> = ({ errorServerVisibleOn, setErrorServerVis
           }
         }}
       >
-        {({ values, errors, touched, handleChange, handleBlur, isSubmitting, isValid }) =>
+        {({ values, errors, touched, handleChange, handleBlur, isSubmitting }) =>
           isSubmitting ? (
             <div style={{ height: 360 }}>
               <Loading height={80} width={80} />
@@ -83,7 +83,7 @@ const Signup: React.FC<SignupProps> = ({ errorServerVisibleOn, setErrorServerVis
               )}
               <Input
                 autoComplete="nope"
-                style={errors.name && touched.name ? { border: '1px solid #e74c3c' } : {}}
+                className={errors.name && touched.name ? 'errorInput' : ''}
                 type="text"
                 name="name"
                 onChange={(e) => handleChangeClearError(e, handleChange)}
@@ -103,7 +103,7 @@ const Signup: React.FC<SignupProps> = ({ errorServerVisibleOn, setErrorServerVis
               )}
               <Input
                 autoComplete="nope"
-                style={errors.email && touched.email ? { border: '1px solid #e74c3c' } : {}}
+                className={errors.email && touched.email ? 'errorInput' : ''}
                 type="email"
                 name="email"
                 onChange={(e) => handleChangeClearError(e, handleChange)}
@@ -123,7 +123,7 @@ const Signup: React.FC<SignupProps> = ({ errorServerVisibleOn, setErrorServerVis
               )}
               <Input
                 autoComplete="off"
-                style={errors.password && touched.password ? { border: '1px solid #e74c3c' } : {}}
+                className={errors.password && touched.password ? 'errorInput' : ''}
                 type="password"
                 name="password"
                 onChange={(e) => handleChangeClearError(e, handleChange)}
@@ -137,7 +137,7 @@ const Signup: React.FC<SignupProps> = ({ errorServerVisibleOn, setErrorServerVis
               {errors.password2 && touched.password2 && <Validation>{errors.password2}</Validation>}
               <Input
                 autoComplete="off"
-                style={errors.password2 && touched.password2 ? { border: '1px solid #e74c3c' } : {}}
+                className={errors.password2 && touched.password2 ? 'errorInput' : ''}
                 type="password"
                 name="password2"
                 onChange={(e) => handleChangeClearError(e, handleChange)}
@@ -149,15 +149,6 @@ const Signup: React.FC<SignupProps> = ({ errorServerVisibleOn, setErrorServerVis
                 transition={{ delay: 0.1, duration: 0.2 }}
               />
               <Button
-                style={
-                  isValid && values.email && values.password
-                    ? {
-                        color: 'white',
-                        border: '1px solid #3498db',
-                        backgroundColor: isSubmitting ? '#3498db' : '#181818',
-                      }
-                    : {}
-                }
                 disabled={
                   isSubmitting ||
                   !values.name ||
@@ -198,34 +189,37 @@ const FromStyled = styled(Form)`
   }
 `;
 const Input = styled(motion.input)`
-  background: #202020;
+  background: ${(props) => props.theme.colors.backgroundSecondary};
   height: 35px;
-  color: #3498db;
+  color: ${(props) => props.theme.colors.textSecondary};
   margin: 0 0px 15px 0px;
 
   border: none;
-  border: 1px solid #3498db;
+  border: 1px solid ${(props) => props.theme.colors.layout};
   padding: 2px;
   font-size: 16px;
   &:hover,
   &:focus {
     outline: none;
-    border: 1px solid white;
+    border: 1px solid ${(props) => props.theme.colors.hover};
   }
 `;
 const Validation = styled.div`
-  color: #e74c3c;
+  color: ${(props) => props.theme.colors.error};
   font-size: 12px;
   margin: 0 0 5px 0;
 `;
 
 const Button = styled(motion.button)`
-  background: #202020;
-  color: #6f6f6f;
+  background: ${(props) => props.theme.colors.backgroundSecondary};
+  color: ${(props) => props.theme.colors.textPrimary};
   font-size: 20px;
-  border: 1px solid #6f6f6f;
+  border: 1px solid ${(props) => props.theme.colors.layout};
   height: 35px;
   width: 20%;
   align-self: flex-end;
-  margin: 0 0 50px;
+  &:disabled {
+    color: ${(props) => props.theme.colors.disable};
+    border: 1px solid ${(props) => props.theme.colors.disable};
+  }
 `;

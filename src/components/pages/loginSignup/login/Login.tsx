@@ -55,7 +55,7 @@ const LoginProps: React.FC<LoginPropsProps> = ({
           }
         }}
       >
-        {({ values, errors, touched, handleChange, handleBlur, isSubmitting, isValid }) =>
+        {({ values, errors, touched, handleChange, handleBlur, isSubmitting }) =>
           isSubmitting ? (
             <div style={{ height: 188 }}>
               <Loading height={80} width={80} />
@@ -79,7 +79,7 @@ const LoginProps: React.FC<LoginPropsProps> = ({
               )}
               <Input
                 autoComplete="off"
-                style={errors.email && touched.email ? { border: '1px solid #e74c3c' } : {}}
+                className={errors.email && touched.email ? 'errorInput' : ''}
                 type="email"
                 name="email"
                 onChange={(e) => handleChangeClearError(e, handleChange)}
@@ -100,7 +100,7 @@ const LoginProps: React.FC<LoginPropsProps> = ({
               )}
               <Input
                 autoComplete="off"
-                style={errors.password && touched.password ? { border: '1px solid #e74c3c' } : {}}
+                className={errors.password && touched.password ? 'errorInput' : ''}
                 type="password"
                 name="password"
                 onChange={(e) => handleChangeClearError(e, handleChange)}
@@ -113,15 +113,6 @@ const LoginProps: React.FC<LoginPropsProps> = ({
               />
 
               <Button
-                style={
-                  isValid && values.email && values.password
-                    ? {
-                        color: 'white',
-                        border: '1px solid #3498db',
-                        backgroundColor: isSubmitting ? '#3498db' : '#181818',
-                      }
-                    : {}
-                }
                 disabled={isSubmitting || !values.email || !values.password}
                 type="submit"
                 initial={animationStop ? {} : { x: 100, opacity: 0 }}
@@ -156,33 +147,37 @@ const FromStyled = styled(Form)`
   }
 `;
 const Input = styled(motion.input)`
-  background: #202020;
+  background: ${(props) => props.theme.colors.backgroundSecondary};
   height: 35px;
-  color: #3498db;
+  color: ${(props) => props.theme.colors.textSecondary};
   margin: 0 0px 15px 0px;
   border: none;
-  border: 1px solid #3498db;
+  border: 1px solid ${(props) => props.theme.colors.layout};
   padding: 2px;
   font-size: 16px;
   &:hover,
   &:focus {
     outline: none;
-    border: 1px solid white;
+    border: 1px solid ${(props) => props.theme.colors.hover};
   }
 `;
 
 const Validation = styled.div`
-  color: #e74c3c;
+  color: ${(props) => props.theme.colors.error};
   font-size: 12px;
   margin: 0 0 5px 0;
 `;
 
 const Button = styled(motion.button)`
-  background: #202020;
-  color: #6f6f6f;
+  background: ${(props) => props.theme.colors.backgroundSecondary};
+  color: ${(props) => props.theme.colors.textPrimary};
   font-size: 20px;
-  border: 1px solid #6f6f6f;
+  border: 1px solid ${(props) => props.theme.colors.layout};
   height: 35px;
   width: 20%;
   align-self: flex-end;
+  &:disabled {
+    color: ${(props) => props.theme.colors.disable};
+    border: 1px solid ${(props) => props.theme.colors.disable};
+  }
 `;

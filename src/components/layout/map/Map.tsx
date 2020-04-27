@@ -89,7 +89,7 @@ const Map: React.SFC<MapProps> = () => {
             offsetTop={-50}
             onDragEnd={(e) => setPositionAddEvent(e.lngLat)}
           >
-            <TiLocationStyled style={{ color: '#3498db' }} />
+            <TiLocationStyled className="addEvent" />
           </Marker>
         ) : null}
       </ReactMapGL>
@@ -133,16 +133,19 @@ const MarkerContent = styled.div`
 
 const TiLocationStyled = styled(TiLocation)`
   font-size: 50px;
-  /* color: #3498db; */
-  color: #f1c40f;
+  color: ${(props) => props.theme.colors.map.marker};
+  &.addEvent {
+    color: ${(props) => props.theme.colors.map.markerAddEvent};
+  }
 `;
+
 const MarkerInfo = styled.div`
   width: 200px;
   height: 150px;
   position: absolute;
   top: -160px;
   left: -80px;
-  background-color: #181818;
+  background-color: ${(props) => props.theme.colors.backgroundSecondary};
   pointer-events: none;
   opacity: 0;
   z-index: 100;

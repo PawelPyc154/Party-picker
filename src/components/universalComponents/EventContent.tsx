@@ -1,6 +1,6 @@
 import React from 'react';
-import styled from 'styled-components';
 import { TiLocation } from 'react-icons/ti';
+import styled from 'styled-components';
 import EventType from '../../state/events/EventType';
 import getDate from '../../utils/getDate';
 
@@ -35,7 +35,7 @@ const DateWrapper = styled.div`
   display: flex;
   justify-content: space-evenly;
   width: 100%;
-  color: white;
+  color: ${(props) => props.theme.colors.textPrimary};
   margin-bottom: 5px;
 `;
 const Header = styled.h2`
@@ -45,19 +45,19 @@ const Location = styled.p`
   font-size: 16px;
   display: flex;
   align-items: center;
-  color: white;
+  color: ${(props) => props.theme.colors.textPrimary};
 `;
 const NewBadge = styled.div`
-  color: black;
-  background-color: #3498db;
+  color: ${(props) => props.theme.colors.textBadge};
+  background-color: ${(props) => props.theme.colors.layout};
   padding: 2px;
   position: absolute;
   top: 0;
   right: 0;
 `;
 const FbBadge = styled.div`
-  color: black;
-  background-color: #3498db;
+  color: ${(props) => props.theme.colors.textBadge};
+  background-color: ${(props) => props.theme.colors.layout};
   padding: 2px;
   position: absolute;
   bottom: 0;

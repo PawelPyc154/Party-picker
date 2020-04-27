@@ -20,15 +20,15 @@ const SearchByName: React.FC<SearchByNameProps> = () => {
 export default SearchByName;
 
 const SearchInput = styled.input`
-  background: #202020;
-  color: #3498db;
-  border: 1px solid #3498db;
+  background: ${(props) => props.theme.colors.backgroundSecondary};
+  color: ${(props) => props.theme.colors.textSecondary};
+  border: 1px solid ${(props) => props.theme.colors.layout};
   height: 35px;
   font-size: 20px;
   width: 100%;
   padding: 5px;
   &:hover,
   &:focus {
-    border: 1px solid white;
+    border: 1px solid ${(props) => props.theme.colors.hover};
   }
 `;

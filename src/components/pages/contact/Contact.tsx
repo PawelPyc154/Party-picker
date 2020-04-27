@@ -66,12 +66,12 @@ const Contact: React.FC<ContactProps> = () => {
           await setSubmitting(false);
         }}
       >
-        {({ values, errors, touched, handleChange, handleBlur, isSubmitting, isValid }) => (
+        {({ values, errors, touched, handleChange, handleBlur, isSubmitting }) => (
           <FromStyled>
             {errors.email && touched.email && <Validation>{errors.email}</Validation>}
             <Input
               autoComplete="off"
-              style={errors.email && touched.email ? { border: '1px solid #e74c3c' } : {}}
+              className={errors.email && touched.email ? 'errorInput' : ''}
               type="email"
               name="email"
               onChange={handleChange}
@@ -89,7 +89,7 @@ const Contact: React.FC<ContactProps> = () => {
             {errors.subject && touched.subject && <Validation>{errors.subject}</Validation>}
             <Input
               autoComplete="off"
-              style={errors.subject && touched.subject ? { border: '1px solid #e74c3c' } : {}}
+              className={errors.subject && touched.subject ? 'errorInput' : ''}
               type="subject"
               name="subject"
               onChange={handleChange}
@@ -105,7 +105,7 @@ const Contact: React.FC<ContactProps> = () => {
             />
             {errors.message && touched.message && <Validation>{errors.message}</Validation>}
             <Textarea
-              style={errors.message && touched.message ? { border: '1px solid #e74c3c' } : {}}
+              className={errors.message && touched.message ? 'errorInput' : ''}
               name="message"
               onChange={handleChange}
               onBlur={handleBlur}
@@ -119,16 +119,7 @@ const Contact: React.FC<ContactProps> = () => {
               }}
             />
             <Button
-              style={
-                isValid && values.email && values.subject && values.message
-                  ? {
-                      color: 'white',
-                      border: '1px solid #3498db',
-                      backgroundColor: isSubmitting ? '#3498db' : 'transparent',
-                    }
-                  : {}
-              }
-              disabled={isValid && isSubmitting}
+              disabled={isSubmitting || !values.message || !values.subject || !values.email}
               type="submit"
               initial="hidden"
               animate={animateVariant}
@@ -150,9 +141,9 @@ export default Contact;
 
 const ContactContainer = styled.main`
   overflow: hidden;
-  background-color: #202020;
+  background-color: ${(props) => props.theme.colors.backgroundSecondary};
   margin-top: 10px;
-  border: 1px solid #313131;
+  border: 1px solid ${(props) => props.theme.colors.borderPrimary};
 `;
 const FromStyled = styled(Form)`
   width: auto;
@@ -166,43 +157,48 @@ const FromStyled = styled(Form)`
   }
 `;
 const Input = styled(motion.input)`
-  background: #202020;
+  background: ${(props) => props.theme.colors.backgroundSecondary};
   height: 35px;
-  color: #3498db;
+  color: ${(props) => props.theme.colors.textSecondary};
   margin: 0 0px 15px 0px;
   border: none;
-  border: 1px solid #3498db;
+  border: 1px solid ${(props) => props.theme.colors.layout};
   padding: 2px;
   font-size: 16px;
   &:hover,
   &:focus {
     outline: none;
-    border: 1px solid white;
+    border: 1px solid ${(props) => props.theme.colors.hover};
   }
 `;
 const Validation = styled.div`
-  color: #e74c3c;
+  color: ${(props) => props.theme.colors.error};
   font-size: 12px;
   margin: 0 0 5px 0;
 `;
 
 const Button = styled(motion.button)`
-  background: #202020;
-  color: #6f6f6f;
+  background: ${(props) => props.theme.colors.backgroundSecondary};
+  color: ${(props) => props.theme.colors.textPrimary};
   font-size: 20px;
-  border: 1px solid #6f6f6f;
+  border: 1px solid ${(props) => props.theme.colors.layout};
   height: 35px;
   width: 20%;
   align-self: flex-end;
   margin: 0 0 50px;
+  &:disabled {
+    color: ${(props) => props.theme.colors.disable};
+    border: 1px solid ${(props) => props.theme.colors.disable};
+  }
 `;
+
 const Textarea = styled(motion.textarea)`
-  background: #202020;
-  color: #3498db;
+  background: ${(props) => props.theme.colors.backgroundSecondary};
+  color: ${(props) => props.theme.colors.layout};
   font-size: 20px;
   font-family: inherit;
   font-weight: 400;
-  border: 1px solid #3498db;
+  border: 1px solid ${(props) => props.theme.colors.layout};
   flex-basis: 200px;
   resize: none;
   margin: 0 0px 15px 0px;
@@ -212,6 +208,6 @@ const Textarea = styled(motion.textarea)`
   &:hover,
   &:focus {
     outline: none;
-    border: 1px solid white;
+    border: 1px solid ${(props) => props.theme.colors.hover};
   }
 `;

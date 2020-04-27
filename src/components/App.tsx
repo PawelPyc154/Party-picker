@@ -3,6 +3,7 @@ import { useDispatch } from 'react-redux';
 import { BrowserRouter as Router } from 'react-router-dom';
 import styled from 'styled-components';
 import GetAndFilterEventContext from '../context/GetAndFilterEvents';
+import StyleVariableContext from '../context/StyleVariable';
 import { loadUser } from '../state/auth/action';
 import { getEvents } from '../state/events/action';
 import media from '../utils/MediaQueries';
@@ -19,15 +20,17 @@ function App() {
 
   return (
     <Router basename={process.env.PUBLIC_URL}>
-      <AppContainer>
-        <Navigation />
-        <GetAndFilterEventContext>
-          <ContentWraper>
-            <Map />
-            <Pages />
-          </ContentWraper>
-        </GetAndFilterEventContext>
-      </AppContainer>
+      <StyleVariableContext>
+        <AppContainer>
+          <Navigation />
+          <GetAndFilterEventContext>
+            <ContentWraper>
+              <Map />
+              <Pages />
+            </ContentWraper>
+          </GetAndFilterEventContext>
+        </AppContainer>
+      </StyleVariableContext>
     </Router>
   );
 }
@@ -37,7 +40,7 @@ export default App;
 const AppContainer = styled.div`
   width: 100%;
   min-height: 100vh;
-  background-color: #181818;
+  background-color: ${(props) => props.theme.colors.backgroundPrimary};
   ${media.tablet} {
     height: 100vh;
   }

@@ -25,9 +25,9 @@ export default Event;
 
 const EventContainer = styled.section`
   height: 200px;
-  background-color: #202020;
-  border: 1px solid #3498db;
-  color: #3498db;
+  background-color: ${(props) => props.theme.colors.backgroundSecondary};
+  border: 1px solid ${(props) => props.theme.colors.layout};
+  color: ${(props) => props.theme.colors.textSecondary};
   margin: 15px 0;
   display: flex;
   flex-direction: column;
@@ -38,5 +38,8 @@ const EventContainer = styled.section`
   ${media.tablet} {
     margin: 15px 5px 15px 0;
     height: 150px;
+  }
+  .MuiButton-root {
+    color: white !important;
   }
 `;

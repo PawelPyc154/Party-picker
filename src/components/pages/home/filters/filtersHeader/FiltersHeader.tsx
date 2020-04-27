@@ -94,7 +94,7 @@ const IoMdOptionsStyled = styled(IoMdOptions)`
 const Count = styled.div`
   height: 35px;
   padding: 5px;
-  color: white;
+  color: ${(props) => props.theme.colors.textPrimary};
   margin: 0 5px;
   display: flex;
   align-items: center;
@@ -103,14 +103,14 @@ const Count = styled.div`
 
 const LinkUser = styled(Link)`
   border: none;
-  color: #3498db;
+  color: ${(props) => props.theme.colors.textSecondary};
   display: flex;
   align-items: center;
   justify-content: center;
   width: 40px;
   height: 40px;
   &:hover {
-    color: white;
+    color: ${(props) => props.theme.colors.hover};
   }
 `;
 

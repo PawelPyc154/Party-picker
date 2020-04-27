@@ -35,13 +35,13 @@ export default FilterOptions;
 
 const FilterOptionsWrapper = styled(motion.div)`
   position: absolute;
-  background-color: #202020;
+  background-color: ${(props) => props.theme.colors.backgroundSecondary};
   width: calc(100% + 4px);
   top: 49px;
   left: -2px;
   transform: translateX(calc(-100% - 10px));
   padding: 10px 5px;
-  border: 1px solid #313131;
+  border: 1px solid ${(props) => props.theme.colors.borderPrimary};
   border-top: none;
 
   ${media.tablet} {

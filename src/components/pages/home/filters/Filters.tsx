@@ -34,11 +34,11 @@ export default Filters;
 const FiltersContainer = styled.section`
   width: 100%;
   height: 50px;
-  background-color: #202020;
+  background-color: ${(props) => props.theme.colors.backgroundSecondary};
   display: flex;
   align-items: center;
   justify-content: space-between;
-  border: 1px solid #313131;
+  border: 1px solid ${(props) => props.theme.colors.borderPrimary};
   margin-top: 10px;
   position: relative;
   z-index: 100;

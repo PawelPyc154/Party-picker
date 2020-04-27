@@ -92,7 +92,7 @@ const AddEvent: React.FC<AddEventProps> = () => {
           {errors.name && touched.name && <Validation>{errors.name}</Validation>}
           <Input
             autoComplete="off"
-            style={errors.name && touched.name ? { border: '1px solid #e74c3c' } : {}}
+            className={errors.name && touched.name ? 'errorInput' : ''}
             type="text"
             name="name"
             onChange={handleChange}
@@ -164,7 +164,7 @@ const AddEvent: React.FC<AddEventProps> = () => {
           </WrapperDate>
           {errors.describe && touched.describe && <Validation>{errors.describe}</Validation>}
           <Textarea
-            style={errors.describe && touched.describe ? { border: '1px solid #e74c3c' } : {}}
+            className={errors.describe && touched.describe ? 'errorInput' : ''}
             name="describe"
             onChange={handleChange}
             onBlur={handleBlur}
@@ -195,15 +195,6 @@ const AddEvent: React.FC<AddEventProps> = () => {
           </CheckBoxWrapper>
 
           <Button
-            style={
-              values.name && longitude && latitude
-                ? {
-                    color: 'white',
-                    border: '1px solid #3498db',
-                    backgroundColor: isSubmitting ? '#3498db' : 'transparent',
-                  }
-                : {}
-            }
             disabled={isSubmitting || !values.name || !longitude || !latitude}
             type="submit"
             initial="hidden"
@@ -224,9 +215,9 @@ export default AddEvent;
 
 const AddEventContainer = styled.main`
   overflow: hidden;
-  background-color: #202020;
+  background-color: ${(props) => props.theme.colors.backgroundSecondary};
   margin-top: 10px;
-  border: 1px solid #313131;
+  border: 1px solid ${(props) => props.theme.colors.borderPrimary};
 `;
 const H2 = styled(motion.h2)`
   margin: 10px auto;
@@ -244,25 +235,22 @@ const FromStyled = styled(motion.form)`
   }
 `;
 const Input = styled(motion.input)`
-  background: #181818;
+  background: ${(props) => props.theme.colors.backgroundSecondary};
   height: 35px;
-  color: #3498db;
+  color: ${(props) => props.theme.colors.textSecondary};
   margin: 0 0px 15px 0px;
   border: none;
-  border: 1px solid #3498db;
+  border: 1px solid ${(props) => props.theme.colors.layout};
   padding: 2px;
   font-size: 16px;
   width: 100%;
 
-  &:disabled {
-    border: 1px solid #667575;
-  }
   &:focus {
     outline: none;
   }
 `;
 const Validation = styled(motion.div)`
-  color: #e74c3c;
+  color: ${(props) => props.theme.colors.error};
   font-size: 12px;
   margin: 0 0 5px 0;
 `;
@@ -283,12 +271,12 @@ const WrapperDate = styled(motion.div)`
   grid-template-columns: 109px 1fr;
 `;
 const LabelDate = styled.label`
-  background: #181818;
+  background: ${(props) => props.theme.colors.backgroundSecondary};
   height: 35px;
-  color: #3498db;
+  color: ${(props) => props.theme.colors.textSecondary};
   margin: 0 0px 0px 0px;
   border: none;
-  border: 1px solid #3498db;
+  border: 1px solid ${(props) => props.theme.colors.layout};
   border-right: none;
   padding: 2px;
   font-size: 16px;
@@ -299,12 +287,12 @@ const LabelDate = styled.label`
 `;
 
 const Coordinate = styled(motion.div)`
-  background: #202020;
+  background: ${(props) => props.theme.colors.backgroundSecondary};
   height: 35px;
-  color: #3498db;
+  color: ${(props) => props.theme.colors.textSecondary};
   margin: 0 0px 15px 0px;
   border: none;
-  border: 1px solid #667575;
+  border: 1px solid ${(props) => props.theme.colors.borderSecondary};
   padding: 2px;
   font-size: 16px;
   width: 100%;
@@ -325,23 +313,27 @@ const CheckboxStyled = withStyles({
 })((props: CheckboxProps) => <Checkbox color="default" {...props} />);
 
 const Button = styled(motion.button)`
-  background: #181818;
-  color: #6f6f6f;
+  background: ${(props) => props.theme.colors.backgroundSecondary};
+  color: ${(props) => props.theme.colors.textPrimary};
   font-size: 20px;
-  border: 1px solid #6f6f6f;
+  border: 1px solid ${(props) => props.theme.colors.layout};
   height: 35px;
   width: 20%;
   align-self: flex-end;
   margin-bottom: 50px;
+  &:disabled {
+    color: ${(props) => props.theme.colors.disable};
+    border: 1px solid ${(props) => props.theme.colors.disable};
+  }
 `;
 
 const Textarea = styled(motion.textarea)`
-  background: #181818;
-  color: #3498db;
+  background: ${(props) => props.theme.colors.backgroundSecondary};
+  color: ${(props) => props.theme.colors.textSecondary};
   font-size: 20px;
   font-family: inherit;
   font-weight: 400;
-  border: 1px solid #3498db;
+  border: 1px solid ${(props) => props.theme.colors.layout};
   flex-basis: 100px;
   resize: none;
   margin: 15px 0 0 0;
@@ -351,12 +343,12 @@ const Textarea = styled(motion.textarea)`
   }
 `;
 const DatePickerStyled = styled(DatePicker)`
-  background: #181818;
+  background: ${(props) => props.theme.colors.backgroundSecondary};
   height: 35px;
-  color: #3498db;
+  color: ${(props) => props.theme.colors.textSecondary};
   margin: 0 0px 0px 0px;
   border: none;
-  border: 1px solid #3498db;
+  border: 1px solid ${(props) => props.theme.colors.layout};
   border-left: none;
   padding: 2px;
   font-size: 16px;

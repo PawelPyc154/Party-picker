@@ -45,12 +45,9 @@ const Events = styled.div`
     &::-webkit-scrollbar {
       width: 3px;
     }
-    &::-webkit-scrollbar-track {
-      /* box-shadow: inset 0 0 6px gray; */
-    }
     &::-webkit-scrollbar-thumb {
-      background-color: gray;
-      outline: 1px solid gray;
+      background-color: ${(props) => props.theme.colors.scrollbarThumb};
+      outline: 1px solid ${(props) => props.theme.colors.scrollbarThumb};
     }
   }
 `;

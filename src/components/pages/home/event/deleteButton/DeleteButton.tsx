@@ -1,10 +1,4 @@
-import {
-  Button,
-  DialogActions,
-  DialogContent,
-  DialogContentText,
-  withStyles,
-} from '@material-ui/core';
+import { Button, DialogActions, DialogContent, DialogContentText } from '@material-ui/core';
 import Dialog from '@material-ui/core/Dialog';
 import Tooltip from '@material-ui/core/Tooltip';
 import React from 'react';
@@ -57,10 +51,8 @@ const DeleteButton: React.FC<DeleteButtonProps> = ({ eventId }) => {
           </DialogContentTextStyled>
         </DialogContent>
         <DialogActions>
-          <ButtonNoStyled onClick={handleClose} color="primary">
-            Nie
-          </ButtonNoStyled>
-          <ButtonYesStyled onClick={handleClick} color="primary" autoFocus>
+          <ButtonNoStyled onClick={handleClose}>Nie</ButtonNoStyled>
+          <ButtonYesStyled onClick={handleClick} autoFocus>
             Tak
           </ButtonYesStyled>
         </DialogActions>
@@ -74,8 +66,8 @@ export default DeleteButton;
 const LogOutButton = styled.button`
   border: none;
   border-radius: 20px;
-  background-color: #202020;
-  color: #3498db;
+  background-color: ${(props) => props.theme.colors.backgroundSecondary};
+  color: ${(props) => props.theme.colors.textSecondary};
   display: flex;
   align-items: center;
   justify-content: center;
@@ -86,7 +78,7 @@ const LogOutButton = styled.button`
   width: 40px;
   cursor: pointer;
   &:hover {
-    color: #e74c3c;
+    color: ${(props) => props.theme.colors.hoverDelete};
   }
 `;
 
@@ -94,30 +86,30 @@ const RiDeleteBin2LineStyled = styled(RiDeleteBin2Line)`
   font-size: 22px;
 `;
 
-const DialogStyled = withStyles({
-  paper: {
-    background: '#202020',
-  },
-})(Dialog);
-const DialogContentTextStyled = withStyles({
-  root: {
-    color: 'white',
-  },
-})(DialogContentText);
+const DialogStyled = styled(Dialog)`
+  && .MuiDialog-paper {
+    background-color: ${(props) => props.theme.colors.backgroundSecondary} !important;
+  }
+`;
 
-const ButtonYesStyled = withStyles({
-  root: {
-    color: 'white',
-    '&:hover': {
-      color: ' #e74c3c',
-    },
-  },
-})(Button);
-const ButtonNoStyled = withStyles({
-  root: {
-    color: 'white',
-    '&:hover': {
-      color: '#2ecc71',
-    },
-  },
-})(Button);
+const DialogContentTextStyled = styled(DialogContentText)`
+  && {
+    color: ${(props) => props.theme.colors.textPrimary} !important;
+  }
+`;
+const ButtonYesStyled = styled(Button)`
+  && {
+    color: ${(props) => props.theme.colors.textPrimary} !important;
+    &:hover {
+      color: ${(props) => props.theme.colors.hoverDelete} !important;
+    }
+  }
+`;
+const ButtonNoStyled = styled(Button)`
+  && {
+    color: ${(props) => props.theme.colors.textPrimary} !important;
+    &:hover {
+      color: ${(props) => props.theme.colors.textSecondary} !important;
+    }
+  }
+`;
