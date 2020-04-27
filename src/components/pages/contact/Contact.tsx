@@ -6,6 +6,7 @@ import styled from 'styled-components';
 import * as yup from 'yup';
 import axiosWithConfig from '../../../utils/axiosWithConfig';
 import media from '../../../utils/MediaQueries';
+import Input from '../../universalComponents/Input';
 
 export interface ContactProps {}
 
@@ -157,21 +158,7 @@ const FromStyled = styled(Form)`
     max-width: 500px;
   }
 `;
-const Input = styled(motion.input)`
-  background: ${(props) => props.theme.colors.backgroundSecondary};
-  height: 35px;
-  color: ${(props) => props.theme.colors.textSecondary};
-  margin: 0 0px 15px 0px;
-  border: none;
-  border: 1px solid ${(props) => props.theme.colors.layout};
-  padding: 2px;
-  font-size: 16px;
-  &:hover,
-  &:focus {
-    outline: none;
-    border: 1px solid ${(props) => props.theme.colors.hover};
-  }
-`;
+
 const Validation = styled.div`
   color: ${(props) => props.theme.colors.error};
   font-size: 12px;
@@ -203,8 +190,9 @@ const Textarea = styled(motion.textarea)`
   flex-basis: 200px;
   resize: none;
   margin: 0 0px 15px 0px;
+  padding: 5px;
   ${media.tablet} {
-    flex-basis: 300px;
+    flex-basis: 200px;
   }
   &:hover,
   &:focus {

@@ -18,6 +18,7 @@ import { getEvents } from '../../../state/events/action';
 import { setCoordinates } from '../../../state/positionAddEvent/action';
 import axiosWithConfig from '../../../utils/axiosWithConfig';
 import media from '../../../utils/MediaQueries';
+import Input from '../../universalComponents/Input';
 import Loading from '../../universalComponents/Loading';
 
 export interface AddEventProps {}
@@ -235,21 +236,7 @@ const FromStyled = styled(motion.form)`
     max-width: 600px;
   }
 `;
-const Input = styled(motion.input)`
-  background: ${(props) => props.theme.colors.backgroundSecondary};
-  height: 35px;
-  color: ${(props) => props.theme.colors.textSecondary};
-  margin: 0 0px 15px 0px;
-  border: none;
-  border: 1px solid ${(props) => props.theme.colors.layout};
-  padding: 2px;
-  font-size: 16px;
-  width: 100%;
 
-  &:focus {
-    outline: none;
-  }
-`;
 const Validation = styled(motion.div)`
   color: ${(props) => props.theme.colors.error};
   font-size: 12px;
@@ -338,7 +325,7 @@ const Textarea = styled(motion.textarea)`
   flex-basis: 100px;
   resize: none;
   margin: 15px 0 0 0;
-
+  padding: 5px;
   ${media.tablet} {
     flex-basis: 100px;
   }

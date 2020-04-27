@@ -7,6 +7,7 @@ import * as yup from 'yup';
 import { AppState } from '../../../../state/allReducers';
 import { clearError, setLogin } from '../../../../state/auth/action';
 import media from '../../../../utils/MediaQueries';
+import Input from '../../../universalComponents/Input';
 import Loading from '../../../universalComponents/Loading';
 
 export interface LoginPropsProps {
@@ -145,21 +146,6 @@ const FromStyled = styled(Form)`
   ${media.tablet} {
     margin: 10px auto 5px;
     max-width: 500px;
-  }
-`;
-const Input = styled(motion.input)`
-  background: ${(props) => props.theme.colors.backgroundSecondary};
-  height: 35px;
-  color: ${(props) => props.theme.colors.textSecondary};
-  margin: 0 0px 15px 0px;
-  border: none;
-  border: 1px solid ${(props) => props.theme.colors.layout};
-  padding: 2px;
-  font-size: 16px;
-  &:hover,
-  &:focus {
-    outline: none;
-    border: 1px solid ${(props) => props.theme.colors.hover};
   }
 `;
 
