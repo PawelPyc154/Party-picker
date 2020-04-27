@@ -4,7 +4,10 @@ import { ThemeProvider } from 'styled-components';
 export interface StyleVariableProps {}
 
 export const ThemeContext = React.createContext(
-  {} as { setIsDarkMode: React.Dispatch<React.SetStateAction<boolean>> },
+  {} as {
+    setIsDarkMode: React.Dispatch<React.SetStateAction<boolean>>;
+    isDarkMode: boolean;
+  },
 );
 
 const colors = {
@@ -37,15 +40,21 @@ const colors = {
       markLabel: '#3498db',
       markActive: 'currentColor',
     },
+    switch: {
+      thumb: '#fff',
+      thumbChecked: '#3498db',
+      track: '#fff',
+      trackChecked: '#3498db',
+    },
   },
   light: {
     backgroundPrimary: '#181818',
     backgroundSecondary: '#202020',
     borderPrimary: '#313131',
     borderSecondary: '#667575',
-    layout: '#3498db',
+    layout: '#f1c40f',
     textPrimary: 'white',
-    textSecondary: '#3498db',
+    textSecondary: '#f1c40f',
     error: '#e74c3c',
     disable: '#6f6f6f',
     hover: 'white',
@@ -58,14 +67,20 @@ const colors = {
     textBadge: 'black',
     scrollbarThumb: 'gray',
     slider: {
-      root: '#3498db',
+      root: '#f1c40f',
       thumb: '#fff',
       vertical: '#000',
-      track: '#3498db',
+      track: '#f1c40f',
       rail: '#bfbfbf',
       mark: '#bfbfbf',
-      markLabel: '#3498db',
+      markLabel: '#f1c40f',
       markActive: 'currentColor',
+    },
+    switch: {
+      thumb: '#fff',
+      thumbChecked: '#f1c40f',
+      track: '#fff',
+      trackChecked: '#f1c40f',
     },
   },
 };
@@ -76,7 +91,9 @@ const StyleVariable: React.FC<StyleVariableProps> = ({ children }) => {
 
   return (
     <ThemeProvider theme={{ size, colors: isDarkMode ? colors.dark : colors.light }}>
-      <ThemeContext.Provider value={{ setIsDarkMode }}>{children}</ThemeContext.Provider>
+      <ThemeContext.Provider value={{ setIsDarkMode, isDarkMode }}>
+        {children}
+      </ThemeContext.Provider>
     </ThemeProvider>
   );
 };

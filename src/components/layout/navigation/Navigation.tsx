@@ -1,4 +1,4 @@
-import Tooltip from '@material-ui/core/Tooltip';
+import { Switch, Tooltip } from '@material-ui/core';
 import React, { useContext } from 'react';
 import { FaUserAlt } from 'react-icons/fa';
 import { GoSignOut } from 'react-icons/go';
@@ -21,8 +21,10 @@ const Navigation: React.SFC<NavigationProps> = () => {
     dispatch(setLogOut());
   };
 
-  const { setIsDarkMode } = useContext(ThemeContext);
-
+  const { isDarkMode, setIsDarkMode } = useContext(ThemeContext);
+  const handleChangeDarkMode = () => {
+    setIsDarkMode((prev) => !prev);
+  };
   return (
     <NavigationContainer>
       <Logo>LOGO</Logo>
@@ -34,11 +36,15 @@ const Navigation: React.SFC<NavigationProps> = () => {
           Kontakt
         </NavLinkStyled>
       </NavLinkContainer>
-      <button type="button" onClick={() => setIsDarkMode((prev) => !prev)}>
-        dark mode
-      </button>
+
       {user ? (
         <UserLogin>
+          <SwitchStyled
+            checked={isDarkMode}
+            onChange={handleChangeDarkMode}
+            color="primary"
+            name="checkedB"
+          />
           <Tooltip title="Dodaj wydarzenie">
             <NavLinkUser exact to="/add-event" activeClassName="activeNavLink">
               <IoIosAddStyled />
@@ -50,18 +56,20 @@ const Navigation: React.SFC<NavigationProps> = () => {
               <GoSignOutStyled />
             </LogOutButton>
           </Tooltip>
-          {/*
-          <Tooltip title={user.name}>
-            <LogOutButton type="button">
-              <FaUserAltStyled />
-            </LogOutButton>
-          </Tooltip> */}
         </UserLogin>
       ) : (
-        <NavLinkLogInStyled exact to="/login-signup" activeClassName="activeNavLinkLogIn">
-          <FaUserAltStyled style={{ marginRight: 7 }} />
-          ZALOGUJ SIĘ
-        </NavLinkLogInStyled>
+        <>
+          <SwitchStyled
+            checked={isDarkMode}
+            onChange={handleChangeDarkMode}
+            color="primary"
+            name="checkedB"
+          />
+          <NavLinkLogInStyled exact to="/login-signup" activeClassName="activeNavLinkLogIn">
+            <FaUserAltStyled style={{ marginRight: 7 }} />
+            ZALOGUJ SIĘ
+          </NavLinkLogInStyled>
+        </>
       )}
     </NavigationContainer>
   );
@@ -137,7 +145,7 @@ const UserLogin = styled.div`
   display: grid;
 
   margin: 0 20px 0 auto;
-  grid-template-columns: repeat(2, 40px);
+  grid-template-columns: repeat(3, 40px);
   grid-template-rows: 40px;
   grid-gap: 0 5px;
 `;
@@ -176,4 +184,19 @@ const GoSignOutStyled = styled(GoSignOut)`
 `;
 const IoIosAddStyled = styled(IoIosAdd)`
   font-size: 30px;
+`;
+
+const SwitchStyled = styled(Switch)`
+  && .MuiSwitch-thumb {
+    background-color: ${(props) => props.theme.colors.switch.thumb};
+  }
+  && :checked + .MuiSwitch-thumb {
+    background-color: ${(props) => props.theme.colors.switch.thumbChecked};
+  }
+  && .MuiSwitch-track {
+    background-color: ${(props) => props.theme.colors.switch.track};
+  }
+  && .Mui-checked + .MuiSwitch-track {
+    background-color: ${(props) => props.theme.colors.switch.trackChecked};
+  }
 `;
