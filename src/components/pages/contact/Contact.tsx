@@ -28,7 +28,7 @@ const Contact: React.FC<ContactProps> = () => {
     resetForm: () => void,
   ) => {
     try {
-      await axiosWithConfig.post('https://portfolio321123.herokuapp.com/email', {
+      await axiosWithConfig.post('/api/contact', {
         email,
         subject,
         message,
