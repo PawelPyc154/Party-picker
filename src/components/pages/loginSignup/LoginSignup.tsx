@@ -17,7 +17,7 @@ const LoginSignup: React.FC<LoginSignupProps> = () => {
   // Scroll animation
   const container = useRef<HTMLDivElement>(null);
   useEffect(() => {
-    Scroll.animateScroll.scrollTo(container.current ? container.current.offsetTop - 5 : 0);
+    Scroll.animateScroll.scrollTo(container.current ? container.current.offsetTop - 50 : 0);
   }, []);
 
   const history = useHistory();
