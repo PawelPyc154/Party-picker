@@ -1,0 +1,1 @@
+{"version":3,"sources":["components/pages/user/User.tsx"],"names":["User"],"mappings":"gGAAA,2BAMeA,UAFmB,kBAAM","file":"static/js/9.3c4b62be.chunk.js","sourcesContent":["import React from 'react';\n\nexport interface UserProps {}\n\nconst User: React.FC<UserProps> = () => <div>User</div>;\n\nexport default User;\n"],"sourceRoot":""}
