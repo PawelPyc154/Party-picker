@@ -29,9 +29,11 @@ const GetAndFilterEvent: React.FC<GetAndFilterEventProps> = ({ children }) => {
   const { user } = useSelector((state: AppState) => state.AuthReducer);
 
   const [filters, setFilters] = useState<Filters>({
-    name: '',
-    province: '',
-    timeFromTo: initialTimeFromTo,
+    name: localStorage.getItem('filters-name') || '',
+    province: localStorage.getItem('filters-province') || '',
+    timeFromTo: JSON.parse(
+      localStorage.getItem('filters-timeFromTo') || JSON.stringify(initialTimeFromTo),
+    ),
   });
 
   useEffect(() => {
@@ -65,6 +67,26 @@ const GetAndFilterEvent: React.FC<GetAndFilterEventProps> = ({ children }) => {
   const handleChangeDate = (event: ChangeEvent<{}> | {}, newValue: any) => {
     setFilters((prev: Filters) => ({ ...prev, timeFromTo: newValue }));
   };
+
+  // localStorage;
+  useEffect(() => {
+    if (filters.name !== '') {
+      localStorage.setItem('filters-name', filters.name);
+    }
+  }, [filters.name]);
+  useEffect(() => {
+    if (filters.province !== '') {
+      localStorage.setItem('filters-province', filters.province);
+    }
+  }, [filters.province]);
+  useEffect(() => {
+    if (
+      filters.timeFromTo[0] !== initialTimeFromTo[0] ||
+      filters.timeFromTo[1] !== initialTimeFromTo[1]
+    ) {
+      localStorage.setItem('filters-timeFromTo', JSON.stringify(filters.timeFromTo));
+    }
+  }, [filters.timeFromTo, initialTimeFromTo]);
 
   return (
     <FilterContext.Provider
