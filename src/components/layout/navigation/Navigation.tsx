@@ -36,15 +36,14 @@ const Navigation: React.SFC<NavigationProps> = () => {
           Kontakt
         </NavLinkStyled>
       </NavLinkContainer>
-
+      <SwitchStyled
+        checked={isDarkMode}
+        onChange={handleChangeDarkMode}
+        color="primary"
+        name="checkedB"
+      />
       {user ? (
         <UserLogin>
-          <SwitchStyled
-            checked={isDarkMode}
-            onChange={handleChangeDarkMode}
-            color="primary"
-            name="checkedB"
-          />
           <Tooltip title="Dodaj wydarzenie">
             <NavLinkUser exact to="/add-event" activeClassName="activeNavLink">
               <IoIosAddStyled />
@@ -59,12 +58,6 @@ const Navigation: React.SFC<NavigationProps> = () => {
         </UserLogin>
       ) : (
         <>
-          <SwitchStyled
-            checked={isDarkMode}
-            onChange={handleChangeDarkMode}
-            color="primary"
-            name="checkedB"
-          />
           <NavLinkLogInStyled exact to="/login-signup" activeClassName="activeNavLinkLogIn">
             <FaUserAltStyled style={{ marginRight: 7 }} />
             ZALOGUJ SIĘ
@@ -145,7 +138,7 @@ const UserLogin = styled.div`
   display: grid;
 
   margin: 0 20px 0 auto;
-  grid-template-columns: repeat(3, 40px);
+  grid-template-columns: repeat(2, 40px);
   grid-template-rows: 40px;
   grid-gap: 0 5px;
 `;
