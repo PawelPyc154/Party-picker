@@ -289,16 +289,6 @@ const Coordinate = styled(motion.div)`
   padding: 0 5px;
 `;
 
-// const CheckboxStyled = withStyles({
-//   root: {
-//     color: '#3498db',
-//     '&$checked': {
-//       color: 'white',
-//     },
-//   },
-//   checked: {},
-// })((props: CheckboxProps) => <Checkbox color="default" {...props} />);
-
 const CheckboxStyled = styled(Checkbox)`
   && {
     color: ${(props) => props.theme.colors.layout};

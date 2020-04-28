@@ -67,7 +67,7 @@ const colors = {
     hoverDelete: '#e74c3c',
     map: {
       marker: '#f1c40f',
-      markerAddEvent: '#3498db',
+      markerAddEvent: '#ecf0f1',
     },
     activeNavLink: 'white',
     textBadge: 'black',
