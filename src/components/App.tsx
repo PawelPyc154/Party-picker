@@ -53,7 +53,7 @@ const ContentWraper = styled.div`
   margin: 50px 6px 0px 5px;
   overflow: hidden;
   ${media.tablet} {
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(2, 50vw);
     grid-template-rows: calc(100vh - 50px);
     margin: 0;
     padding-top: 50px;

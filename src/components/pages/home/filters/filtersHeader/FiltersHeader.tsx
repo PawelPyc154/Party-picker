@@ -13,46 +13,32 @@ export interface FiltersHeaderProps {
   handleOpenFilterOptions: () => void;
 }
 
-const FiltersHeader: React.FC<FiltersHeaderProps> = ({
-  openFilterOptions,
-  handleOpenFilterOptions,
-}) => {
+const FiltersHeader: React.FC<FiltersHeaderProps> = ({ openFilterOptions, handleOpenFilterOptions }) => {
   const { user } = useSelector((state: AppState) => state.AuthReducer);
-  const { eventsFiltered, filters, handleChangeFilters, handleChangeDate } = useContext(
-    FilterContext,
-  );
+  const { filters, handleChangeFilters, handleChangeDate } = useContext(FilterContext);
 
+  const cropString = (string: string): string => {
+    if (string.length <= 9) return string;
+    return `${string.slice(0, 9)}...`;
+  };
   return (
-    <>
+    <FiltersHeaderContainer>
       <Wraper>
         {filters.name ? (
-          <Button
-            className="hoverRed"
-            margin="0 5px"
-            onClick={() => handleChangeFilters(filters.name, 'name')}
-          >
-            {filters.name}
-            ...
+          <Button className="hoverRed" margin="0 5px" onClick={() => handleChangeFilters(filters.name, 'name')}>
+            {cropString(filters.name)}
           </Button>
         ) : null}
 
         {filters.province ? (
-          <Button
-            className="hoverRed"
-            margin="0 5px"
-            onClick={() => handleChangeFilters(filters.province, 'province')}
-          >
-            {filters.province}
+          <Button className="hoverRed" margin="0 5px" onClick={() => handleChangeFilters(filters.province, 'province')}>
+            {cropString(filters.province)}
           </Button>
         ) : null}
 
         {filters.timeFromTo[0] !== 7 * 24 * 2 || filters.timeFromTo[1] !== 38 * 24 * 2 ? (
-          <Button
-            className="hoverRed"
-            margin="0 5px"
-            onClick={() => handleChangeDate({}, [7 * 24 * 2, 38 * 24 * 2])}
-          >
-            data filter
+          <Button className="hoverRed" margin="0 5px" onClick={() => handleChangeDate({}, [7 * 24 * 2, 38 * 24 * 2])}>
+            data
           </Button>
         ) : null}
       </Wraper>
@@ -64,41 +50,35 @@ const FiltersHeader: React.FC<FiltersHeaderProps> = ({
             </LinkUser>
           </Tooltip>
         ) : null}
-        {openFilterOptions ? (
-          <Count>
-            Ilość:
-            {eventsFiltered.length}
-          </Count>
-        ) : null}
 
         <Button
-          margin="0 5px"
+          margin="0 5px 0 0"
           onClick={() => handleOpenFilterOptions()}
-          style={openFilterOptions ? { border: '1px solid white', color: 'white' } : {}}
+          className={openFilterOptions ? 'isOpen' : ''}
         >
-          <IoMdOptionsStyled style={openFilterOptions ? { color: 'white' } : {}} />
+          <IoMdOptionsStyled />
           Filtry
         </Button>
       </Wraper>
-    </>
+    </FiltersHeaderContainer>
   );
 };
 
 export default FiltersHeader;
 
-const IoMdOptionsStyled = styled(IoMdOptions)`
-  font-size: 20px;
-  margin-right: 7px;
+const FiltersHeaderContainer = styled.div`
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
 `;
 
-const Count = styled.div`
-  height: 35px;
-  padding: 5px;
-  color: ${(props) => props.theme.colors.textPrimary};
-  margin: 0 5px;
+const Wraper = styled.div`
   display: flex;
   align-items: center;
-  letter-spacing: 1px;
+`;
+
+const IoMdOptionsStyled = styled(IoMdOptions)`
+  font-size: 20px;
 `;
 
 const LinkUser = styled(Link)`
@@ -116,8 +96,4 @@ const LinkUser = styled(Link)`
 
 const IoIosAddStyled = styled(IoIosAdd)`
   font-size: 30px;
-`;
-const Wraper = styled.div`
-  display: flex;
-  align-items: center;
 `;

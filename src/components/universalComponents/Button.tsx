@@ -20,5 +20,9 @@ const Button = styled.button<ButtonProps>`
     border: 1px solid ${(props) => props.theme.colors.hover};
     color: ${(props) => props.theme.colors.hover};
   }
+  &.isOpen {
+    border: 1px solid ${(props) => props.theme.colors.hover};
+    color: ${(props) => props.theme.colors.hover};
+  }
 `;
 export default Button;
