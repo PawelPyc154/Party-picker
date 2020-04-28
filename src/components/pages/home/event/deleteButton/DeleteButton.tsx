@@ -35,9 +35,9 @@ const DeleteButton: React.FC<DeleteButtonProps> = ({ eventId }) => {
   return (
     <>
       <Tooltip title="Usuń wydarzenie">
-        <LogOutButton type="button" onClick={handleClickOpen}>
+        <ButtonDelete type="button" onClick={handleClickOpen}>
           <RiDeleteBin2LineStyled />
-        </LogOutButton>
+        </ButtonDelete>
       </Tooltip>
       <DialogStyled
         open={open}
@@ -63,7 +63,7 @@ const DeleteButton: React.FC<DeleteButtonProps> = ({ eventId }) => {
 
 export default DeleteButton;
 
-const LogOutButton = styled.button`
+const ButtonDelete = styled.button`
   border: none;
   border-radius: 20px;
   background-color: ${(props) => props.theme.colors.backgroundSecondary};
@@ -88,28 +88,28 @@ const RiDeleteBin2LineStyled = styled(RiDeleteBin2Line)`
 
 const DialogStyled = styled(Dialog)`
   && .MuiDialog-paper {
-    background-color: ${(props) => props.theme.colors.backgroundSecondary} !important;
+    background-color: ${(props) => props.theme.colors.dialog.background} !important;
   }
 `;
 
 const DialogContentTextStyled = styled(DialogContentText)`
   && {
-    color: ${(props) => props.theme.colors.textPrimary} !important;
+    color: ${(props) => props.theme.colors.dialog.text} !important;
   }
 `;
 const ButtonYesStyled = styled(Button)`
   && {
-    color: ${(props) => props.theme.colors.textPrimary} !important;
+    color: ${(props) => props.theme.colors.dialog.text} !important;
     &:hover {
-      color: ${(props) => props.theme.colors.hoverDelete} !important;
+      color: ${(props) => props.theme.colors.dialog.accept} !important;
     }
   }
 `;
 const ButtonNoStyled = styled(Button)`
   && {
-    color: ${(props) => props.theme.colors.textPrimary} !important;
+    color: ${(props) => props.theme.colors.dialog.text} !important;
     &:hover {
-      color: ${(props) => props.theme.colors.textSecondary} !important;
+      color: ${(props) => props.theme.colors.dialog.cancel} !important;
     }
   }
 `;

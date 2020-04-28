@@ -46,6 +46,12 @@ const colors = {
       track: '#fff',
       trackChecked: '#3498db',
     },
+    dialog: {
+      background: '#3498db',
+      text: '#fff',
+      accept: '#e74c3c',
+      cancel: '#181818',
+    },
   },
   light: {
     backgroundPrimary: '#181818',
@@ -81,6 +87,12 @@ const colors = {
       thumbChecked: '#f1c40f',
       track: '#fff',
       trackChecked: '#f1c40f',
+    },
+    dialog: {
+      background: '#f1c40f',
+      text: '#181818',
+      accept: '#e74c3c',
+      cancel: '#27ae60',
     },
   },
 };

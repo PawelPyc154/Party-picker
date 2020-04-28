@@ -39,7 +39,4 @@ const EventContainer = styled.section`
     margin: 15px 5px 15px 0;
     height: 150px;
   }
-  .MuiButton-root {
-    color: white !important;
-  }
 `;
