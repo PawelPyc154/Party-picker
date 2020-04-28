@@ -23,7 +23,10 @@ const Navigation: React.SFC<NavigationProps> = () => {
 
   const { isDarkMode, setIsDarkMode } = useContext(ThemeContext);
   const handleChangeDarkMode = () => {
-    setIsDarkMode((prev) => !prev);
+    setIsDarkMode((prev) => {
+      localStorage.setItem('isDarkMode', JSON.stringify(!prev));
+      return !prev;
+    });
   };
   return (
     <NavigationContainer>

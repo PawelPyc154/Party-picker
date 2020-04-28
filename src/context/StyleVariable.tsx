@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { ThemeProvider } from 'styled-components';
 
 export interface StyleVariableProps {}
@@ -102,10 +102,6 @@ const StyleVariable: React.FC<StyleVariableProps> = ({ children }) => {
   const [isDarkMode, setIsDarkMode] = useState(
     JSON.parse(localStorage.getItem('isDarkMode') || 'true'),
   );
-
-  useEffect(() => {
-    localStorage.setItem('isDarkMode', JSON.stringify(isDarkMode));
-  }, [isDarkMode]);
 
   return (
     <ThemeProvider theme={{ size, colors: isDarkMode ? colors.dark : colors.light }}>
