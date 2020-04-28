@@ -1,5 +1,4 @@
-import { withStyles } from '@material-ui/core';
-import Checkbox, { CheckboxProps } from '@material-ui/core/Checkbox';
+import Checkbox from '@material-ui/core/Checkbox';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import pl from 'date-fns/locale/pl';
 import { useFormik } from 'formik';
@@ -290,15 +289,24 @@ const Coordinate = styled(motion.div)`
   padding: 0 5px;
 `;
 
-const CheckboxStyled = withStyles({
-  root: {
-    color: '#3498db',
-    '&$checked': {
-      color: 'white',
-    },
-  },
-  checked: {},
-})((props: CheckboxProps) => <Checkbox color="default" {...props} />);
+// const CheckboxStyled = withStyles({
+//   root: {
+//     color: '#3498db',
+//     '&$checked': {
+//       color: 'white',
+//     },
+//   },
+//   checked: {},
+// })((props: CheckboxProps) => <Checkbox color="default" {...props} />);
+
+const CheckboxStyled = styled(Checkbox)`
+  && {
+    color: ${(props) => props.theme.colors.layout};
+  }
+  &&.Mui-checked {
+    color: ${(props) => props.theme.colors.textPrimary};
+  }
+`;
 
 const Button = styled(motion.button)`
   background: ${(props) => props.theme.colors.backgroundSecondary};
