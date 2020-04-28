@@ -99,11 +99,10 @@ const colors = {
 const size = {};
 
 const StyleVariable: React.FC<StyleVariableProps> = ({ children }) => {
-  const [isDarkMode, setIsDarkMode] = useState(true);
+  const [isDarkMode, setIsDarkMode] = useState(
+    JSON.parse(localStorage.getItem('isDarkMode') || 'true'),
+  );
 
-  useEffect(() => {
-    setIsDarkMode(JSON.parse(localStorage.getItem('isDarkMode') || 'true'));
-  }, []);
   useEffect(() => {
     localStorage.setItem('isDarkMode', JSON.stringify(isDarkMode));
   }, [isDarkMode]);
