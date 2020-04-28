@@ -55,6 +55,7 @@ const AddEvent: React.FC<AddEventProps> = () => {
       listFb: false,
       describe: '',
     },
+    validateOnMount: true,
     validationSchema: yup.object({
       name: yup.string().required('Required').max(50, 'Too Long!'),
       describe: yup.string().max(500, 'Too Long!'),
