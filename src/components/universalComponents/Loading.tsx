@@ -1,18 +1,21 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import Loader from 'react-loader-spinner';
-
-import styled from 'styled-components';
+import styled, { ThemeContext } from 'styled-components';
 
 export interface LoadingProps {
   height?: number;
   width?: number;
 }
 
-const Loading: React.SFC<LoadingProps> = ({ height = 80, width = 80 }) => (
-  <Container>
-    <Loader type="Audio" color="#3498db" height={height} width={width} />
-  </Container>
-);
+const Loading: React.SFC<LoadingProps> = ({ height = 80, width = 80 }) => {
+  const themeContext = useContext(ThemeContext);
+
+  return (
+    <Container>
+      <Loader type="Audio" color={themeContext.colors.layout} height={height} width={width} />
+    </Container>
+  );
+};
 
 export default Loading;
 
