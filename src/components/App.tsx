@@ -1,3 +1,4 @@
+import { SnackbarProvider } from 'notistack';
 import React, { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { BrowserRouter as Router } from 'react-router-dom';
@@ -21,15 +22,17 @@ function App() {
   return (
     <Router basename={process.env.PUBLIC_URL}>
       <StyleVariableContext>
-        <AppContainer>
-          <Navigation />
-          <GetAndFilterEventContext>
-            <ContentWraper>
-              <Map />
-              <Pages />
-            </ContentWraper>
-          </GetAndFilterEventContext>
-        </AppContainer>
+        <SnackbarProvider maxSnack={3}>
+          <AppContainer>
+            <Navigation />
+            <GetAndFilterEventContext>
+              <ContentWraper>
+                <Map />
+                <Pages />
+              </ContentWraper>
+            </GetAndFilterEventContext>
+          </AppContainer>
+        </SnackbarProvider>
       </StyleVariableContext>
     </Router>
   );

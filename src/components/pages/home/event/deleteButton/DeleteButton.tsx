@@ -1,6 +1,7 @@
 import { Button, DialogActions, DialogContent, DialogContentText } from '@material-ui/core';
 import Dialog from '@material-ui/core/Dialog';
 import Tooltip from '@material-ui/core/Tooltip';
+import { useSnackbar } from 'notistack';
 import React from 'react';
 import { RiDeleteBin2Line } from 'react-icons/ri';
 import { useDispatch } from 'react-redux';
@@ -14,6 +15,7 @@ export interface DeleteButtonProps {
 
 const DeleteButton: React.FC<DeleteButtonProps> = ({ eventId }) => {
   const [open, setOpen] = React.useState(false);
+  const { enqueueSnackbar } = useSnackbar();
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -27,8 +29,10 @@ const DeleteButton: React.FC<DeleteButtonProps> = ({ eventId }) => {
     try {
       await axiosWithConfig.delete(`/events/${eventId}`);
       await dispatch(getEvents());
+      enqueueSnackbar('Wydarzenie zostało usunięte', { variant: 'success' });
     } catch (err) {
-      console.log(err.response.data);
+      enqueueSnackbar('Nie udało się usunąć wydarzenia', { variant: 'error' });
+      setOpen(false);
     }
   };
 
