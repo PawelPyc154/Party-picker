@@ -3,6 +3,7 @@ import FormControlLabel from '@material-ui/core/FormControlLabel';
 import pl from 'date-fns/locale/pl';
 import { useFormik } from 'formik';
 import { motion } from 'framer-motion';
+import { useSnackbar } from 'notistack';
 import React, { useEffect, useRef, useState } from 'react';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker-cssmodules.min.css';
@@ -23,14 +24,14 @@ import Loading from '../../universalComponents/Loading';
 export interface AddEventProps {}
 
 const AddEvent: React.FC<AddEventProps> = () => {
+  const history = useHistory();
+  const dispatch = useDispatch();
+  const { enqueueSnackbar } = useSnackbar();
   const [animationStop, setAnimationStop] = useState('hidden');
   const { longitude, latitude } = useSelector((state: AppState) => state.PositionAddEventReducer);
   const [startDate, setStartDate] = useState(new Date());
   const [serverError, setServerError] = useState('');
 
-  const history = useHistory();
-
-  const dispatch = useDispatch();
   const container = useRef<HTMLFormElement>(null);
   useEffect(() => {
     Scroll.animateScroll.scrollTo(container.current ? container.current.offsetTop - 5 : 0);
@@ -67,8 +68,10 @@ const AddEvent: React.FC<AddEventProps> = () => {
         await dispatch(getEvents());
         await dispatch(setCoordinates(undefined, undefined));
         history.push('/');
+        enqueueSnackbar('Wydarzenie zostało dodane', { variant: 'success' });
       } catch (err) {
         setServerError(err.response.data.error?.limiter);
+        enqueueSnackbar('Nie udało się dodać wydarzenia', { variant: 'error' });
       }
     },
   });
@@ -80,7 +83,7 @@ const AddEvent: React.FC<AddEventProps> = () => {
       ) : (
         <FromStyled onSubmit={handleSubmit} animate={animationStop} ref={container}>
           <H2> Dodaj wydarzenie</H2>
-          <br />
+
           {serverError ? <Validation>{serverError}</Validation> : null}
           {errors.name && touched.name && <Validation>{errors.name}</Validation>}
           <Input
@@ -212,7 +215,7 @@ const AddEventContainer = styled.main`
   border: 1px solid ${(props) => props.theme.colors.borderPrimary};
 `;
 const H2 = styled(motion.h2)`
-  margin: 10px auto;
+  margin: 10px auto 20px;
 `;
 
 const FromStyled = styled(motion.form)`
