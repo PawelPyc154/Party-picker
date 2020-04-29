@@ -45,10 +45,11 @@ const Map: React.SFC<MapProps> = () => {
   const { longitude, latitude } = useSelector((state: AppState) => state.PositionAddEventReducer);
   const dispatch = useDispatch();
   const setPositionAddEvent = ([long, lat]: number[]) => {
-    if (location.pathname === '/add-event') {
-      dispatch(setCoordinates(long, lat));
-    }
+    if (location.pathname !== '/add-event' && location.pathname.slice(0, 13) !== '/update-event') return;
+    dispatch(setCoordinates(long, lat));
   };
+
+  const isEventUpdated = (eventId: string) => location.pathname.slice(14, 14 + 24) === eventId;
 
   return (
     <MapContainer ref={container}>
@@ -69,6 +70,7 @@ const Map: React.SFC<MapProps> = () => {
             longitude={item.coordinates.longitude}
             offsetLeft={-25}
             offsetTop={-50}
+            className={isEventUpdated(item._id) ? 'hidden' : ''}
           >
             <MarkerContent>
               <TiLocationStyled />
@@ -80,7 +82,9 @@ const Map: React.SFC<MapProps> = () => {
           </MarkerStyled>
         ))}
 
-        {location.pathname === '/add-event' && latitude && longitude ? (
+        {(location.pathname === '/add-event' || location.pathname.slice(0, 13) === '/update-event') &&
+        latitude &&
+        longitude ? (
           <Marker
             draggable
             latitude={latitude}
@@ -117,6 +121,9 @@ const FullscreenControlWrapper = styled.div`
 `;
 const MarkerStyled = styled(Marker)`
   z-index: 0;
+  &&.hidden {
+    display: none;
+  }
   &:hover {
     z-index: 20;
   }

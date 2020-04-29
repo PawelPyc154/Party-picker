@@ -76,8 +76,8 @@ const ButtonDelete = styled.button`
   align-items: center;
   justify-content: center;
   position: absolute;
-  top: 5px;
-  left: 5px;
+  top: 38px;
+  left: 4px;
   height: 40px;
   width: 40px;
   cursor: pointer;

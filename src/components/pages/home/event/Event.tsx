@@ -6,6 +6,7 @@ import EventType from '../../../../state/events/EventType';
 import media from '../../../../utils/MediaQueries';
 import EventContent from '../../../universalComponents/EventContent';
 import DeleteButton from './deleteButton/DeleteButton';
+import EditLink from './updateLink/UpdateLink';
 
 export interface EventProps {
   event: EventType;
@@ -16,6 +17,8 @@ const Event: React.FC<EventProps> = ({ event }) => {
   return (
     <EventContainer>
       {user?._id === event.user._id ? <DeleteButton eventId={event._id} /> : null}
+      {user?._id === event.user._id ? <EditLink eventId={event._id} /> : null}
+
       <EventContent event={event} />
     </EventContainer>
   );

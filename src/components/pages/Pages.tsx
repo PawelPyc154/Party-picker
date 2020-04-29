@@ -7,6 +7,7 @@ import Home from './home/Home';
 const LoginSignup = React.lazy(() => import('./loginSignup/LoginSignup'));
 const Contact = React.lazy(() => import('./contact/Contact'));
 const AddEvent = React.lazy(() => import('./addEvent/AddEvent'));
+const UpdateEvent = React.lazy(() => import('./updateEvent/UpdateEvent'));
 const User = React.lazy(() => import('./user/User'));
 
 export interface PagesProps {}
@@ -19,6 +20,7 @@ const Pages: React.FC<PagesProps> = () => (
       <Route path="/contact" component={Contact} />
       <Route path="/user" component={User} />
       <PrivateRoute path="/add-event" component={AddEvent} />
+      <PrivateRoute path="/update-event/:eventID" component={UpdateEvent} />
     </Switch>
   </Suspense>
 );
