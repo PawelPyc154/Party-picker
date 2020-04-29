@@ -40,16 +40,7 @@ const AddEvent: React.FC<AddEventProps> = () => {
     };
   }, [dispatch]);
 
-  const {
-    isSubmitting,
-    errors,
-    touched,
-    handleChange,
-    handleBlur,
-    values,
-    handleSubmit,
-    isValid,
-  } = useFormik({
+  const { isSubmitting, errors, touched, handleChange, handleBlur, values, handleSubmit, isValid } = useFormik({
     initialValues: {
       name: '',
       listFb: false,
@@ -136,8 +127,9 @@ const AddEvent: React.FC<AddEventProps> = () => {
                 visible: { x: 0, opacity: 1, transition: { delay: 0.2, duration: 0.2 } },
                 hidden: { x: 100, opacity: 0, transition: { delay: 0.2, duration: 0.2 } },
               }}
+              className="ellipsis"
             >
-              kliknij w mapę aby pobrać współrzędne geograficzne
+              <Ellipsis> kliknij w mapę aby pobrać współrzędne geograficzne</Ellipsis>
             </Coordinate>
           )}
 
@@ -188,9 +180,7 @@ const AddEvent: React.FC<AddEventProps> = () => {
             }}
           >
             <FormControlLabel
-              control={
-                <CheckboxStyled checked={values.listFb} onChange={handleChange} name="listFb" />
-              }
+              control={<CheckboxStyled checked={values.listFb} onChange={handleChange} name="listFb" />}
               label="Lista FB"
               labelPlacement="start"
             />
@@ -256,7 +246,7 @@ const Wrapper = styled.div`
 `;
 const WrapperDate = styled(motion.div)`
   display: grid;
-  grid-template-columns: 109px 1fr;
+  grid-template-columns: 120px 1fr;
 `;
 const LabelDate = styled.label`
   background: ${(props) => props.theme.colors.backgroundSecondary};
@@ -288,6 +278,13 @@ const Coordinate = styled(motion.div)`
   align-items: center;
   justify-content: center;
   padding: 0 5px;
+`;
+
+const Ellipsis = styled.p`
+  justify-content: initial;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 `;
 
 const CheckboxStyled = styled(Checkbox)`
