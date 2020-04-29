@@ -22,7 +22,7 @@ const FiltersHeader: React.FC<FiltersHeaderProps> = ({ openFilterOptions, handle
     return `${string.slice(0, 9)}...`;
   };
   return (
-    <FiltersHeaderContainer>
+    <>
       <Wraper>
         {filters.name ? (
           <Button className="hoverRed" margin="0 5px" onClick={() => handleChangeFilters(filters.name, 'name')}>
@@ -60,17 +60,11 @@ const FiltersHeader: React.FC<FiltersHeaderProps> = ({ openFilterOptions, handle
           Filtry
         </Button>
       </Wraper>
-    </FiltersHeaderContainer>
+    </>
   );
 };
 
 export default FiltersHeader;
-
-const FiltersHeaderContainer = styled.div`
-  display: flex;
-  justify-content: space-between;
-  width: 100%;
-`;
 
 const Wraper = styled.div`
   display: flex;
@@ -79,6 +73,7 @@ const Wraper = styled.div`
 
 const IoMdOptionsStyled = styled(IoMdOptions)`
   font-size: 20px;
+  margin-right: 5px;
 `;
 
 const LinkUser = styled(Link)`
