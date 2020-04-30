@@ -35,18 +35,17 @@ const GetAndFilterEvent: React.FC<GetAndFilterEventProps> = ({ children }) => {
   });
 
   useEffect(() => {
+    const timeFilterFrom = Date.now() - 1000 * 60 * 60 * 24 * 8 + filters.timeFromTo[0] * ((1000 * 60 * 60) / 2);
+    const timeFilterTo = Date.now() - 1000 * 60 * 60 * 24 * 8 + filters.timeFromTo[1] * ((1000 * 60 * 60) / 2);
     setEventsFiltered(
       events
-        .filter((item) => {
-          const timeFrom = Date.now() - 1000 * 60 * 60 * 24 * 8 + filters.timeFromTo[0] * ((1000 * 60 * 60) / 2);
-          const timeTo = Date.now() - 1000 * 60 * 60 * 24 * 8 + filters.timeFromTo[1] * ((1000 * 60 * 60) / 2);
-          return (
+        .filter(
+          (item) =>
             item.name.includes(filters.name) &&
             item.province.includes(filters.province) &&
-            item.date >= timeFrom &&
-            item.date <= timeTo
-          );
-        })
+            item.date >= timeFilterFrom &&
+            item.date <= timeFilterTo,
+        )
         .sort((item) => (user?._id !== item.user._id ? 1 : -1)),
     );
   }, [events, filters, user]);
