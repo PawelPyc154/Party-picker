@@ -5,6 +5,9 @@
 
 Uwagi:
 Wolny backend przy pierwszym zapytaniu, ładowaniu wydarzeń.
+Przykładowe passy:
+email: test@gmail.com
+pass: 123456
 
 
 
