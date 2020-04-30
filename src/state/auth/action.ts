@@ -1,22 +1,20 @@
 import { Dispatch } from 'redux';
 import { ThunkDispatch } from 'redux-thunk';
-
+import axiosWithConfig from '../../utils/axiosWithConfig';
 import {
+  AuthActionTypes,
+  AUTH_ERROR,
+  CLEAR_ERROR,
+  LOGIN_SUCCESS,
+  LOGOUT,
   REGISTER_SUCCESS,
   USER_LOADED,
-  AUTH_ERROR,
-  LOGIN_SUCCESS,
-  AuthActionTypes,
-  CLEAR_ERROR,
-  LOGOUT,
 } from './actionsType';
-import axiosWithConfig from '../../utils/axiosWithConfig';
 
 const asyncHandlerError = (fn: (dispatch: ThunkDispatch<{}, {}, AuthActionTypes>) => void) => (
   dispatch: ThunkDispatch<{}, {}, AuthActionTypes>,
 ) =>
   Promise.resolve(fn(dispatch)).catch((err) => {
-    console.log(err.response?.data.error);
     dispatch({
       type: AUTH_ERROR,
       payload: err.response?.data.error,
@@ -26,8 +24,6 @@ const asyncHandlerError = (fn: (dispatch: ThunkDispatch<{}, {}, AuthActionTypes>
 export const loadUser = () =>
   asyncHandlerError(async (dispatch: Dispatch<AuthActionTypes>) => {
     const res = await axiosWithConfig.get('/auth/me');
-    console.log(res.data.data);
-
     dispatch({
       type: USER_LOADED,
       payload: { ...res.data.data },
