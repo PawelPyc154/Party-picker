@@ -4,23 +4,22 @@ import { FaEdit } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
-export interface UpdateLinkProps {
+export interface UpdateProps {
   eventId: string;
 }
 
-const UpdateLink: React.FC<UpdateLinkProps> = ({ eventId }) => (
+const Update: React.FC<UpdateProps> = ({ eventId }) => (
   <Tooltip title="Edytuj wydarzenie">
     <LinkUpdate to={`/update-event/${eventId}`}>
       <FaEditStyled />
     </LinkUpdate>
   </Tooltip>
 );
-export default UpdateLink;
+export default Update;
 
 const LinkUpdate = styled(Link)`
   border: none;
-  border-radius: 20px;
-  background-color: ${(props) => props.theme.colors.backgroundSecondary};
+
   color: ${(props) => props.theme.colors.textSecondary};
   display: flex;
   align-items: center;

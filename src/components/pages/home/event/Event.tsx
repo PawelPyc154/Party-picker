@@ -5,20 +5,18 @@ import { AppState } from '../../../../state/allReducers';
 import EventType from '../../../../state/events/EventType';
 import media from '../../../../utils/MediaQueries';
 import EventContent from '../../../universalComponents/EventContent';
-import DeleteButton from './deleteButton/DeleteButton';
-import EditLink from './updateLink/UpdateLink';
+import Delete from './delete/Delete';
+import Update from './update/Update';
 
 export interface EventProps {
   event: EventType;
 }
 const Event: React.FC<EventProps> = ({ event }) => {
   const { user } = useSelector((state: AppState) => state.AuthReducer);
-
   return (
     <EventContainer>
-      {user?._id === event.user._id ? <DeleteButton eventId={event._id} /> : null}
-      {user?._id === event.user._id ? <EditLink eventId={event._id} /> : null}
-
+      {user?._id === event.user._id ? <Update eventId={event._id} /> : null}
+      {user?._id === event.user._id ? <Delete eventId={event._id} /> : null}
       <EventContent event={event} />
     </EventContainer>
   );
@@ -27,19 +25,19 @@ const Event: React.FC<EventProps> = ({ event }) => {
 export default Event;
 
 const EventContainer = styled.section`
-  height: 200px;
-  background-color: ${(props) => props.theme.colors.backgroundSecondary};
   border: 1px solid ${(props) => props.theme.colors.layout};
+  background-color: ${(props) => props.theme.colors.backgroundSecondary};
   color: ${(props) => props.theme.colors.textSecondary};
-  margin: 15px 0;
   display: flex;
   flex-direction: column;
   position: relative;
-  justify-content: space-evenly;
+  justify-content: center;
   align-items: center;
   overflow: hidden;
+  height: 200px;
+  margin: 15px 0;
   ${media.tablet} {
-    margin: 15px 5px 15px 0;
     height: 150px;
+    margin: 15px 5px 15px 0;
   }
 `;

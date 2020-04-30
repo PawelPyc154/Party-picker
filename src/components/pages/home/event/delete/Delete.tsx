@@ -9,11 +9,11 @@ import styled from 'styled-components';
 import { getEvents } from '../../../../../state/events/action';
 import axiosWithConfig from '../../../../../utils/axiosWithConfig';
 
-export interface DeleteButtonProps {
+export interface DeleteProps {
   eventId: string;
 }
 
-const DeleteButton: React.FC<DeleteButtonProps> = ({ eventId }) => {
+const Delete: React.FC<DeleteProps> = ({ eventId }) => {
   const [open, setOpen] = React.useState(false);
   const { enqueueSnackbar } = useSnackbar();
 
@@ -65,19 +65,18 @@ const DeleteButton: React.FC<DeleteButtonProps> = ({ eventId }) => {
   );
 };
 
-export default DeleteButton;
+export default Delete;
 
 const ButtonDelete = styled.button`
   border: none;
-  border-radius: 20px;
-  background-color: ${(props) => props.theme.colors.backgroundSecondary};
+  background-color: transparent;
   color: ${(props) => props.theme.colors.textSecondary};
   display: flex;
   align-items: center;
-  justify-content: center;
   position: absolute;
   top: 38px;
   left: 4px;
+  justify-content: center;
   height: 40px;
   width: 40px;
   cursor: pointer;
