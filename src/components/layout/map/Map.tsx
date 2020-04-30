@@ -158,7 +158,7 @@ const MarkerInfo = styled.div`
   z-index: 100;
   display: flex;
   flex-direction: column;
-  justify-content: space-evenly;
+  justify-content: center;
   align-items: center;
   border-radius: 5px;
   overflow: hidden;
