@@ -12,34 +12,27 @@ const EventContent: React.SFC<EventContentProps> = ({ event }) => {
 
   return (
     <>
-      {Number(new Date(event.createdAt)) > Date.now() - 1000 * 60 * 60 * 24 * 10 ? (
-        <NewBadge>nowe</NewBadge>
-      ) : null}
+      <Wraper>
+        <DateWrapper>
+          <span>{`${dayStart}.${monthStart} ${dayNameStart} ${hoursStart}`}</span>
+          <Sup>{minutesStart}</Sup>
+        </DateWrapper>
+      </Wraper>
       <Header>{event.name}</Header>
       <Location>
         {event.place}
         <TiLocation />
       </Location>
-      <DateWrapper>
-        <p>{`${dayStart}.${monthStart} ${dayNameStart}`}</p>
-        <p>{`${hoursStart}:${minutesStart}`}</p>
-      </DateWrapper>
-      {event.fbList ? <FbBadge>lista FB</FbBadge> : null}
     </>
   );
 };
 
 export default EventContent;
 
-const DateWrapper = styled.div`
-  display: flex;
-  justify-content: space-evenly;
-  width: 100%;
-  color: ${(props) => props.theme.colors.textPrimary};
-  margin-bottom: 5px;
-`;
 const Header = styled.h2`
   font-size: 30px;
+  margin-bottom: 10px;
+  color: ${(props) => props.theme.colors.textSecondary};
 `;
 const Location = styled.p`
   font-size: 16px;
@@ -47,19 +40,21 @@ const Location = styled.p`
   align-items: center;
   color: ${(props) => props.theme.colors.textPrimary};
 `;
-const NewBadge = styled.div`
-  color: ${(props) => props.theme.colors.textBadge};
-  background-color: ${(props) => props.theme.colors.layout};
-  padding: 2px;
+const Wraper = styled.div`
+  display: flex;
   position: absolute;
   top: 0;
   right: 0;
+  align-items: center;
 `;
-const FbBadge = styled.div`
-  color: ${(props) => props.theme.colors.textBadge};
-  background-color: ${(props) => props.theme.colors.layout};
+
+const DateWrapper = styled.div`
+  display: flex;
   padding: 2px;
-  position: absolute;
-  bottom: 0;
-  right: 0;
+  color: ${(props) => props.theme.colors.textSecondary};
+  margin: 5px;
+`;
+
+const Sup = styled.span`
+  font-size: 12px;
 `;
