@@ -73,7 +73,7 @@ const Map: React.SFC<MapProps> = () => {
             offsetTop={-50}
             className={isEventUpdated(item._id) ? 'hidden' : ''}
           >
-            <motion.div
+            <MarkerLinkWrapper
               animate={
                 location.pathname.slice(0, 7) === '/events' && location.pathname.slice(8, 32) === item._id
                   ? 'animate'
@@ -90,10 +90,10 @@ const Map: React.SFC<MapProps> = () => {
                 },
               }}
             >
-              <MarkerLink to={`/events/${item._id}`}>
+              <Link to={`/events/${item._id}`}>
                 <TiLocationStyled />
-              </MarkerLink>
-            </motion.div>
+              </Link>
+            </MarkerLinkWrapper>
 
             <MarkerInfo className="markerInfo">
               <EventContent event={item} />
@@ -147,7 +147,7 @@ const MarkerStyled = styled(Marker)`
     z-index: 20;
   }
 `;
-const MarkerLink = styled(Link)`
+const MarkerLinkWrapper = styled(motion.div)`
   display: flex;
   align-items: center;
   justify-content: center;
