@@ -46,7 +46,7 @@ const GetAndFilterEvent: React.FC<GetAndFilterEventProps> = ({ children }) => {
             item.date >= timeFilterFrom &&
             item.date <= timeFilterTo,
         )
-        .sort((item) => (user?._id !== item.user._id ? 1 : -1)),
+        .sort((item) => (user?._id !== item?.user._id ? 1 : -1)),
     );
   }, [events, filters, user]);
 

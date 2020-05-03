@@ -1,13 +1,15 @@
 import { SnackbarProvider } from 'notistack';
 import React, { useEffect } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { BrowserRouter as Router } from 'react-router-dom';
 import styled from 'styled-components';
 import GetAndFilterEventContext from '../context/GetAndFilterEvents';
 import StyleVariableContext from '../context/StyleVariable';
+import { AppState } from '../state/allReducers';
 import { loadUser } from '../state/auth/action';
 import { getEvents } from '../state/events/action';
 import media from '../utils/MediaQueries';
+import Chat from './layout/chat/Chat';
 import Map from './layout/map/Map';
 import Navigation from './layout/navigation/Navigation';
 import Pages from './pages/Pages';
@@ -16,8 +18,10 @@ function App() {
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(getEvents());
+
     dispatch(loadUser());
   }, [dispatch]);
+  const { user } = useSelector((state: AppState) => state.AuthReducer);
 
   return (
     <Router basename={process.env.PUBLIC_URL}>
@@ -29,6 +33,7 @@ function App() {
               <ContentWraper>
                 <Map />
                 <Pages />
+                {user ? <Chat /> : null}
               </ContentWraper>
             </GetAndFilterEventContext>
           </AppContainer>

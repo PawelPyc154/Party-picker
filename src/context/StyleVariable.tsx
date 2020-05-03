@@ -19,6 +19,7 @@ const colors = {
     layout: '#3498db',
     textPrimary: 'white',
     textSecondary: '#3498db',
+    textThird: '#202020',
     error: '#e74c3c',
     disable: '#6f6f6f',
     hover: 'white',
@@ -61,6 +62,7 @@ const colors = {
     layout: '#f1c40f',
     textPrimary: 'white',
     textSecondary: '#f1c40f',
+    textThird: '#202020',
     error: '#e74c3c',
     disable: '#6f6f6f',
     hover: 'white',
@@ -99,15 +101,11 @@ const colors = {
 const size = {};
 
 const StyleVariable: React.FC<StyleVariableProps> = ({ children }) => {
-  const [isDarkMode, setIsDarkMode] = useState(
-    JSON.parse(localStorage.getItem('isDarkMode') || 'true'),
-  );
+  const [isDarkMode, setIsDarkMode] = useState(JSON.parse(localStorage.getItem('isDarkMode') || 'true'));
 
   return (
     <ThemeProvider theme={{ size, colors: isDarkMode ? colors.dark : colors.light }}>
-      <ThemeContext.Provider value={{ setIsDarkMode, isDarkMode }}>
-        {children}
-      </ThemeContext.Provider>
+      <ThemeContext.Provider value={{ setIsDarkMode, isDarkMode }}>{children}</ThemeContext.Provider>
     </ThemeProvider>
   );
 };
