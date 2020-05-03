@@ -25,21 +25,31 @@ const FiltersHeader: React.FC<FiltersHeaderProps> = ({ openFilterOptions, handle
     <>
       <Wraper>
         {filters.name ? (
-          <Button className="hoverRed" margin="0 5px" onClick={() => handleChangeFilters(filters.name, 'name')}>
-            {cropString(filters.name)}
-          </Button>
+          <Tooltip title="Usuń filter">
+            <Button className="hoverRed" margin="0 5px" onClick={() => handleChangeFilters(filters.name, 'name')}>
+              {cropString(filters.name)}
+            </Button>
+          </Tooltip>
         ) : null}
 
         {filters.province ? (
-          <Button className="hoverRed" margin="0 5px" onClick={() => handleChangeFilters(filters.province, 'province')}>
-            {cropString(filters.province)}
-          </Button>
+          <Tooltip title="Usuń filter">
+            <Button
+              className="hoverRed"
+              margin="0 5px"
+              onClick={() => handleChangeFilters(filters.province, 'province')}
+            >
+              {cropString(filters.province)}
+            </Button>
+          </Tooltip>
         ) : null}
 
         {filters.timeFromTo[0] !== 7 * 24 * 2 || filters.timeFromTo[1] !== 38 * 24 * 2 ? (
-          <Button className="hoverRed" margin="0 5px" onClick={() => handleChangeDate({}, [7 * 24 * 2, 38 * 24 * 2])}>
-            data
-          </Button>
+          <Tooltip title="Usuń filter">
+            <Button className="hoverRed" margin="0 5px" onClick={() => handleChangeDate({}, [7 * 24 * 2, 38 * 24 * 2])}>
+              data
+            </Button>
+          </Tooltip>
         ) : null}
       </Wraper>
       <Wraper>
