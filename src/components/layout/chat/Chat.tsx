@@ -75,7 +75,12 @@ const Chat: React.FC<ChatProps> = () => {
             )}
           </Messages>
           <BottomBar>
-            <Input ref={input} value={message} onChange={(e) => setMessage(e.target.value)} />
+            <Input
+              ref={input}
+              value={message}
+              onChange={(e) => setMessage(e.target.value)}
+              onKeyPress={(event) => (event.key === 'Enter' ? handleSendMessage() : null)}
+            />
             <SendButton onClick={() => handleSendMessage()}>
               <AiOutlineSend />
             </SendButton>
