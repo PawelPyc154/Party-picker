@@ -257,7 +257,7 @@ const Wrapper = styled.div`
 `;
 const WrapperDate = styled(motion.div)`
   display: grid;
-  grid-template-columns: 120px 1fr;
+  grid-template-columns: 150px 1fr;
 `;
 const LabelDate = styled.label`
   background: ${(props) => props.theme.colors.backgroundSecondary};
