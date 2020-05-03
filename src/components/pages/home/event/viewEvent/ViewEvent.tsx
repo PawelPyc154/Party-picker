@@ -1,21 +1,21 @@
 import Tooltip from '@material-ui/core/Tooltip';
 import React from 'react';
-import { FaEdit } from 'react-icons/fa';
+import { BsArrowsFullscreen } from 'react-icons/bs';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
-export interface UpdateProps {
+export interface ViewEventProps {
   eventId: string;
 }
 
-const Update: React.FC<UpdateProps> = ({ eventId }) => (
-  <Tooltip title="Edytuj wydarzenie">
-    <LinkUpdate to={`/update-event/${eventId}`}>
-      <FaEditStyled />
+const ViewEvent: React.FC<ViewEventProps> = ({ eventId }) => (
+  <Tooltip title="Sprawdz szczegóły">
+    <LinkUpdate to={`/events/${eventId}`}>
+      <BsArrowsFullscreenIcone />
     </LinkUpdate>
   </Tooltip>
 );
-export default Update;
+export default ViewEvent;
 
 const LinkUpdate = styled(Link)`
   border: none;
@@ -25,8 +25,8 @@ const LinkUpdate = styled(Link)`
   align-items: center;
   justify-content: center;
   position: absolute;
-  top: 36px;
-  left: 6px;
+  top: 5px;
+  left: 4px;
   height: 40px;
   width: 40px;
   cursor: pointer;
@@ -35,6 +35,6 @@ const LinkUpdate = styled(Link)`
   }
 `;
 
-const FaEditStyled = styled(FaEdit)`
+const BsArrowsFullscreenIcone = styled(BsArrowsFullscreen)`
   font-size: 18px;
 `;

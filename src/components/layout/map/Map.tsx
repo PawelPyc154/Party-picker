@@ -1,8 +1,9 @@
+import { motion } from 'framer-motion';
 import React, { useContext, useEffect, useRef, useState } from 'react';
 import { TiLocation } from 'react-icons/ti';
 import ReactMapGL, { FullscreenControl, Marker } from 'react-map-gl';
 import { useDispatch, useSelector } from 'react-redux';
-import { useLocation } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import styled from 'styled-components';
 import { FilterContext } from '../../../context/GetAndFilterEvents';
 import { AppState } from '../../../state/allReducers';
@@ -72,9 +73,27 @@ const Map: React.SFC<MapProps> = () => {
             offsetTop={-50}
             className={isEventUpdated(item._id) ? 'hidden' : ''}
           >
-            <MarkerContent>
-              <TiLocationStyled />
-            </MarkerContent>
+            <motion.div
+              animate={
+                location.pathname.slice(0, 7) === '/events' && location.pathname.slice(8, 32) === item._id
+                  ? 'animate'
+                  : 'noAnimate'
+              }
+              variants={{
+                animate: {
+                  scale: [1, 1.5, 1.5, 1, 1],
+                  transition: { duration: 1, loop: Infinity, ease: 'easeInOut', times: [0, 0.2, 0.5, 0.8, 1] },
+                },
+                noAnimate: {
+                  scale: 1,
+                  transition: { duration: 1 },
+                },
+              }}
+            >
+              <MarkerLink to={`/events/${item._id}`}>
+                <TiLocationStyled />
+              </MarkerLink>
+            </motion.div>
 
             <MarkerInfo className="markerInfo">
               <EventContent event={item} />
@@ -128,11 +147,11 @@ const MarkerStyled = styled(Marker)`
     z-index: 20;
   }
 `;
-const MarkerContent = styled.div`
+const MarkerLink = styled(Link)`
   display: flex;
   align-items: center;
   justify-content: center;
-
+  cursor: pointer;
   &:hover ~ .markerInfo {
     opacity: 1;
   }

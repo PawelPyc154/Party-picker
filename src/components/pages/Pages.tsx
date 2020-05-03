@@ -9,6 +9,7 @@ const Contact = React.lazy(() => import('./contact/Contact'));
 const AddEvent = React.lazy(() => import('./addEvent/AddEvent'));
 const UpdateEvent = React.lazy(() => import('./updateEvent/UpdateEvent'));
 const User = React.lazy(() => import('./user/User'));
+const EventView = React.lazy(() => import('./eventView/EventView'));
 
 export interface PagesProps {}
 
@@ -19,6 +20,7 @@ const Pages: React.FC<PagesProps> = () => (
       <Route exact path="/login-signup" component={LoginSignup} />
       <Route path="/contact" component={Contact} />
       <Route path="/user" component={User} />
+      <Route path="/events/:event" component={EventView} />
       <PrivateRoute path="/add-event" component={AddEvent} />
       <PrivateRoute path="/update-event/:eventID" component={UpdateEvent} />
     </Switch>
