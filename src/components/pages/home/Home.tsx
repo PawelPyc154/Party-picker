@@ -22,7 +22,7 @@ const Home: React.FC<HomeProps> = () => {
         filters.timeFromTo[1] !== initialTimeFromTo[1] ? (
           eventsFiltered.map((item) => <Event key={item._id} event={item} />)
         ) : (
-          <Loading />
+          <Loading marginMobile="40px 0" />
         )}
       </Events>
     </HomeContainer>
