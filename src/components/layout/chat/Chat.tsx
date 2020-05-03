@@ -185,6 +185,7 @@ const CloseButton = styled.button`
   background-color: transparent;
   color: ${(props) => props.theme.colors.layout};
   margin-right: 5px;
+  cursor: pointer;
   &:hover {
     color: ${(props) => props.theme.colors.hover};
   }
@@ -231,6 +232,7 @@ const SendButton = styled.button`
   display: flex;
   align-items: center;
   justify-content: center;
+  cursor: pointer;
   &:hover {
     outline: none;
     border: 1px solid ${(props) => props.theme.colors.hover};
@@ -251,6 +253,7 @@ const Button = styled.button`
   display: flex;
   justify-content: center;
   align-items: center;
+
   cursor: pointer;
   &:hover {
     background-color: ${(props) => props.theme.colors.backgroundSecondary};
