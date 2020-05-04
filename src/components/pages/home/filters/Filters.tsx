@@ -20,10 +20,7 @@ const Filters: React.FC<FiltersProps> = () => {
 
   return (
     <FiltersContainer ref={container}>
-      <FiltersHeader
-        openFilterOptions={openFilterOptions}
-        handleOpenFilterOptions={handleOpenFilterOptions}
-      />
+      <FiltersHeader openFilterOptions={openFilterOptions} handleOpenFilterOptions={handleOpenFilterOptions} />
       <FilterOptions openFilterOptions={openFilterOptions} />
     </FiltersContainer>
   );
@@ -41,5 +38,5 @@ const FiltersContainer = styled.section`
   border: 1px solid ${(props) => props.theme.colors.borderPrimary};
   margin-top: 10px;
   position: relative;
-  z-index: 100;
+  z-index: 600;
 `;

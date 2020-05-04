@@ -5,18 +5,19 @@ import { useSnackbar } from 'notistack';
 import React from 'react';
 import { RiDeleteBin2Line } from 'react-icons/ri';
 import { useDispatch } from 'react-redux';
+import { useHistory } from 'react-router-dom';
 import styled from 'styled-components';
-import { getEvents } from '../../../../../state/events/action';
-import axiosWithConfig from '../../../../../utils/axiosWithConfig';
+import { getEvents } from '../../state/events/action';
+import axiosWithConfig from '../../utils/axiosWithConfig';
 
-export interface DeleteProps {
+export interface DeleteEventButtonProps {
   eventId: string;
 }
 
-const Delete: React.FC<DeleteProps> = ({ eventId }) => {
+const DeleteEventButton: React.FC<DeleteEventButtonProps> = ({ eventId }) => {
   const [open, setOpen] = React.useState(false);
   const { enqueueSnackbar } = useSnackbar();
-
+  const history = useHistory();
   const handleClickOpen = () => {
     setOpen(true);
   };
@@ -24,12 +25,14 @@ const Delete: React.FC<DeleteProps> = ({ eventId }) => {
   const handleClose = () => {
     setOpen(false);
   };
+
   const dispatch = useDispatch();
   const handleClick = async () => {
     try {
       await axiosWithConfig.delete(`/events/${eventId}`);
       await dispatch(getEvents());
       enqueueSnackbar('Wydarzenie zostało usunięte', { variant: 'success' });
+      history.push('/');
     } catch (err) {
       enqueueSnackbar('Nie udało się usunąć wydarzenia', { variant: 'error' });
       setOpen(false);
@@ -65,9 +68,10 @@ const Delete: React.FC<DeleteProps> = ({ eventId }) => {
   );
 };
 
-export default Delete;
+export default DeleteEventButton;
 
 const ButtonDelete = styled.button`
+  z-index: 100;
   border: none;
   background-color: transparent;
   color: ${(props) => props.theme.colors.textSecondary};

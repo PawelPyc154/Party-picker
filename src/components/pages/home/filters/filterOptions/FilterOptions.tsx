@@ -43,7 +43,7 @@ const FilterOptionsWrapper = styled(motion.div)`
   padding: 10px 5px;
   border: 1px solid ${(props) => props.theme.colors.borderPrimary};
   border-top: none;
-
+  z-index: 600;
   ${media.tablet} {
     height: calc(100vh - 110px);
   }

@@ -20,9 +20,9 @@ const Pages: React.FC<PagesProps> = () => (
       <Route exact path="/login-signup" component={LoginSignup} />
       <Route path="/contact" component={Contact} />
       <Route path="/user" component={User} />
-      <Route path="/events/:event" component={EventView} />
+      <Route path="/events/:eventId" component={EventView} />
       <PrivateRoute path="/add-event" component={AddEvent} />
-      <PrivateRoute path="/update-event/:eventID" component={UpdateEvent} />
+      <PrivateRoute path="/update-event/:eventId" component={UpdateEvent} />
     </Switch>
   </Suspense>
 );

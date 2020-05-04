@@ -4,21 +4,22 @@ import styled from 'styled-components';
 import { AppState } from '../../../../state/allReducers';
 import EventType from '../../../../state/events/EventType';
 import media from '../../../../utils/MediaQueries';
+import DeleteEventButton from '../../../universalComponents/DeleteEventButton';
 import EventContent from '../../../universalComponents/EventContent';
-import Delete from './delete/Delete';
-import Update from './update/Update';
+import UpdateEventLink from '../../../universalComponents/UpdateEventLink';
 import ViewEvent from './viewEvent/ViewEvent';
 
 export interface EventProps {
   event: EventType;
 }
+
 const Event: React.FC<EventProps> = ({ event }) => {
   const { user } = useSelector((state: AppState) => state.AuthReducer);
   return (
     <EventContainer>
       <ViewEvent eventId={event._id} />
-      {user?._id === event.user._id ? <Update eventId={event._id} /> : null}
-      {user?._id === event.user._id ? <Delete eventId={event._id} /> : null}
+      {user?._id === event.user._id ? <UpdateEventLink eventId={event._id} /> : null}
+      {user?._id === event.user._id ? <DeleteEventButton eventId={event._id} /> : null}
       <EventContent event={event} />
     </EventContainer>
   );

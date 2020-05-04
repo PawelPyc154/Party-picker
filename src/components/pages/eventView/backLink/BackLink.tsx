@@ -1,32 +1,30 @@
 import Tooltip from '@material-ui/core/Tooltip';
 import React from 'react';
-import { FaEdit } from 'react-icons/fa';
+import { IoMdArrowRoundBack } from 'react-icons/io';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
-export interface UpdateProps {
-  eventId: string;
-}
+export interface BackLinkProps {}
 
-const Update: React.FC<UpdateProps> = ({ eventId }) => (
-  <Tooltip title="Edytuj wydarzenie">
-    <LinkUpdate to={`/update-event/${eventId}`}>
-      <FaEditStyled />
-    </LinkUpdate>
+const BackLink: React.FC<BackLinkProps> = () => (
+  <Tooltip title="Cofnij">
+    <LinkBack to="/">
+      <IoMdArrowRoundBackIcone />
+    </LinkBack>
   </Tooltip>
 );
-export default Update;
+export default BackLink;
 
-const LinkUpdate = styled(Link)`
+const LinkBack = styled(Link)`
+  z-index: 100;
   border: none;
-
   color: ${(props) => props.theme.colors.textSecondary};
   display: flex;
   align-items: center;
   justify-content: center;
   position: absolute;
-  top: 36px;
-  left: 6px;
+  top: 5px;
+  left: 5px;
   height: 40px;
   width: 40px;
   cursor: pointer;
@@ -35,6 +33,6 @@ const LinkUpdate = styled(Link)`
   }
 `;
 
-const FaEditStyled = styled(FaEdit)`
-  font-size: 18px;
+const IoMdArrowRoundBackIcone = styled(IoMdArrowRoundBack)`
+  font-size: 22px;
 `;

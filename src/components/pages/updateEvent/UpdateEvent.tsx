@@ -27,13 +27,13 @@ const UpdateEvent: React.FC<UpdateEventProps> = () => {
   const dispatch = useDispatch();
   const history = useHistory();
   const { enqueueSnackbar } = useSnackbar();
-  const { eventID } = useParams();
+  const { eventId } = useParams();
   const events = useSelector((state: AppState) => state.EventsReducer);
-  const event = events.find((item) => item._id === eventID);
+  const event = events.find((item) => item._id === eventId);
 
   useEffect(() => {
     dispatch(setCoordinates(event?.coordinates.longitude, event?.coordinates.latitude));
-  }, [eventID, events, dispatch, event]);
+  }, [eventId, events, dispatch, event]);
 
   const [animationStop, setAnimationStop] = useState('hidden');
   const { longitude, latitude } = useSelector((state: AppState) => state.PositionAddEventReducer);
@@ -62,7 +62,7 @@ const UpdateEvent: React.FC<UpdateEventProps> = () => {
     }),
     onSubmit: async (value) => {
       try {
-        await axiosWithConfig.put(`/events/${eventID}`, {
+        await axiosWithConfig.put(`/events/${eventId}`, {
           name: value.name,
           describe: value.describe,
           coordinates: {
