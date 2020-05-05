@@ -84,8 +84,6 @@ const AddEvent: React.FC<AddEventProps> = () => {
           date: new Date(startDate).getTime(),
           image: imageURL,
         });
-        console.log(res.data);
-
         await dispatch(getEvents());
         await dispatch(setCoordinates(undefined, undefined));
         history.push(`/events/${res.data.data._id}`);
@@ -99,6 +97,7 @@ const AddEvent: React.FC<AddEventProps> = () => {
   const uploadFile = (event: React.ChangeEvent<any>) => {
     setImage(event.target.files[0]);
     setImagePreview(URL.createObjectURL(event.target.files[0]));
+    // eslint-disable-next-line no-param-reassign
     event.target.value = null;
   };
   const cropFileName = (string: string): string => {
