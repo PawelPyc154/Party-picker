@@ -99,11 +99,13 @@ const AddEvent: React.FC<AddEventProps> = () => {
   const uploadFile = (event: React.ChangeEvent<any>) => {
     setImage(event.target.files[0]);
     setImagePreview(URL.createObjectURL(event.target.files[0]));
+    event.target.value = null;
   };
   const cropFileName = (string: string): string => {
     if (string.length <= 9) return string;
     return `${string.slice(0, 9)}...(${string.substr(-3)})`;
   };
+
   const deleteImage = () => {
     setImage(undefined);
     setImagePreview('');
