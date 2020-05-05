@@ -1,5 +1,3 @@
-import Checkbox from '@material-ui/core/Checkbox';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
 import axios from 'axios';
 import pl from 'date-fns/locale/pl';
 import { useFormik } from 'formik';
@@ -9,6 +7,8 @@ import React, { useEffect, useRef, useState } from 'react';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker-cssmodules.min.css';
 import 'react-datepicker/dist/react-datepicker.css';
+import { FiUpload } from 'react-icons/fi';
+import { RiDeleteBin2Line } from 'react-icons/ri';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import Scroll from 'react-scroll';
@@ -25,15 +25,30 @@ import Loading from '../../universalComponents/Loading';
 export interface AddEventProps {}
 
 const AddEvent: React.FC<AddEventProps> = () => {
-  const [image, setImage] = useState('');
-
   const history = useHistory();
   const dispatch = useDispatch();
   const { enqueueSnackbar } = useSnackbar();
   const [animationStop, setAnimationStop] = useState('hidden');
   const { longitude, latitude } = useSelector((state: AppState) => state.PositionAddEventReducer);
-  const [startDate, setStartDate] = useState(new Date());
+  const [startDate, setStartDate] = useState<Date | null>();
   const [serverError, setServerError] = useState('');
+
+  const [image, setImage] = useState<File | undefined>();
+  const [imagePreview, setImagePreview] = useState('');
+
+  const uploadImage = async (imageFile: File | undefined) => {
+    if (!imageFile) return;
+    try {
+      const fileData = new FormData();
+      fileData.append('file', imageFile);
+      fileData.append('upload_preset', 'bthotje6');
+      const res = await axios.post(`${process.env.REACT_APP_DASHBOARD_URL}`, fileData);
+      // eslint-disable-next-line consistent-return
+      return res.data.url;
+    } catch (err) {
+      throw new Error('Exception message');
+    }
+  };
 
   const container = useRef<HTMLFormElement>(null);
   useEffect(() => {
@@ -47,7 +62,6 @@ const AddEvent: React.FC<AddEventProps> = () => {
   const { isSubmitting, errors, touched, handleChange, handleBlur, values, handleSubmit, isValid } = useFormik({
     initialValues: {
       name: '',
-      listFb: false,
       describe: '',
     },
     validateOnMount: true,
@@ -57,30 +71,24 @@ const AddEvent: React.FC<AddEventProps> = () => {
     }),
 
     onSubmit: async (value) => {
+      if (!startDate) return;
       try {
-        const fileData = new FormData();
-        fileData.append('file', image);
-        fileData.append('upload_preset', 'bthotje6');
-        const res = await axios.post(`${process.env.REACT_APP_DASHBOARD_URL}`, fileData, {
-          headers: {
-            'Content-Type': 'multipart/form-data',
-          },
-        });
-        await axiosWithConfig.post('/events', {
+        const imageURL = await uploadImage(image);
+        const res = await axiosWithConfig.post('/events', {
           name: value.name,
           describe: value.describe,
           coordinates: {
             longitude,
             latitude,
           },
-          date: Date.parse(startDate.toString()),
-          fbList: value.listFb,
-          image: res.data.url,
+          date: new Date(startDate).getTime(),
+          image: imageURL,
         });
+        console.log(res.data);
 
         await dispatch(getEvents());
         await dispatch(setCoordinates(undefined, undefined));
-        history.push('/');
+        history.push(`/events/${res.data.data._id}`);
         enqueueSnackbar('Wydarzenie zostało dodane', { variant: 'success' });
       } catch (err) {
         setServerError(err.response.data.error?.limiter);
@@ -88,9 +96,19 @@ const AddEvent: React.FC<AddEventProps> = () => {
       }
     },
   });
-  const uploadFile = (event: any) => {
+  const uploadFile = (event: React.ChangeEvent<any>) => {
     setImage(event.target.files[0]);
+    setImagePreview(URL.createObjectURL(event.target.files[0]));
   };
+  const cropFileName = (string: string): string => {
+    if (string.length <= 9) return string;
+    return `${string.slice(0, 9)}...(${string.substr(-3)})`;
+  };
+  const deleteImage = () => {
+    setImage(undefined);
+    setImagePreview('');
+  };
+
   return (
     <AddEventContainer>
       {isSubmitting ? (
@@ -158,8 +176,6 @@ const AddEvent: React.FC<AddEventProps> = () => {
               hidden: { x: 100, opacity: 0, transition: { delay: 0.3, duration: 0.2 } },
             }}
           >
-            <LabelDate htmlFor="DatePicker">Data początku:</LabelDate>
-
             <DatePickerStyled
               id="DatePicker"
               selected={startDate}
@@ -172,6 +188,7 @@ const AddEvent: React.FC<AddEventProps> = () => {
               locale={pl}
               withPortal
               minDate={new Date()}
+              placeholderText="Wybierz date początku wydarzenia *"
             />
           </WrapperDate>
           {errors.describe && touched.describe && <Validation>{errors.describe}</Validation>}
@@ -190,24 +207,28 @@ const AddEvent: React.FC<AddEventProps> = () => {
             }}
           />
 
-          <CheckBoxWrapper
-            initial="hidden"
-            variants={{
-              visible: { x: 0, opacity: 1, transition: { delay: 0.6, duration: 0.2 } },
-              hidden: { x: 100, opacity: 0, transition: { delay: 0.6, duration: 0.2 } },
-            }}
-          >
-            <FormControlLabel
-              control={<CheckboxStyled checked={values.listFb} onChange={handleChange} name="listFb" />}
-              label="Lista FB"
-              labelPlacement="start"
+          <UploadImageWraper>
+            <UploadImage htmlFor="file-upload" className="custom-file-upload">
+              <span>Dodaj plakat</span>
+              <FiUploadIcone />
+            </UploadImage>
+            {image ? (
+              <DeleteImage onClick={deleteImage}>
+                <RiDeleteBin2LineIcone />
+                {cropFileName(image?.name)}
+              </DeleteImage>
+            ) : null}
+            <input
+              id="file-upload"
+              type="file"
+              name="file"
+              placeholder="Dodaj plakat"
+              onChange={uploadFile}
+              style={{ display: 'none' }}
             />
-          </CheckBoxWrapper>
-
-          <input type="file" name="file" placeholder="Dodaj plakat" onChange={uploadFile} />
-
+          </UploadImageWraper>
           <Button
-            disabled={isSubmitting || !isValid || !longitude || !latitude}
+            disabled={isSubmitting || !isValid || !longitude || !latitude || !startDate}
             type="submit"
             initial="hidden"
             variants={{
@@ -219,7 +240,8 @@ const AddEvent: React.FC<AddEventProps> = () => {
           </Button>
         </FromStyled>
       )}
-      <Image src="" alt="" />
+
+      {imagePreview ? <Image src={imagePreview} alt="" /> : null}
     </AddEventContainer>
   );
 };
@@ -231,6 +253,16 @@ const AddEventContainer = styled.main`
   background-color: ${(props) => props.theme.colors.backgroundSecondary};
   margin-top: 10px;
   border: 1px solid ${(props) => props.theme.colors.borderPrimary};
+  ${media.tablet} {
+    overflow-y: scroll;
+    &::-webkit-scrollbar {
+      width: 3px;
+    }
+    &::-webkit-scrollbar-thumb {
+      background-color: ${(props) => props.theme.colors.scrollbarThumb};
+      outline: 1px solid ${(props) => props.theme.colors.scrollbarThumb};
+    }
+  }
 `;
 const H2 = styled(motion.h2)`
   margin: 10px auto 20px;
@@ -253,10 +285,7 @@ const Validation = styled(motion.div)`
   font-size: 12px;
   margin: 0 0 5px 0;
 `;
-const CheckBoxWrapper = styled(motion.div)`
-  align-self: flex-end;
-  margin: 10px 0;
-`;
+
 const Wrapper = styled.div`
   display: grid;
   grid-template-columns: 1fr;
@@ -266,23 +295,10 @@ const Wrapper = styled.div`
   }
 `;
 const WrapperDate = styled(motion.div)`
-  display: grid;
-  grid-template-columns: 150px 1fr;
-`;
-const LabelDate = styled.label`
-  background: ${(props) => props.theme.colors.backgroundSecondary};
-  height: 35px;
-  color: ${(props) => props.theme.colors.textSecondary};
-  margin: 0 0px 0px 0px;
-  border: none;
   border: 1px solid ${(props) => props.theme.colors.layout};
-  border-right: none;
-  padding: 2px;
-  font-size: 16px;
-  display: flex;
-  align-items: center;
-  padding: 0 5px;
-  cursor: text;
+  &:hover {
+    border: 1px solid ${(props) => props.theme.colors.hover};
+  }
 `;
 
 const Coordinate = styled(motion.div)`
@@ -306,15 +322,6 @@ const Ellipsis = styled.p`
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-`;
-
-const CheckboxStyled = styled(Checkbox)`
-  && {
-    color: ${(props) => props.theme.colors.layout};
-  }
-  &&.Mui-checked {
-    color: ${(props) => props.theme.colors.textPrimary};
-  }
 `;
 
 const Button = styled(motion.button)`
@@ -341,19 +348,25 @@ const Textarea = styled(motion.textarea)`
   border: 1px solid ${(props) => props.theme.colors.layout};
   flex-basis: 100px;
   resize: none;
-  margin: 15px 0 0 0;
+  margin: 15px 0 15px 0;
   padding: 5px;
+
   ${media.tablet} {
     flex-basis: 100px;
+  }
+
+  &:hover,
+  &:focus {
+    border: 1px solid ${(props) => props.theme.colors.hover};
   }
 `;
 const DatePickerStyled = styled(DatePicker)`
   background: ${(props) => props.theme.colors.backgroundSecondary};
   height: 35px;
   color: ${(props) => props.theme.colors.textSecondary};
-  margin: 0 0px 0px 0px;
+  /* display:flex; */
+  text-align: center;
   border: none;
-  border: 1px solid ${(props) => props.theme.colors.layout};
   border-left: none;
   padding: 2px;
   font-size: 16px;
@@ -364,5 +377,62 @@ const Image = styled.img`
   background-color: ${(props) => props.theme.colors.backgroundPrimary};
   width: 100%;
   cursor: pointer;
-  height: 100%;
+`;
+const UploadImage = styled.label`
+  background: ${(props) => props.theme.colors.backgroundSecondary};
+  height: 35px;
+  color: ${(props) => props.theme.colors.textSecondary};
+  margin: 0 0px 15px 0px;
+  border: none;
+  border: 1px solid ${(props) => props.theme.colors.layout};
+  padding: 2px;
+  font-size: 16px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 5px;
+  cursor: pointer;
+  &:hover {
+    border: 1px solid ${(props) => props.theme.colors.hover};
+    color: ${(props) => props.theme.colors.hover};
+  }
+`;
+const DeleteImage = styled.button`
+  background: ${(props) => props.theme.colors.backgroundSecondary};
+  height: 35px;
+  color: ${(props) => props.theme.colors.textSecondary};
+  margin: 0 0px 15px 0px;
+  border: none;
+  border: 1px solid ${(props) => props.theme.colors.layout};
+  padding: 2px;
+  font-size: 16px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 5px;
+  cursor: pointer;
+  ${media.tablet} {
+    margin: 0 0px 15px 10px;
+  }
+  &:hover {
+    border: 1px solid ${(props) => props.theme.colors.hoverDelete};
+    color: ${(props) => props.theme.colors.hoverDelete};
+  }
+`;
+const FiUploadIcone = styled(FiUpload)`
+  margin: 0 0 0 5px;
+  font-size: 16px;
+`;
+const RiDeleteBin2LineIcone = styled(RiDeleteBin2Line)`
+  margin: 0 5px 0 0;
+  font-size: 18px;
+`;
+const UploadImageWraper = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  ${media.tablet} {
+    flex-wrap: initial;
+  }
 `;
