@@ -33,6 +33,7 @@ const Header = styled.h2`
   font-size: 30px;
   margin-bottom: 10px;
   color: ${(props) => props.theme.colors.textSecondary};
+  text-transform: capitalize;
 `;
 const Location = styled.p`
   font-size: 16px;
