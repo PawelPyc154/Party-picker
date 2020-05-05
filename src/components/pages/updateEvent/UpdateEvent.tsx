@@ -81,7 +81,7 @@ const UpdateEvent: React.FC<UpdateEventProps> = () => {
       if (!startDate) return;
       try {
         const imageURL = await uploadImage(image);
-        const res = await axiosWithConfig.post('/events', {
+        const res = await axiosWithConfig.put(`/events/${eventId}`, {
           name: value.name,
           describe: value.describe,
           coordinates: {
