@@ -1,5 +1,6 @@
 import Checkbox from '@material-ui/core/Checkbox';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
+import axios from 'axios';
 import pl from 'date-fns/locale/pl';
 import { useFormik } from 'formik';
 import { motion } from 'framer-motion';
@@ -24,6 +25,8 @@ import Loading from '../../universalComponents/Loading';
 export interface AddEventProps {}
 
 const AddEvent: React.FC<AddEventProps> = () => {
+  const [image, setImage] = useState('');
+
   const history = useHistory();
   const dispatch = useDispatch();
   const { enqueueSnackbar } = useSnackbar();
@@ -52,8 +55,17 @@ const AddEvent: React.FC<AddEventProps> = () => {
       name: yup.string().required('Required').max(50, 'Too Long!'),
       describe: yup.string().max(500, 'Too Long!'),
     }),
+
     onSubmit: async (value) => {
       try {
+        const fileData = new FormData();
+        fileData.append('file', image);
+        fileData.append('upload_preset', 'bthotje6');
+        const res = await axios.post(`${process.env.REACT_APP_DASHBOARD_URL}`, fileData, {
+          headers: {
+            'Content-Type': 'multipart/form-data',
+          },
+        });
         await axiosWithConfig.post('/events', {
           name: value.name,
           describe: value.describe,
@@ -63,6 +75,7 @@ const AddEvent: React.FC<AddEventProps> = () => {
           },
           date: Date.parse(startDate.toString()),
           fbList: value.listFb,
+          image: res.data.url,
         });
 
         await dispatch(getEvents());
@@ -75,7 +88,9 @@ const AddEvent: React.FC<AddEventProps> = () => {
       }
     },
   });
-
+  const uploadFile = (event: any) => {
+    setImage(event.target.files[0]);
+  };
   return (
     <AddEventContainer>
       {isSubmitting ? (
@@ -189,6 +204,8 @@ const AddEvent: React.FC<AddEventProps> = () => {
             />
           </CheckBoxWrapper>
 
+          <input type="file" name="file" placeholder="Dodaj plakat" onChange={uploadFile} />
+
           <Button
             disabled={isSubmitting || !isValid || !longitude || !latitude}
             type="submit"
@@ -202,6 +219,7 @@ const AddEvent: React.FC<AddEventProps> = () => {
           </Button>
         </FromStyled>
       )}
+      <Image src="" alt="" />
     </AddEventContainer>
   );
 };
@@ -340,4 +358,11 @@ const DatePickerStyled = styled(DatePicker)`
   padding: 2px;
   font-size: 16px;
   width: 100%;
+`;
+
+const Image = styled.img`
+  background-color: ${(props) => props.theme.colors.backgroundPrimary};
+  width: 100%;
+  cursor: pointer;
+  height: 100%;
 `;
