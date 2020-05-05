@@ -8,7 +8,6 @@ import DeleteEventButton from '../../universalComponents/DeleteEventButton';
 import EventContent from '../../universalComponents/EventContent';
 import UpdateEventLink from '../../universalComponents/UpdateEventLink';
 import BackLink from './backLink/BackLink';
-import JUWENALIA from './JUWENALIA.png';
 
 export interface EventViewProps {}
 
@@ -29,10 +28,8 @@ const EventView: React.FC<EventViewProps> = () => {
           <Header>
             <EventContent event={event} />
           </Header>
-
           <Describe>{event?.describe || 'To wydarzenie nie posiada opisu.'}</Describe>
-
-          <Image src={JUWENALIA} alt="" />
+          {event.image ? <Image src={event.image} alt="" /> : null}
         </ContentWraper>
       ) : null}
     </EventViewContainer>

@@ -17,5 +17,6 @@ export default interface EventType {
     _id: string;
     name: string;
   };
-  describe: string;
+  describe?: string;
+  image?: string;
 }
