@@ -39,12 +39,7 @@ const Navigation: React.SFC<NavigationProps> = () => {
           Kontakt
         </NavLinkStyled>
       </NavLinkContainer>
-      <SwitchStyled
-        checked={isDarkMode}
-        onChange={handleChangeDarkMode}
-        color="primary"
-        name="checkedB"
-      />
+      <SwitchStyled checked={isDarkMode} onChange={handleChangeDarkMode} color="primary" name="checkedB" />
       {user ? (
         <UserLogin>
           <Tooltip title="Dodaj wydarzenie">
@@ -72,7 +67,7 @@ const Navigation: React.SFC<NavigationProps> = () => {
 };
 export default Navigation;
 
-const NavigationContainer = styled.div`
+const NavigationContainer = styled.nav`
   width: 100%;
   height: 50px;
   background-color: ${(props) => props.theme.colors.backgroundSecondary};
