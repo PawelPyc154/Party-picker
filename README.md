@@ -3,11 +3,11 @@
  [Demo](https://pawelpyc154.github.io/Party-picker/).
 
 
-Uwagi:
-Wolny backend przy pierwszym zapytaniu, ładowaniu wydarzeń.
-Przykładowe passy:
-email: test@gmail.com
-pass: 123456
+### Uwagi:
+Wolny backend przy pierwszym zapytaniu, ładowaniu wydarzeń.<br />
+Przykładowe passy:<br />
+email: test@gmail.com<br />
+pass: 123456<br />
 
 
 
