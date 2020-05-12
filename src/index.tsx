@@ -1,11 +1,11 @@
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
-import { createStore, compose, applyMiddleware } from 'redux';
 import { Provider } from 'react-redux';
+import { applyMiddleware, compose, createStore } from 'redux';
 import thunk from 'redux-thunk';
 import App from './components/App';
-import allReducers from './state/allReducers';
 import './index.scss';
+import allReducers from './state/allReducers';
 
 declare global {
   interface Window {
