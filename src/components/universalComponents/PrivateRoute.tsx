@@ -1,14 +1,14 @@
 import React from 'react';
-import { Route, Redirect } from 'react-router-dom';
 import { useSelector } from 'react-redux';
+import { Redirect, Route } from 'react-router-dom';
 import { AppState } from '../../state/allReducers';
 
 export interface PrivateRouteProps {
   path: string;
-  component: any;
+  component: React.LazyExoticComponent<React.FC<any>>;
 }
 
-const PrivateRoute: React.SFC<PrivateRouteProps> = ({ component: Component, ...rest }) => {
+const PrivateRoute: React.FC<PrivateRouteProps> = ({ component: Component, ...rest }) => {
   const { user } = useSelector((state: AppState) => state.AuthReducer);
   return (
     <Route

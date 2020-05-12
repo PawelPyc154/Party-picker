@@ -36,7 +36,6 @@ const HomeContainer = styled.main``;
 const Events = styled.div`
   padding-bottom: 10px;
   min-height: calc(100vh - 55px);
-
   ${media.tablet} {
     margin: 0 5px;
     overflow-y: scroll;

@@ -158,6 +158,7 @@ const Message = styled.div`
     border: 1px solid ${(props) => props.theme.colors.layout};
   }
 `;
+
 const NoMessages = styled.div`
   color: ${(props) => props.theme.colors.textSecondary};
   border-radius: 16px;
@@ -200,6 +201,7 @@ const BottomBar = styled.div`
   display: flex;
   align-items: center;
 `;
+
 const Input = styled.input`
   background: ${(props) => props.theme.colors.backgroundSecondary};
   height: 35px;
@@ -253,7 +255,6 @@ const Button = styled.button`
   display: flex;
   justify-content: center;
   align-items: center;
-
   cursor: pointer;
   &:hover {
     background-color: ${(props) => props.theme.colors.backgroundSecondary};
@@ -261,6 +262,7 @@ const Button = styled.button`
     border: 2px solid ${(props) => props.theme.colors.hover};
   }
 `;
+
 const BsFillChatFillIcone = styled(BsFillChatFill)`
   font-size: 25px;
 `;

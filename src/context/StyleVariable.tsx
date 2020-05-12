@@ -98,13 +98,12 @@ const colors = {
     },
   },
 };
-const size = {};
 
 const StyleVariable: React.FC<StyleVariableProps> = ({ children }) => {
   const [isDarkMode, setIsDarkMode] = useState(JSON.parse(localStorage.getItem('isDarkMode') || 'true'));
 
   return (
-    <ThemeProvider theme={{ size, colors: isDarkMode ? colors.dark : colors.light }}>
+    <ThemeProvider theme={{ colors: isDarkMode ? colors.dark : colors.light }}>
       <ThemeContext.Provider value={{ setIsDarkMode, isDarkMode }}>{children}</ThemeContext.Provider>
     </ThemeProvider>
   );

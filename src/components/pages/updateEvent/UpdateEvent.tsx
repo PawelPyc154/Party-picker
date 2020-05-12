@@ -358,16 +358,15 @@ const Textarea = styled(motion.textarea)`
   resize: none;
   margin: 15px 0 15px 0;
   padding: 5px;
-
   ${media.tablet} {
     flex-basis: 100px;
   }
-
   &:hover,
   &:focus {
     border: 1px solid ${(props) => props.theme.colors.hover};
   }
 `;
+
 const DatePickerStyled = styled(DatePicker)`
   background: ${(props) => props.theme.colors.backgroundSecondary};
   height: 35px;
@@ -386,6 +385,7 @@ const Image = styled.img`
   width: 100%;
   cursor: pointer;
 `;
+
 const UploadImage = styled.label`
   background: ${(props) => props.theme.colors.backgroundSecondary};
   height: 35px;
@@ -406,6 +406,7 @@ const UploadImage = styled.label`
     color: ${(props) => props.theme.colors.hover};
   }
 `;
+
 const DeleteImage = styled.button`
   background: ${(props) => props.theme.colors.backgroundSecondary};
   height: 35px;
@@ -429,14 +430,17 @@ const DeleteImage = styled.button`
     color: ${(props) => props.theme.colors.hoverDelete};
   }
 `;
+
 const FiUploadIcone = styled(FiUpload)`
   margin: 0 0 0 5px;
   font-size: 16px;
 `;
+
 const RiDeleteBin2LineIcone = styled(RiDeleteBin2Line)`
   margin: 0 5px 0 0;
   font-size: 18px;
 `;
+
 const UploadImageWraper = styled.div`
   display: flex;
   flex-wrap: wrap;
