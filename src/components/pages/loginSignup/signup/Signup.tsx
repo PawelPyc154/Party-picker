@@ -194,7 +194,7 @@ const Button = styled(motion.button)`
   font-size: 20px;
   border: 1px solid ${(props) => props.theme.colors.layout};
   height: 35px;
-  width: 20%;
+  padding: 0 10px;
   align-self: flex-end;
   &:disabled {
     color: ${(props) => props.theme.colors.disable};
