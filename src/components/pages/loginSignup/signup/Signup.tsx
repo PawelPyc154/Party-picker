@@ -22,19 +22,16 @@ const Signup: React.FC<SignupProps> = ({ errorServerVisibleOn, setErrorServerVis
   const [animationStop, setAnimationStop] = useState(false);
 
   const validationSchema = yup.object({
-    name: yup.string().required('Required'),
-    email: yup.string().email('Invalid email').required('Required'),
-    password: yup.string().required('Required').min(6, 'Too Short!'),
+    name: yup.string().required('Nazwa użytkownika jest wymagana.'),
+    email: yup.string().email('Wpisz email.').required('Email jest wymagany.'),
+    password: yup.string().required('Hasło jest wymagane.').min(6, 'Hasło powinno mieć przynajmneij 6 znaków.'),
     password2: yup
       .string()
-      .required('Required')
-      .oneOf([yup.ref('password'), null], 'Passwords must match'),
+      .required('Potwierdzenie hasła jest wymagane.')
+      .oneOf([yup.ref('password'), null], 'Hasło nie zostało dopasowane.'),
   });
 
-  const handleChangeClearError = (
-    e: React.ChangeEvent<any>,
-    handleChange: (e: React.ChangeEvent<any>) => void,
-  ) => {
+  const handleChangeClearError = (e: React.ChangeEvent<any>, handleChange: (e: React.ChangeEvent<any>) => void) => {
     dispatch(clearError());
     handleChange(e);
   };
@@ -157,7 +154,7 @@ const Signup: React.FC<SignupProps> = ({ errorServerVisibleOn, setErrorServerVis
                 animate={animationStop ? {} : { x: [100, 0], opacity: [0, 1] }}
                 transition={{ delay: 0, duration: 0.2 }}
               >
-                Wyślij
+                Utwórz konto
               </Button>
             </FromStyled>
           )

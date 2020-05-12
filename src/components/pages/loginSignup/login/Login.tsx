@@ -15,23 +15,17 @@ export interface LoginPropsProps {
   setErrorServerVisibleOn: Dispatch<SetStateAction<string>>;
 }
 
-const LoginProps: React.FC<LoginPropsProps> = ({
-  errorServerVisibleOn,
-  setErrorServerVisibleOn,
-}) => {
+const LoginProps: React.FC<LoginPropsProps> = ({ errorServerVisibleOn, setErrorServerVisibleOn }) => {
   const dispatch = useDispatch();
   const { error } = useSelector((state: AppState) => state.AuthReducer);
   const [animationStop, setAnimationStop] = useState(false);
 
   const validationSchema = yup.object({
-    email: yup.string().email('Invalid email').required('Required'),
-    password: yup.string().required('Required').min(6, 'Too Short!'),
+    email: yup.string().email('Wpisz email.').required('Email jest wymagany.'),
+    password: yup.string().required('Hasło jest wymagane.').min(6, 'Hasło powinno mieć przynajmneij 6 znaków.'),
   });
 
-  const handleChangeClearError = (
-    e: React.ChangeEvent<any>,
-    handleChange: (e: React.ChangeEvent<any>) => void,
-  ) => {
+  const handleChangeClearError = (e: React.ChangeEvent<any>, handleChange: (e: React.ChangeEvent<any>) => void) => {
     dispatch(clearError());
     handleChange(e);
   };
@@ -121,7 +115,7 @@ const LoginProps: React.FC<LoginPropsProps> = ({
                 animate={animationStop ? {} : { x: [100, 0], opacity: [0, 1] }}
                 transition={{ delay: 0.6, duration: 0.2 }}
               >
-                Wyślij
+                Zaloguj
               </Button>
             </FromStyled>
           )

@@ -8,7 +8,6 @@ export interface SearchByDateProps {}
 
 const SearchByDate: React.FC<SearchByDateProps> = () => {
   const { filters, handleChangeDate } = useContext(FilterContext);
-
   const marks = [
     {
       value: 8 * 24 * 2,

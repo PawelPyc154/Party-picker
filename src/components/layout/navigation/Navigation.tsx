@@ -78,7 +78,6 @@ const NavigationContainer = styled.nav`
   top: 0;
   left: 0;
   border: 1px solid ${(props) => props.theme.colors.borderPrimary};
-
   .activeNavLink {
     color: ${(props) => props.theme.colors.activeNavLink};
   }
@@ -111,6 +110,7 @@ const NavLinkStyled = styled(NavLink)`
     color: ${(props) => props.theme.colors.hover};
   }
 `;
+
 const NavLinkLogInStyled = styled(NavLink)`
   text-decoration: none;
   background-color: transparent;
@@ -132,18 +132,18 @@ const NavLinkLogInStyled = styled(NavLink)`
     color: ${(props) => props.theme.colors.hover};
   }
 `;
+
 const UserLogin = styled.div`
   display: grid;
-
   margin: 0 20px 0 auto;
   grid-template-columns: repeat(2, 40px);
   grid-template-rows: 40px;
   grid-gap: 0 5px;
 `;
+
 const NavLinkUser = styled(NavLink)`
   border: none;
   border-radius: 20px;
-
   color: ${(props) => props.theme.colors.layout};
   display: flex;
   align-items: center;
@@ -152,9 +152,9 @@ const NavLinkUser = styled(NavLink)`
     color: ${(props) => props.theme.colors.hover};
   }
 `;
+
 const LogOutButton = styled.button`
   border: none;
-
   background-color: ${(props) => props.theme.colors.backgroundSecondary};
   color: ${(props) => props.theme.colors.layout};
   display: flex;
@@ -169,10 +169,12 @@ const LogOutButton = styled.button`
 const FaUserAltStyled = styled(FaUserAlt)`
   font-size: 20px;
 `;
+
 const GoSignOutStyled = styled(GoSignOut)`
   font-size: 22px;
   margin: 5px 0 0 4px;
 `;
+
 const IoIosAddStyled = styled(IoIosAdd)`
   font-size: 30px;
 `;

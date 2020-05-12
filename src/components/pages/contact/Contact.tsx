@@ -17,17 +17,20 @@ const Contact: React.FC<ContactProps> = () => {
   }, []);
 
   const validationSchema = yup.object({
-    email: yup.string().email('Invalid email').required('Required'),
-    subject: yup.string().required('Required').min(6, 'Too Short!').max(50, 'Too Long!'),
-    message: yup.string().required('Required').min(6, 'Too Short!').max(500, 'Too Long!'),
+    email: yup.string().email('Wpisz email.').required('Email jest wymagany.'),
+    subject: yup
+      .string()
+      .required('Temat jest wymagany.')
+      .min(6, 'Zbyt krótki temat.')
+      .max(50, 'Temat nie powinien być dłuższy niź 50 znaków.'),
+    message: yup
+      .string()
+      .required('Wiadomość jest wymagana.')
+      .min(6, 'Zbyt krótka wiadomość.')
+      .max(500, 'Wiadomość nie powinna mieć więcej jak 500 znaków.'),
   });
 
-  const handleSubmit = async (
-    email: string,
-    subject: string,
-    message: string,
-    resetForm: () => void,
-  ) => {
+  const handleSubmit = async (email: string, subject: string, message: string, resetForm: () => void) => {
     try {
       await axiosWithConfig.post('/api/contact', {
         email,
