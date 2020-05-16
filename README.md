@@ -4,7 +4,7 @@
 
 
 ### Attention:
-Free backend on the first query, loading events. <br />
+Slow backend on the first query, loading events. <br />
 Sample pass: <br />
 email: test@gmail.com <br />
 pass: 123456 <br />
