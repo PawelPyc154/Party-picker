@@ -18,7 +18,6 @@ function App() {
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(getEvents());
-
     dispatch(loadUser());
   }, [dispatch]);
   const { user } = useSelector((state: AppState) => state.AuthReducer);

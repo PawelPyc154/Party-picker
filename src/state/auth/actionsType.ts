@@ -1,3 +1,5 @@
+import { User } from './auth';
+
 export const REGISTER_SUCCESS = 'REGISTER_SUCCESS';
 export const USER_LOADED = 'USER_LOADED';
 export const AUTH_ERROR = 'AUTH_ERROR';
@@ -13,7 +15,7 @@ export interface LoginSucces {
 }
 export interface UserLoaded {
   type: typeof USER_LOADED;
-  payload: any;
+  payload: User;
 }
 export interface AuthError {
   type: typeof AUTH_ERROR;
@@ -26,10 +28,4 @@ export interface clearError {
   type: typeof CLEAR_ERROR;
 }
 
-export type AuthActionTypes =
-  | LoginSucces
-  | RegisterSucces
-  | UserLoaded
-  | AuthError
-  | LogOut
-  | clearError;
+export type AuthActionTypes = LoginSucces | RegisterSucces | UserLoaded | AuthError | LogOut | clearError;

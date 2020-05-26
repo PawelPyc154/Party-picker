@@ -54,7 +54,7 @@ const FiltersHeader: React.FC<FiltersHeaderProps> = ({ openFilterOptions, handle
       </Wraper>
       <Wraper>
         {user ? (
-          <Tooltip title="Add event" aria-label="add event">
+          <Tooltip title="Dodaj wydarzenie" aria-label="add event">
             <LinkUser to="/add-event">
               <IoIosAddStyled />
             </LinkUser>

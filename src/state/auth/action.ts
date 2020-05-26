@@ -1,3 +1,5 @@
+import { ReactFacebookLoginInfo } from 'react-facebook-login';
+import { GoogleLoginResponse } from 'react-google-login';
 import { Dispatch } from 'redux';
 import { ThunkDispatch } from 'redux-thunk';
 import axiosWithConfig from '../../utils/axiosWithConfig';
@@ -39,7 +41,7 @@ export const setLogin = (email: string, password: string) =>
     await dispatch(loadUser());
   });
 
-export const setLoginRegisterGoogleFb = (res: any, strategy: string) =>
+export const setLoginRegisterGoogleFb = (res: ReactFacebookLoginInfo | GoogleLoginResponse, strategy: string) =>
   asyncHandlerError(async (dispatch: ThunkDispatch<{}, {}, AuthActionTypes>) => {
     await axiosWithConfig.post(`/auth/${strategy}/token`, {
       access_token: res.accessToken,

@@ -1,11 +1,14 @@
 import Tooltip from '@material-ui/core/Tooltip';
-import React from 'react';
+import React, { ReactElement } from 'react';
 import getDate from '../../../../../../utils/getDate';
 
-export interface ValueLabelComponentProps {}
+export interface ValueLabelComponentProps {
+  open: boolean;
+  value: number;
+  children: ReactElement;
+}
 
-const ValueLabelComponent: React.FC<ValueLabelComponentProps> = (props: any) => {
-  const { children, open, value } = props;
+const ValueLabelComponent: React.FC<ValueLabelComponentProps> = ({ children, open, value }) => {
   const [minutes, hours, day, dayName, month] = getDate(
     Date.now() - 1000 * 60 * 60 * 24 * 8 + value * ((1000 * 60 * 60) / 2),
   );

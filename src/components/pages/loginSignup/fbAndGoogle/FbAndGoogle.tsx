@@ -1,8 +1,8 @@
 /* eslint-disable react/jsx-one-expression-per-line */
 import { motion } from 'framer-motion';
 import React from 'react';
-import FacebookLogin from 'react-facebook-login';
-import { GoogleLogin } from 'react-google-login';
+import FacebookLogin, { ReactFacebookLoginInfo } from 'react-facebook-login';
+import { GoogleLogin, GoogleLoginResponse, GoogleLoginResponseOffline } from 'react-google-login';
 import { FaFacebookSquare, FaGoogle } from 'react-icons/fa';
 import { useDispatch } from 'react-redux';
 import styled from 'styled-components';
@@ -14,8 +14,13 @@ export interface FbAndGoogleProps {}
 const FbAndGoogle: React.FC<FbAndGoogleProps> = () => {
   const dispatch = useDispatch();
 
-  const handleResponse = async (res: any, strategy: string) => {
-    await dispatch(setLoginRegisterGoogleFb(res, strategy));
+  const handleResponse = async (
+    res: ReactFacebookLoginInfo | GoogleLoginResponse | GoogleLoginResponseOffline,
+    strategy: string,
+  ) => {
+    if ('accessToken' in res) {
+      await dispatch(setLoginRegisterGoogleFb(res, strategy));
+    }
   };
 
   return (
@@ -48,11 +53,7 @@ const FbAndGoogle: React.FC<FbAndGoogleProps> = () => {
           isSignedIn={false}
           autoLoad={false}
           render={(renderProps) => (
-            <GoogleLoginStyled
-              type="button"
-              onClick={renderProps.onClick}
-              disabled={renderProps.disabled}
-            >
+            <GoogleLoginStyled type="button" onClick={renderProps.onClick} disabled={renderProps.disabled}>
               <FaGoogleStyled /> <p>Login with Google</p>
             </GoogleLoginStyled>
           )}

@@ -15,7 +15,7 @@ export const FilterContext = React.createContext(
     filters: Filters;
     setFilters: React.Dispatch<React.SetStateAction<Filters>>;
     handleChangeFilters: (value: string, filterProperty: keyof Filters) => void;
-    handleChangeDate: (event: ChangeEvent<{}> | {}, newValue: any) => void;
+    handleChangeDate: (event: ChangeEvent<{}> | {}, newValue: number | number[]) => void;
     initialTimeFromTo: number[];
   },
 );
@@ -57,8 +57,10 @@ const GetAndFilterEvent: React.FC<GetAndFilterEventProps> = ({ children }) => {
     });
   };
 
-  const handleChangeDate = (event: ChangeEvent<{}> | {}, newValue: any) => {
-    setFilters((prev: Filters) => ({ ...prev, timeFromTo: newValue }));
+  const handleChangeDate = (event: ChangeEvent<{}> | {}, newValue: number | number[]) => {
+    if (typeof newValue === 'object') {
+      setFilters((prev: Filters) => ({ ...prev, timeFromTo: newValue }));
+    }
   };
 
   // localStorage;

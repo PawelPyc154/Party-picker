@@ -10,7 +10,7 @@ import { AppState } from '../../../state/allReducers';
 import { MessageTypes } from '../../../state/auth/auth';
 import media from '../../../utils/MediaQueries';
 
-let socket: any;
+let socket: SocketIOClient.Socket;
 
 export interface ChatProps {}
 
@@ -24,7 +24,7 @@ const Chat: React.FC<ChatProps> = () => {
     socket = io(`${process.env.REACT_APP_SOCKET_URL}/chat`);
     return () => {
       socket.emit('disconnect');
-      socket.off();
+      socket.off('');
     };
   }, [user]);
 
