@@ -1,6 +1,6 @@
 
 
- [Demo](https://pawelpyc154.github.io/Party-picker/).
+ [Demo](https://pawelpyc154.github.io/Party-picker/). <-- Slow Heroku backEnd. Wait plz.
 
 
 ### Attention:
