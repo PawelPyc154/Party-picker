@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import { FilterContext } from '../../../../../context/GetAndFilterEvents';
 import { AppState } from '../../../../../state/allReducers';
-import Button from '../../../../universalComponents/Button';
+import Button from '../../../../universal/Button';
 
 export interface FiltersHeaderProps {
   openFilterOptions: boolean;

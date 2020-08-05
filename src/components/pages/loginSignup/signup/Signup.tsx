@@ -7,8 +7,8 @@ import * as yup from 'yup';
 import { AppState } from '../../../../state/allReducers';
 import { clearError, setRegister } from '../../../../state/auth/action';
 import media from '../../../../utils/MediaQueries';
-import Input from '../../../universalComponents/Input';
-import Loading from '../../../universalComponents/Loading';
+import Input from '../../../universal/Input';
+import Loading from '../../../universal/Loading';
 
 export interface SignupProps {
   errorServerVisibleOn: string;

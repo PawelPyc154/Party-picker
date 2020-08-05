@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 import { FilterContext } from '../../../../../../context/GetAndFilterEvents';
-import Input from '../../../../../universalComponents/Input';
+import Input from '../../../../../universal/Input';
 
 export interface SearchByNameProps {}
 

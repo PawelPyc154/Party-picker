@@ -4,9 +4,9 @@ import { useParams } from 'react-router-dom';
 import styled from 'styled-components';
 import { AppState } from '../../../state/allReducers';
 import media from '../../../utils/MediaQueries';
-import DeleteEventButton from '../../universalComponents/DeleteEventButton';
-import EventContent from '../../universalComponents/EventContent';
-import UpdateEventLink from '../../universalComponents/UpdateEventLink';
+import DeleteEventButton from '../../universal/DeleteEventButton';
+import EventContent from '../../universal/EventContent';
+import UpdateEventLink from '../../universal/UpdateEventLink';
 import BackLink from './backLink/BackLink';
 
 export interface EventViewProps {}

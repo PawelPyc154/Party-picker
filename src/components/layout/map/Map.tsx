@@ -9,7 +9,7 @@ import { FilterContext } from '../../../context/GetAndFilterEvents';
 import { AppState } from '../../../state/allReducers';
 import { setCoordinates } from '../../../state/positionAddEvent/action';
 import media from '../../../utils/MediaQueries';
-import EventContent from '../../universalComponents/EventContent';
+import EventContent from '../../universal/EventContent';
 
 export interface MapProps {}
 interface Viewport {

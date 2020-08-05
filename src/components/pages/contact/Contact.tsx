@@ -6,7 +6,7 @@ import styled from 'styled-components';
 import * as yup from 'yup';
 import axiosWithConfig from '../../../utils/axiosWithConfig';
 import media from '../../../utils/MediaQueries';
-import Input from '../../universalComponents/Input';
+import Input from '../../universal/Input';
 
 export interface ContactProps {}
 

@@ -19,8 +19,8 @@ import { getEvents } from '../../../state/events/action';
 import { setCoordinates } from '../../../state/positionAddEvent/action';
 import axiosWithConfig from '../../../utils/axiosWithConfig';
 import media from '../../../utils/MediaQueries';
-import Input from '../../universalComponents/Input';
-import Loading from '../../universalComponents/Loading';
+import Input from '../../universal/Input';
+import Loading from '../../universal/Loading';
 
 export interface AddEventProps {}
 
