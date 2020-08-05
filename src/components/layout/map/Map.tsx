@@ -5,7 +5,7 @@ import ReactMapGL, { FullscreenControl, Marker } from 'react-map-gl';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, useLocation } from 'react-router-dom';
 import styled from 'styled-components';
-import { FilterContext } from '../../../context/GetAndFilterEvents';
+import { FilterContext } from '../../context/GetAndFilterEvents';
 import { AppState } from '../../../state/allReducers';
 import { setCoordinates } from '../../../state/positionAddEvent/action';
 import media from '../../../utils/MediaQueries';

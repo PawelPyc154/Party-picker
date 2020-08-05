@@ -4,7 +4,7 @@ import { IoIosAdd, IoMdOptions } from 'react-icons/io';
 import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
-import { FilterContext } from '../../../../../context/GetAndFilterEvents';
+import { FilterContext } from '../../../../context/GetAndFilterEvents';
 import { AppState } from '../../../../../state/allReducers';
 import Button from '../../../../universal/Button';
 

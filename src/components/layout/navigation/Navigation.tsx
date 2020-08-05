@@ -6,7 +6,7 @@ import { IoIosAdd } from 'react-icons/io';
 import { useDispatch, useSelector } from 'react-redux';
 import { NavLink } from 'react-router-dom';
 import styled from 'styled-components';
-import { ThemeContext } from '../../../context/StyleVariable';
+import { ThemeContext } from '../../context/StyleVariable';
 import { AppState } from '../../../state/allReducers';
 import { setLogOut } from '../../../state/auth/action';
 import media from '../../../utils/MediaQueries';

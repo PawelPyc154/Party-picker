@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 import styled from 'styled-components';
-import { FilterContext } from '../../../../../../context/GetAndFilterEvents';
+import { FilterContext } from '../../../../../context/GetAndFilterEvents';
 import Button from '../../../../../universal/Button';
 
 export interface SearchByProvinceProps {}

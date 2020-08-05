@@ -1,7 +1,7 @@
 import React, { ChangeEvent, useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
-import { AppState } from '../state/allReducers';
-import EventType from '../state/events/EventType';
+import { AppState } from '../../state/allReducers';
+import EventType from '../../state/events/EventType';
 
 export interface Filters {
   name: string;
