@@ -88,14 +88,14 @@ const IoMdOptionsStyled = styled(IoMdOptions)`
 
 const LinkUser = styled(Link)`
   border: none;
-  color: ${(props) => props.theme.colors.textSecondary};
+  color: ${({ theme }) => theme.colors.textSecondary};
   display: flex;
   align-items: center;
   justify-content: center;
   width: 40px;
   height: 40px;
   &:hover {
-    color: ${(props) => props.theme.colors.hover};
+    color: ${({ theme }) => theme.colors.hover};
   }
 `;
 

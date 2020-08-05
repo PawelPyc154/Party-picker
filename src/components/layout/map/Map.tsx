@@ -158,9 +158,9 @@ const MarkerLinkWrapper = styled(motion.div)`
 
 const TiLocationStyled = styled(TiLocation)`
   font-size: 50px;
-  color: ${(props) => props.theme.colors.map.marker};
+  color: ${({ theme }) => theme.colors.map.marker};
   &.addEvent {
-    color: ${(props) => props.theme.colors.map.markerAddEvent};
+    color: ${({ theme }) => theme.colors.map.markerAddEvent};
   }
 `;
 
@@ -170,7 +170,7 @@ const MarkerInfo = styled.div`
   position: absolute;
   top: -160px;
   left: -80px;
-  background-color: ${(props) => props.theme.colors.backgroundSecondary};
+  background-color: ${({ theme }) => theme.colors.backgroundSecondary};
   pointer-events: none;
   opacity: 0;
   z-index: 100;

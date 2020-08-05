@@ -113,11 +113,11 @@ const NavLinkStyled = styled(NavLink)`
 const NavLinkLogInStyled = styled(NavLink)`
   text-decoration: none;
   background-color: transparent;
-  border: 1px solid ${(props) => props.theme.colors.layout};
+  border: 1px solid ${({ theme }) => theme.colors.layout};
   border-radius: 0;
   height: 35px;
   padding: 5px;
-  color: ${(props) => props.theme.colors.layout};
+  color: ${({ theme }) => theme.colors.layout};
   margin: 0 5px 0 auto;
   display: flex;
   align-items: center;
@@ -127,8 +127,8 @@ const NavLinkLogInStyled = styled(NavLink)`
     margin: 0 20px 0 auto;
   }
   &:hover {
-    border: 1px solid ${(props) => props.theme.colors.hover};
-    color: ${(props) => props.theme.colors.hover};
+    border: 1px solid ${({ theme }) => theme.colors.hover};
+    color: ${({ theme }) => theme.colors.hover};
   }
 `;
 
@@ -143,25 +143,25 @@ const UserLogin = styled.div`
 const NavLinkUser = styled(NavLink)`
   border: none;
   border-radius: 20px;
-  color: ${(props) => props.theme.colors.layout};
+  color: ${({ theme }) => theme.colors.layout};
   display: flex;
   align-items: center;
   justify-content: center;
   &:hover {
-    color: ${(props) => props.theme.colors.hover};
+    color: ${({ theme }) => theme.colors.hover};
   }
 `;
 
 const LogOutButton = styled.button`
   border: none;
-  background-color: ${(props) => props.theme.colors.backgroundSecondary};
-  color: ${(props) => props.theme.colors.layout};
+  background-color: ${({ theme }) => theme.colors.backgroundSecondary};
+  color: ${({ theme }) => theme.colors.layout};
   display: flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
   &:hover {
-    color: ${(props) => props.theme.colors.hover};
+    color: ${({ theme }) => theme.colors.hover};
   }
 `;
 
@@ -180,15 +180,15 @@ const IoIosAddStyled = styled(IoIosAdd)`
 
 const SwitchStyled = styled(Switch)`
   && .MuiSwitch-thumb {
-    background-color: ${(props) => props.theme.colors.switch.thumb};
+    background-color: ${({ theme }) => theme.colors.switch.thumb};
   }
   && :checked + .MuiSwitch-thumb {
-    background-color: ${(props) => props.theme.colors.switch.thumbChecked};
+    background-color: ${({ theme }) => theme.colors.switch.thumbChecked};
   }
   && .MuiSwitch-track {
-    background-color: ${(props) => props.theme.colors.switch.track};
+    background-color: ${({ theme }) => theme.colors.switch.track};
   }
   && .Mui-checked + .MuiSwitch-track {
-    background-color: ${(props) => props.theme.colors.switch.trackChecked};
+    background-color: ${({ theme }) => theme.colors.switch.trackChecked};
   }
 `;

@@ -18,7 +18,7 @@ export default BackLink;
 const LinkBack = styled(Link)`
   z-index: 100;
   border: none;
-  color: ${(props) => props.theme.colors.textSecondary};
+  color: ${({ theme }) => theme.colors.textSecondary};
   display: flex;
   align-items: center;
   justify-content: center;
@@ -29,7 +29,7 @@ const LinkBack = styled(Link)`
   width: 40px;
   cursor: pointer;
   &:hover {
-    color: ${(props) => props.theme.colors.hover};
+    color: ${({ theme }) => theme.colors.hover};
   }
 `;
 

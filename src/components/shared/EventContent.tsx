@@ -32,14 +32,14 @@ export default EventContent;
 const Header = styled.h2`
   font-size: 30px;
   margin-bottom: 10px;
-  color: ${(props) => props.theme.colors.textSecondary};
+  color: ${({ theme }) => theme.colors.textSecondary};
   text-transform: capitalize;
 `;
 const Location = styled.p`
   font-size: 16px;
   display: flex;
   align-items: center;
-  color: ${(props) => props.theme.colors.textPrimary};
+  color: ${({ theme }) => theme.colors.textPrimary};
 `;
 const Wraper = styled.div`
   display: flex;
@@ -52,7 +52,7 @@ const Wraper = styled.div`
 const DateWrapper = styled.div`
   display: flex;
   padding: 2px;
-  color: ${(props) => props.theme.colors.textSecondary};
+  color: ${({ theme }) => theme.colors.textSecondary};
   margin: 5px;
 `;
 

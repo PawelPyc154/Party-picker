@@ -74,7 +74,7 @@ const ButtonDelete = styled.button`
   z-index: 100;
   border: none;
   background-color: transparent;
-  color: ${(props) => props.theme.colors.textSecondary};
+  color: ${({ theme }) => theme.colors.textSecondary};
   display: flex;
   align-items: center;
   position: absolute;
@@ -85,7 +85,7 @@ const ButtonDelete = styled.button`
   width: 40px;
   cursor: pointer;
   &:hover {
-    color: ${(props) => props.theme.colors.hoverDelete};
+    color: ${({ theme }) => theme.colors.hoverDelete};
   }
 `;
 
@@ -95,28 +95,28 @@ const RiDeleteBin2LineStyled = styled(RiDeleteBin2Line)`
 
 const DialogStyled = styled(Dialog)`
   && .MuiDialog-paper {
-    background-color: ${(props) => props.theme.colors.dialog.background} !important;
+    background-color: ${({ theme }) => theme.colors.dialog.background} !important;
   }
 `;
 
 const DialogContentTextStyled = styled(DialogContentText)`
   && {
-    color: ${(props) => props.theme.colors.dialog.text} !important;
+    color: ${({ theme }) => theme.colors.dialog.text} !important;
   }
 `;
 const ButtonYesStyled = styled(Button)`
   && {
-    color: ${(props) => props.theme.colors.dialog.text} !important;
+    color: ${({ theme }) => theme.colors.dialog.text} !important;
     &:hover {
-      color: ${(props) => props.theme.colors.dialog.accept} !important;
+      color: ${({ theme }) => theme.colors.dialog.accept} !important;
     }
   }
 `;
 const ButtonNoStyled = styled(Button)`
   && {
-    color: ${(props) => props.theme.colors.dialog.text} !important;
+    color: ${({ theme }) => theme.colors.dialog.text} !important;
     &:hover {
-      color: ${(props) => props.theme.colors.dialog.cancel} !important;
+      color: ${({ theme }) => theme.colors.dialog.cancel} !important;
     }
   }
 `;

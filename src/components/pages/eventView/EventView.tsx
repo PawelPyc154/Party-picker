@@ -39,7 +39,7 @@ export default EventView;
 
 const EventViewContainer = styled.main`
   margin-top: 10px;
-  background-color: ${(props) => props.theme.colors.backgroundSecondary};
+  background-color: ${({ theme }) => theme.colors.backgroundSecondary};
   padding: 5px;
   height: 100%;
   ${({ theme }) => theme.mq.md} {
@@ -50,16 +50,16 @@ const EventViewContainer = styled.main`
       width: 3px;
     }
     &::-webkit-scrollbar-thumb {
-      background-color: ${(props) => props.theme.colors.scrollbarThumb};
-      outline: 1px solid ${(props) => props.theme.colors.scrollbarThumb};
+      background-color: ${({ theme }) => theme.colors.scrollbarThumb};
+      outline: 1px solid ${({ theme }) => theme.colors.scrollbarThumb};
     }
   }
 `;
 
 const ContentWraper = styled.section`
-  background-color: ${(props) => props.theme.colors.backgroundSecondary};
+  background-color: ${({ theme }) => theme.colors.backgroundSecondary};
   padding: 5px;
-  border: 1px solid ${(props) => props.theme.colors.layout};
+  border: 1px solid ${({ theme }) => theme.colors.layout};
   position: relative;
   ${({ theme }) => theme.mq.md} {
     min-height: 100%;
@@ -67,8 +67,8 @@ const ContentWraper = styled.section`
 `;
 
 const Header = styled.header`
-  background-color: ${(props) => props.theme.colors.backgroundSecondary};
-  color: ${(props) => props.theme.colors.textSecondary};
+  background-color: ${({ theme }) => theme.colors.backgroundSecondary};
+  color: ${({ theme }) => theme.colors.textSecondary};
   display: flex;
   flex-direction: column;
   position: relative;
@@ -82,8 +82,8 @@ const Header = styled.header`
 `;
 
 const Describe = styled.article`
-  background-color: ${(props) => props.theme.colors.backgroundSecondary};
-  color: ${(props) => props.theme.colors.textPrimary};
+  background-color: ${({ theme }) => theme.colors.backgroundSecondary};
+  color: ${({ theme }) => theme.colors.textPrimary};
   text-align: center;
   overflow-wrap: anywhere;
   margin: 0px 5px 25px;
@@ -93,7 +93,7 @@ const Describe = styled.article`
 `;
 
 const Image = styled.img`
-  background-color: ${(props) => props.theme.colors.backgroundPrimary};
+  background-color: ${({ theme }) => theme.colors.backgroundPrimary};
   width: 100%;
   cursor: pointer;
   height: 100%;

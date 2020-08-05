@@ -145,9 +145,9 @@ export default Contact;
 
 const ContactContainer = styled.main`
   overflow: hidden;
-  background-color: ${(props) => props.theme.colors.backgroundSecondary};
+  background-color: ${({ theme }) => theme.colors.backgroundSecondary};
   margin-top: 10px;
-  border: 1px solid ${(props) => props.theme.colors.borderPrimary};
+  border: 1px solid ${({ theme }) => theme.colors.borderPrimary};
 `;
 const FromStyled = styled(Form)`
   width: auto;
@@ -162,33 +162,33 @@ const FromStyled = styled(Form)`
 `;
 
 const Validation = styled.div`
-  color: ${(props) => props.theme.colors.error};
+  color: ${({ theme }) => theme.colors.error};
   font-size: 12px;
   margin: 0 0 5px 0;
 `;
 
 const Button = styled(motion.button)`
-  background: ${(props) => props.theme.colors.backgroundSecondary};
-  color: ${(props) => props.theme.colors.textPrimary};
+  background: ${({ theme }) => theme.colors.backgroundSecondary};
+  color: ${({ theme }) => theme.colors.textPrimary};
   font-size: 20px;
-  border: 1px solid ${(props) => props.theme.colors.layout};
+  border: 1px solid ${({ theme }) => theme.colors.layout};
   height: 35px;
   width: 20%;
   align-self: flex-end;
   margin: 0 0 50px;
   &:disabled {
     color: ${(props) => props.theme.colors.disable};
-    border: 1px solid ${(props) => props.theme.colors.disable};
+    border: 1px solid ${({ theme }) => theme.colors.disable};
   }
 `;
 
 const Textarea = styled(motion.textarea)`
-  background: ${(props) => props.theme.colors.backgroundSecondary};
-  color: ${(props) => props.theme.colors.layout};
+  background: ${({ theme }) => theme.colors.backgroundSecondary};
+  color: ${({ theme }) => theme.colors.layout};
   font-size: 20px;
   font-family: inherit;
   font-weight: 400;
-  border: 1px solid ${(props) => props.theme.colors.layout};
+  border: 1px solid ${({ theme }) => theme.colors.layout};
   flex-basis: 200px;
   resize: none;
   margin: 0 0px 15px 0px;
@@ -199,6 +199,6 @@ const Textarea = styled(motion.textarea)`
   &:hover,
   &:focus {
     outline: none;
-    border: 1px solid ${(props) => props.theme.colors.hover};
+    border: 1px solid ${({ theme }) => theme.colors.hover};
   }
 `;

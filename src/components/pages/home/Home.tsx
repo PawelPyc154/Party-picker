@@ -44,8 +44,8 @@ const Events = styled.div`
       width: 3px;
     }
     &::-webkit-scrollbar-thumb {
-      background-color: ${(props) => props.theme.colors.scrollbarThumb};
-      outline: 1px solid ${(props) => props.theme.colors.scrollbarThumb};
+      background-color: ${({ theme }) => theme.colors.scrollbarThumb};
+      outline: 1px solid ${({ theme }) => theme.colors.scrollbarThumb};
     }
   }
 `;

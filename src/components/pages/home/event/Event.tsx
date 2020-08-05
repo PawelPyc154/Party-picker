@@ -27,9 +27,9 @@ const Event: React.FC<EventProps> = ({ event }) => {
 export default Event;
 
 const EventContainer = styled.section`
-  border: 1px solid ${(props) => props.theme.colors.layout};
-  background-color: ${(props) => props.theme.colors.backgroundSecondary};
-  color: ${(props) => props.theme.colors.textSecondary};
+  border: 1px solid ${({ theme }) => theme.colors.layout};
+  background-color: ${({ theme }) => theme.colors.backgroundSecondary};
+  color: ${({ theme }) => theme.colors.textSecondary};
   display: flex;
   flex-direction: column;
   position: relative;

@@ -45,7 +45,7 @@ export default SearchByDate;
 
 const SliderStyled = styled(Slider)`
   && .MuiSlider-root {
-    color: ${(props) => props.theme.colors.slider.root};
+    color: ${({ theme }) => theme.colors.slider.root};
     height: 2;
     padding: 15px 0;
     margin: 20px 0 100px;
@@ -53,7 +53,7 @@ const SliderStyled = styled(Slider)`
   && .MuiSlider-thumb {
     height: 20px;
     width: 20px;
-    background-color: ${(props) => props.theme.colors.slider.thumb};
+    background-color: ${({ theme }) => theme.colors.slider.thumb};
     margin-top: -10px;
     margin-left: -10px;
   }
@@ -63,20 +63,20 @@ const SliderStyled = styled(Slider)`
     top: -22px;
     & * {
       background: transparent;
-      color: ${(props) => props.theme.colors.slider.vertical};
+      color: ${({ theme }) => theme.colors.slider.vertical};
     }
   }
   && .MuiSlider-track {
     height: 2px;
-    background-color: ${(props) => props.theme.colors.slider.track};
+    background-color: ${({ theme }) => theme.colors.slider.track};
   }
   && .MuiSlider-rail {
     height: 2px;
     opacity: 0.5;
-    background-color: ${(props) => props.theme.colors.slider.rail};
+    background-color: ${({ theme }) => theme.colors.slider.rail};
   }
   && .MuiSlider-mark {
-    background-color: ${(props) => props.theme.colors.slider.mark};
+    background-color: ${({ theme }) => theme.colors.slider.mark};
     height: 8px;
     width: 1px;
     margin-top: -3px;
@@ -86,12 +86,12 @@ const SliderStyled = styled(Slider)`
   }
   && .MuiSlider-markActive {
     opacity: 1;
-    background-color: ${(props) => props.theme.colors.slider.markActive};
+    background-color: ${({ theme }) => theme.colors.slider.markActive};
   }
   && .MuiSlider-markLabel {
-    color: ${(props) => props.theme.colors.slider.markLabel};
+    color: ${({ theme }) => theme.colors.slider.markLabel};
     font-size: 10px;
-    @media (min-width: 960px) {
+    ${({ theme }) => theme.mq.lg} {
       font-size: 12px;
     }
   }

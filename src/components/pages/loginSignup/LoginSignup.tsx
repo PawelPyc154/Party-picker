@@ -39,17 +39,17 @@ export default LoginSignup;
 
 const LoginSignupContainer = styled.main`
   overflow: hidden;
-  background-color: ${(props) => props.theme.colors.backgroundSecondary};
+  background-color: ${({ theme }) => theme.colors.backgroundSecondary};
   margin-top: 10px;
-  border: 1px solid ${(props) => props.theme.colors.borderPrimary};
+  border: 1px solid ${({ theme }) => theme.colors.borderPrimary};
   ${({ theme }) => theme.mq.md} {
     overflow-y: scroll;
     &::-webkit-scrollbar {
       width: 3px;
     }
     &::-webkit-scrollbar-thumb {
-      background-color: ${(props) => props.theme.colors.scrollbarThumb};
-      outline: 1px solid ${(props) => props.theme.colors.scrollbarThumb};
+      background-color: ${({ theme }) => theme.colors.scrollbarThumb};
+      outline: 1px solid ${({ theme }) => theme.colors.scrollbarThumb};
     }
   }
 `;

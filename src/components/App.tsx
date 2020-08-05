@@ -53,7 +53,7 @@ const GlobalStyle = createGlobalStyle`
   box-sizing: border-box;
 }
 html {
-  font-size: 62.5%;
+  /* font-size: 62.5%; */
 }
 body {
   color: white;
@@ -89,7 +89,7 @@ span[data-index='1'] + .MuiSlider-markLabel {
 const AppContainer = styled.div`
   width: 100%;
   min-height: 100vh;
-  background-color: ${(props) => props.theme.colors.backgroundPrimary};
+  background-color: ${({ theme }) => theme.colors.backgroundPrimary};
   ${({ theme }) => theme.mq.md} {
     height: 100vh;
   }

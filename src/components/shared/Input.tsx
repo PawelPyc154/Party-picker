@@ -6,19 +6,19 @@ interface InputProps {
 }
 
 const Input = styled(motion.input)<InputProps>`
-  background: ${(props) => props.theme.colors.backgroundSecondary};
+  background: ${({ theme }) => theme.colors.backgroundSecondary};
   height: 35px;
-  color: ${(props) => props.theme.colors.textSecondary};
-  margin: ${(props) => props.margin || '0 0px 15px 0px'};
+  color: ${({ theme }) => theme.colors.textSecondary};
+  margin: ${({ margin }) => margin || '0 0px 15px 0px'};
   border: none;
-  border: 1px solid ${(props) => props.theme.colors.layout};
+  border: 1px solid ${({ theme }) => theme.colors.layout};
   padding: 0 5px;
   font-size: 16px;
   width: 100%;
   &:hover,
   &:focus {
     outline: none;
-    border: 1px solid ${(props) => props.theme.colors.hover};
+    border: 1px solid ${({ theme }) => theme.colors.hover};
   }
 `;
 

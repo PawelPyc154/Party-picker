@@ -182,21 +182,21 @@ const FromStyled = styled(Form)`
 `;
 
 const Validation = styled.div`
-  color: ${(props) => props.theme.colors.error};
+  color: ${({ theme }) => theme.colors.error};
   font-size: 12px;
   margin: 0 0 5px 0;
 `;
 
 const Button = styled(motion.button)`
-  background: ${(props) => props.theme.colors.backgroundSecondary};
-  color: ${(props) => props.theme.colors.textPrimary};
+  background: ${({ theme }) => theme.colors.backgroundSecondary};
+  color: ${({ theme }) => theme.colors.textPrimary};
   font-size: 20px;
-  border: 1px solid ${(props) => props.theme.colors.layout};
+  border: 1px solid ${({ theme }) => theme.colors.layout};
   height: 35px;
   padding: 0 10px;
   align-self: flex-end;
   &:disabled {
-    color: ${(props) => props.theme.colors.disable};
-    border: 1px solid ${(props) => props.theme.colors.disable};
+    color: ${({ theme }) => theme.colors.disable};
+    border: 1px solid ${({ theme }) => theme.colors.disable};
   }
 `;

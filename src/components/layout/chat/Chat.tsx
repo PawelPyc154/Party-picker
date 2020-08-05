@@ -98,7 +98,7 @@ export default Chat;
 
 const ChatContainer = styled.div`
   z-index: 600;
-  background-color: ${(props) => props.theme.colors.backgroundPrimary};
+  background-color: ${({ theme }) => theme.colors.backgroundPrimary};
   position: fixed;
   bottom: 0px;
   left: 0px;
@@ -113,7 +113,7 @@ const ChatContainer = styled.div`
     width: 350px;
     height: 400px;
     border-radius: 5px;
-    border: 1px solid ${(props) => props.theme.colors.borderPrimary};
+    border: 1px solid ${({ theme }) => theme.colors.borderPrimary};
   }
 `;
 const TopBar = styled.div`
@@ -122,8 +122,8 @@ const TopBar = styled.div`
   align-items: center;
 `;
 const Messages = styled.div`
-  border-top: 1px solid ${(props) => props.theme.colors.borderPrimary};
-  border-bottom: 1px solid ${(props) => props.theme.colors.borderPrimary};
+  border-top: 1px solid ${({ theme }) => theme.colors.borderPrimary};
+  border-bottom: 1px solid ${({ theme }) => theme.colors.borderPrimary};
   padding: 10px;
   width: 100%;
   display: flex;
@@ -134,14 +134,14 @@ const Messages = styled.div`
     width: 3px;
   }
   &::-webkit-scrollbar-thumb {
-    background-color: ${(props) => props.theme.colors.scrollbarThumb};
-    outline: 1px solid ${(props) => props.theme.colors.scrollbarThumb};
+    background-color: ${({ theme }) => theme.colors.scrollbarThumb};
+    outline: 1px solid ${({ theme }) => theme.colors.scrollbarThumb};
   }
 `;
 
 const Message = styled.div`
-  background: ${(props) => props.theme.colors.backgroundSecondary};
-  color: ${(props) => props.theme.colors.textSecondary};
+  background: ${({ theme }) => theme.colors.backgroundSecondary};
+  color: ${({ theme }) => theme.colors.textSecondary};
   border-radius: 16px;
   display: flex;
   justify-content: center;
@@ -154,12 +154,12 @@ const Message = styled.div`
   overflow-wrap: anywhere;
   &.userMessage {
     align-self: flex-end;
-    border: 1px solid ${(props) => props.theme.colors.layout};
+    border: 1px solid ${({ theme }) => theme.colors.layout};
   }
 `;
 
 const NoMessages = styled.div`
-  color: ${(props) => props.theme.colors.textSecondary};
+  color: ${({ theme }) => theme.colors.textSecondary};
   border-radius: 16px;
   justify-self: center;
   align-self: center;
@@ -183,11 +183,11 @@ const CloseButton = styled.button`
   justify-content: center;
   align-items: center;
   background-color: transparent;
-  color: ${(props) => props.theme.colors.layout};
+  color: ${({ theme }) => theme.colors.layout};
   margin-right: 5px;
   cursor: pointer;
   &:hover {
-    color: ${(props) => props.theme.colors.hover};
+    color: ${({ theme }) => theme.colors.hover};
   }
 `;
 
@@ -202,11 +202,11 @@ const BottomBar = styled.div`
 `;
 
 const Input = styled.input`
-  background: ${(props) => props.theme.colors.backgroundSecondary};
+  background: ${({ theme }) => theme.colors.backgroundSecondary};
   height: 35px;
-  color: ${(props) => props.theme.colors.textSecondary};
+  color: ${({ theme }) => theme.colors.textSecondary};
   border: none;
-  border: 1px solid ${(props) => props.theme.colors.layout};
+  border: 1px solid ${({ theme }) => theme.colors.layout};
   padding: 0 5px 0 15px;
   font-size: 16px;
   width: 100%;
@@ -215,15 +215,15 @@ const Input = styled.input`
   &:hover,
   &:focus {
     outline: none;
-    border: 1px solid ${(props) => props.theme.colors.hover};
+    border: 1px solid ${({ theme }) => theme.colors.hover};
   }
 `;
 const SendButton = styled.button`
-  background: ${(props) => props.theme.colors.backgroundSecondary};
+  background: ${({ theme }) => theme.colors.backgroundSecondary};
   height: 35px;
-  color: ${(props) => props.theme.colors.textSecondary};
+  color: ${({ theme }) => theme.colors.textSecondary};
   border: none;
-  border: 1px solid ${(props) => props.theme.colors.layout};
+  border: 1px solid ${({ theme }) => theme.colors.layout};
   border-left: none;
   padding: 0 5px;
   font-size: 25px;
@@ -236,8 +236,8 @@ const SendButton = styled.button`
   cursor: pointer;
   &:hover {
     outline: none;
-    border: 1px solid ${(props) => props.theme.colors.hover};
-    color: ${(props) => props.theme.colors.hover};
+    border: 1px solid ${({ theme }) => theme.colors.hover};
+    color: ${({ theme }) => theme.colors.hover};
   }
 `;
 
@@ -247,18 +247,18 @@ const Button = styled.button`
   left: 20px;
   width: 50px;
   height: 50px;
-  background-color: ${(props) => props.theme.colors.layout};
+  background-color: ${({ theme }) => theme.colors.layout};
   border: none;
   border-radius: 25px;
-  color: ${(props) => props.theme.colors.textThird};
+  color: ${({ theme }) => theme.colors.textThird};
   display: flex;
   justify-content: center;
   align-items: center;
   cursor: pointer;
   &:hover {
-    background-color: ${(props) => props.theme.colors.backgroundSecondary};
-    color: ${(props) => props.theme.colors.textPrimary};
-    border: 2px solid ${(props) => props.theme.colors.hover};
+    background-color: ${({ theme }) => theme.colors.backgroundSecondary};
+    color: ${({ theme }) => theme.colors.textPrimary};
+    border: 2px solid ${({ theme }) => theme.colors.hover};
   }
 `;
 

@@ -385,12 +385,12 @@ const Image = styled.img`
 `;
 
 const UploadImage = styled.label`
-  background: ${(props) => props.theme.colors.backgroundSecondary};
+  background: ${({ theme }) => theme.colors.backgroundSecondary};
   height: 35px;
-  color: ${(props) => props.theme.colors.textSecondary};
+  color: ${({ theme }) => theme.colors.textSecondary};
   margin: 0 0px 15px 0px;
   border: none;
-  border: 1px solid ${(props) => props.theme.colors.layout};
+  border: 1px solid ${({ theme }) => theme.colors.layout};
   padding: 2px;
   font-size: 16px;
   width: 100%;
@@ -400,18 +400,18 @@ const UploadImage = styled.label`
   padding: 0 5px;
   cursor: pointer;
   &:hover {
-    border: 1px solid ${(props) => props.theme.colors.hover};
-    color: ${(props) => props.theme.colors.hover};
+    border: 1px solid ${({ theme }) => theme.colors.hover};
+    color: ${({ theme }) => theme.colors.hover};
   }
 `;
 
 const DeleteImage = styled.button`
-  background: ${(props) => props.theme.colors.backgroundSecondary};
+  background: ${({ theme }) => theme.colors.backgroundSecondary};
   height: 35px;
-  color: ${(props) => props.theme.colors.textSecondary};
+  color: ${({ theme }) => theme.colors.textSecondary};
   margin: 0 0px 15px 0px;
   border: none;
-  border: 1px solid ${(props) => props.theme.colors.layout};
+  border: 1px solid ${({ theme }) => theme.colors.layout};
   padding: 2px;
   font-size: 16px;
   width: 100%;
@@ -424,8 +424,8 @@ const DeleteImage = styled.button`
     margin: 0 0px 15px 10px;
   }
   &:hover {
-    border: 1px solid ${(props) => props.theme.colors.hoverDelete};
-    color: ${(props) => props.theme.colors.hoverDelete};
+    border: 1px solid ${({ theme }) => theme.colors.hoverDelete};
+    color: ${({ theme }) => theme.colors.hoverDelete};
   }
 `;
 

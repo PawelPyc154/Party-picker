@@ -29,7 +29,7 @@ const Container = styled.div<ContainerProps>`
   align-items: center;
   justify-content: center;
   height: 100%;
-  margin: ${(props) => props.margin};
+  margin: ${({ margin }) => margin};
   ${({ theme }) => theme.mq.md} {
     margin: 0;
   }
