@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 import styled from 'styled-components';
 import { FilterContext } from '../../context/GetAndFilterEvents';
-import Loading from '../../universal/Loading';
+import Loading from '../../shared/Loading';
 import Event from './event/Event';
 import Filters from './filters/Filters';
 

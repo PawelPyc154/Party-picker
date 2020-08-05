@@ -8,7 +8,7 @@ import styled from 'styled-components';
 import { FilterContext } from '../../context/GetAndFilterEvents';
 import { AppState } from '../../../state/allReducers';
 import { setCoordinates } from '../../../state/positionAddEvent/action';
-import EventContent from '../../universal/EventContent';
+import EventContent from '../../shared/EventContent';
 
 export interface MapProps {}
 interface Viewport {

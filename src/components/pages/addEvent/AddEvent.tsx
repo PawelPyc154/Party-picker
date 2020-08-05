@@ -18,8 +18,8 @@ import { AppState } from '../../../state/allReducers';
 import { getEvents } from '../../../state/events/action';
 import { setCoordinates } from '../../../state/positionAddEvent/action';
 import axiosWithConfig from '../../../utils/axiosWithConfig';
-import Input from '../../universal/Input';
-import Loading from '../../universal/Loading';
+import Input from '../../shared/Input';
+import Loading from '../../shared/Loading';
 
 export interface AddEventProps {}
 

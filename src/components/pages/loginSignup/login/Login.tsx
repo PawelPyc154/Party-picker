@@ -6,8 +6,8 @@ import styled from 'styled-components';
 import * as yup from 'yup';
 import { AppState } from '../../../../state/allReducers';
 import { clearError, setLogin } from '../../../../state/auth/action';
-import Input from '../../../universal/Input';
-import Loading from '../../../universal/Loading';
+import Input from '../../../shared/Input';
+import Loading from '../../../shared/Loading';
 
 export interface LoginPropsProps {
   errorServerVisibleOn: string;

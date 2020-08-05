@@ -3,9 +3,9 @@ import { useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import styled from 'styled-components';
 import { AppState } from '../../../state/allReducers';
-import DeleteEventButton from '../../universal/DeleteEventButton';
-import EventContent from '../../universal/EventContent';
-import UpdateEventLink from '../../universal/UpdateEventLink';
+import DeleteEventButton from '../../shared/DeleteEventButton';
+import EventContent from '../../shared/EventContent';
+import UpdateEventLink from '../../shared/UpdateEventLink';
 import BackLink from './backLink/BackLink';
 
 export interface EventViewProps {}

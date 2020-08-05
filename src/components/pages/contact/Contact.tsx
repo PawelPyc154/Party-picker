@@ -5,7 +5,7 @@ import Scroll from 'react-scroll';
 import styled from 'styled-components';
 import * as yup from 'yup';
 import axiosWithConfig from '../../../utils/axiosWithConfig';
-import Input from '../../universal/Input';
+import Input from '../../shared/Input';
 
 export interface ContactProps {}
 

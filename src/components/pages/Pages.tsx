@@ -1,7 +1,7 @@
 import React, { Suspense } from 'react';
 import { Route, Switch } from 'react-router-dom';
-import Loading from '../universal/Loading';
-import PrivateRoute from '../universal/PrivateRoute';
+import Loading from '../shared/Loading';
+import PrivateRoute from '../shared/PrivateRoute';
 import Home from './home/Home';
 
 const LoginSignup = React.lazy(() => import('./loginSignup/LoginSignup'));
