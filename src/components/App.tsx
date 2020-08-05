@@ -2,7 +2,7 @@ import { SnackbarProvider } from 'notistack';
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { BrowserRouter as Router } from 'react-router-dom';
-import styled from 'styled-components';
+import styled, { createGlobalStyle } from 'styled-components';
 import GetAndFilterEventContext from './context/GetAndFilterEvents';
 import StyleVariableContext from './context/StyleVariable';
 import { AppState } from '../state/allReducers';
@@ -25,6 +25,7 @@ function App() {
   return (
     <Router basename={process.env.PUBLIC_URL}>
       <StyleVariableContext>
+        <GlobalStyle />
         <SnackbarProvider maxSnack={3}>
           <AppContainer>
             <Navigation />
@@ -43,6 +44,48 @@ function App() {
 }
 
 export default App;
+
+const GlobalStyle = createGlobalStyle`
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+html {
+  font-size: 62.5%;
+}
+body {
+  color: white;
+  box-sizing: border-box;
+  background-color: #202020;
+  font-size: 16px;
+}
+input:focus,
+select:focus,
+textarea:focus,
+button:focus {
+  outline: none;
+}
+a {
+  text-decoration: none;
+}
+span[data-index='1'] + .MuiSlider-markLabel {
+  @media (max-width: 768px) {
+    transform: translate(-50%, -12px);
+  }
+}
+.hoverRed {
+  &:hover {
+    border: 1px solid #e74c3c !important;
+    color: #e74c3c !important;
+  }
+}
+.errorInput {
+  border: 1px solid #e74c3c !important;
+}
+`;
 
 const AppContainer = styled.div`
   width: 100%;
