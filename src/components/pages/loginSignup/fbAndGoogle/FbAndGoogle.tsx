@@ -7,7 +7,6 @@ import { FaFacebookSquare, FaGoogle } from 'react-icons/fa';
 import { useDispatch } from 'react-redux';
 import styled from 'styled-components';
 import { setLoginRegisterGoogleFb } from '../../../../state/auth/action';
-import media from '../../../../utils/MediaQueries';
 
 export interface FbAndGoogleProps {}
 
@@ -70,7 +69,7 @@ const FbAndGoogleContainer = styled.section`
   margin: 10px 5px 5px;
   display: flex;
   flex-direction: column;
-  ${media.tablet} {
+  ${({ theme }) => theme.mq.md} {
     margin: 5vh auto 5px;
     max-width: 500px;
   }

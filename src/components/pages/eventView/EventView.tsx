@@ -3,7 +3,6 @@ import { useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import styled from 'styled-components';
 import { AppState } from '../../../state/allReducers';
-import media from '../../../utils/MediaQueries';
 import DeleteEventButton from '../../universal/DeleteEventButton';
 import EventContent from '../../universal/EventContent';
 import UpdateEventLink from '../../universal/UpdateEventLink';
@@ -43,7 +42,7 @@ const EventViewContainer = styled.main`
   background-color: ${(props) => props.theme.colors.backgroundSecondary};
   padding: 5px;
   height: 100%;
-  ${media.tablet} {
+  ${({ theme }) => theme.mq.md} {
     padding-bottom: 15px;
     min-height: 100%;
     overflow-y: scroll;
@@ -62,7 +61,7 @@ const ContentWraper = styled.section`
   padding: 5px;
   border: 1px solid ${(props) => props.theme.colors.layout};
   position: relative;
-  ${media.tablet} {
+  ${({ theme }) => theme.mq.md} {
     min-height: 100%;
   }
 `;
@@ -77,8 +76,7 @@ const Header = styled.header`
   align-items: center;
   overflow: hidden;
   height: 200px;
-
-  ${media.tablet} {
+  ${({ theme }) => theme.mq.md} {
     height: 150px;
   }
 `;
@@ -89,7 +87,7 @@ const Describe = styled.article`
   text-align: center;
   overflow-wrap: anywhere;
   margin: 0px 5px 25px;
-  ${media.tablet} {
+  ${({ theme }) => theme.mq.md} {
     padding: 0 5px;
   }
 `;

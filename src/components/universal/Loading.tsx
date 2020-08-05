@@ -1,7 +1,6 @@
 import React, { useContext } from 'react';
 import Loader from 'react-loader-spinner';
 import styled, { ThemeContext } from 'styled-components';
-import media from '../../utils/MediaQueries';
 
 export interface LoadingProps {
   height?: number;
@@ -31,7 +30,7 @@ const Container = styled.div<ContainerProps>`
   justify-content: center;
   height: 100%;
   margin: ${(props) => props.margin};
-  ${media.tablet} {
+  ${({ theme }) => theme.mq.md} {
     margin: 0;
   }
 `;

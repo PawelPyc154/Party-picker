@@ -3,7 +3,6 @@ import { useSelector } from 'react-redux';
 import styled from 'styled-components';
 import { AppState } from '../../../../state/allReducers';
 import EventType from '../../../../state/events/EventType';
-import media from '../../../../utils/MediaQueries';
 import DeleteEventButton from '../../../universal/DeleteEventButton';
 import EventContent from '../../../universal/EventContent';
 import UpdateEventLink from '../../../universal/UpdateEventLink';
@@ -39,7 +38,7 @@ const EventContainer = styled.section`
   overflow: hidden;
   height: 200px;
   margin: 15px 0;
-  ${media.tablet} {
+  ${({ theme }) => theme.mq.md} {
     height: 150px;
     margin: 15px 5px 15px 0;
   }

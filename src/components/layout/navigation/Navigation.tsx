@@ -9,7 +9,6 @@ import styled from 'styled-components';
 import { ThemeContext } from '../../context/StyleVariable';
 import { AppState } from '../../../state/allReducers';
 import { setLogOut } from '../../../state/auth/action';
-import media from '../../../utils/MediaQueries';
 
 export interface NavigationProps {}
 
@@ -92,7 +91,7 @@ const Logo = styled.div`
   margin: 0 20px;
   letter-spacing: 2px;
   display: none;
-  ${media.tablet} {
+  ${({ theme }) => theme.mq.md} {
     display: initial;
   }
 `;
@@ -124,7 +123,7 @@ const NavLinkLogInStyled = styled(NavLink)`
   align-items: center;
   font-size: 12px;
   cursor: pointer;
-  ${media.tablet} {
+  ${({ theme }) => theme.mq.md} {
     margin: 0 20px 0 auto;
   }
   &:hover {

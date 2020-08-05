@@ -1,7 +1,6 @@
 import { motion } from 'framer-motion';
 import React from 'react';
 import styled from 'styled-components';
-import media from '../../../../../utils/MediaQueries';
 import SearchByDate from './searchByDate/SearchByDate';
 import SearchByName from './searchByName/SearchByName';
 import SearchByProvince from './searchByProvince/SearchByProvince';
@@ -44,7 +43,7 @@ const FilterOptionsWrapper = styled(motion.div)`
   border: 1px solid ${(props) => props.theme.colors.borderPrimary};
   border-top: none;
   z-index: 600;
-  ${media.tablet} {
+  ${({ theme }) => theme.mq.md} {
     height: calc(100vh - 110px);
   }
 `;

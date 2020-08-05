@@ -8,7 +8,6 @@ import styled from 'styled-components';
 import { FilterContext } from '../../context/GetAndFilterEvents';
 import { AppState } from '../../../state/allReducers';
 import { setCoordinates } from '../../../state/positionAddEvent/action';
-import media from '../../../utils/MediaQueries';
 import EventContent from '../../universal/EventContent';
 
 export interface MapProps {}
@@ -125,7 +124,7 @@ export default Map;
 const MapContainer = styled.div`
   width: 100%;
   height: 100%;
-  ${media.tablet} {
+  ${({ theme }) => theme.mq.md} {
     order: 1;
   }
 `;
@@ -134,7 +133,7 @@ const FullscreenControlWrapper = styled.div`
   right: 10px;
   bottom: 30px;
   display: none;
-  ${media.tablet} {
+  ${({ theme }) => theme.mq.md} {
     display: block;
   }
 `;

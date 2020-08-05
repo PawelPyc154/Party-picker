@@ -12,6 +12,7 @@ export interface Filters {
 export const FilterContext = React.createContext(
   {} as {
     eventsFiltered: EventType[];
+
     filters: Filters;
     setFilters: React.Dispatch<React.SetStateAction<Filters>>;
     handleChangeFilters: (value: string, filterProperty: keyof Filters) => void;

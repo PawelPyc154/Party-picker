@@ -6,7 +6,6 @@ import styled from 'styled-components';
 import * as yup from 'yup';
 import { AppState } from '../../../../state/allReducers';
 import { clearError, setRegister } from '../../../../state/auth/action';
-import media from '../../../../utils/MediaQueries';
 import Input from '../../../universal/Input';
 import Loading from '../../../universal/Loading';
 
@@ -176,7 +175,7 @@ const FromStyled = styled(Form)`
   display: flex;
   flex-direction: column;
 
-  ${media.tablet} {
+  ${({ theme }) => theme.mq.md} {
     margin: 0 auto 5px;
     max-width: 500px;
   }

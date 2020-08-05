@@ -1,7 +1,6 @@
 import React, { useContext } from 'react';
 import styled from 'styled-components';
 import { FilterContext } from '../../context/GetAndFilterEvents';
-import media from '../../../utils/MediaQueries';
 import Loading from '../../universal/Loading';
 import Event from './event/Event';
 import Filters from './filters/Filters';
@@ -36,7 +35,7 @@ const HomeContainer = styled.main``;
 const Events = styled.div`
   padding-bottom: 10px;
   min-height: calc(100vh - 55px);
-  ${media.tablet} {
+  ${({ theme }) => theme.mq.md} {
     margin: 0 5px;
     overflow-y: scroll;
     height: calc(100% - 70px);

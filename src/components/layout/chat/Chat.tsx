@@ -8,7 +8,6 @@ import io from 'socket.io-client';
 import styled from 'styled-components';
 import { AppState } from '../../../state/allReducers';
 import { MessageTypes } from '../../../state/auth/auth';
-import media from '../../../utils/MediaQueries';
 
 let socket: SocketIOClient.Socket;
 
@@ -108,7 +107,7 @@ const ChatContainer = styled.div`
   display: grid;
   grid-template-rows: 50px 1fr 50px;
   grid-template-columns: 1fr;
-  ${media.tablet} {
+  ${({ theme }) => theme.mq.md} {
     bottom: 5px;
     left: 5px;
     width: 350px;

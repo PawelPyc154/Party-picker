@@ -18,7 +18,6 @@ import { AppState } from '../../../state/allReducers';
 import { getEvents } from '../../../state/events/action';
 import { setCoordinates } from '../../../state/positionAddEvent/action';
 import axiosWithConfig from '../../../utils/axiosWithConfig';
-import media from '../../../utils/MediaQueries';
 import Input from '../../universal/Input';
 import Loading from '../../universal/Loading';
 
@@ -254,7 +253,7 @@ const AddEventContainer = styled.main`
   background-color: ${(props) => props.theme.colors.backgroundSecondary};
   margin-top: 10px;
   border: 1px solid ${(props) => props.theme.colors.borderPrimary};
-  ${media.tablet} {
+  ${({ theme }) => theme.mq.md} {
     overflow-y: scroll;
     &::-webkit-scrollbar {
       width: 3px;
@@ -275,7 +274,7 @@ const FromStyled = styled(motion.form)`
   display: flex;
   flex-direction: column;
   padding: 5px;
-  ${media.tablet} {
+  ${({ theme }) => theme.mq.md} {
     margin: 40px auto 5px;
     max-width: 600px;
   }
@@ -290,7 +289,7 @@ const Validation = styled(motion.div)`
 const Wrapper = styled.div`
   display: grid;
   grid-template-columns: 1fr;
-  ${media.tablet} {
+  ${({ theme }) => theme.mq.md} {
     grid-template-columns: repeat(2, 1fr);
     grid-gap: 0 10px;
   }
@@ -351,8 +350,7 @@ const Textarea = styled(motion.textarea)`
   resize: none;
   margin: 15px 0 15px 0;
   padding: 5px;
-
-  ${media.tablet} {
+  ${({ theme }) => theme.mq.md} {
     flex-basis: 100px;
   }
 
@@ -365,7 +363,6 @@ const DatePickerStyled = styled(DatePicker)`
   background: ${(props) => props.theme.colors.backgroundSecondary};
   height: 35px;
   color: ${(props) => props.theme.colors.textSecondary};
-  /* display:flex; */
   text-align: center;
   border: none;
   border-left: none;
@@ -414,7 +411,7 @@ const DeleteImage = styled.button`
   justify-content: center;
   padding: 0 5px;
   cursor: pointer;
-  ${media.tablet} {
+  ${({ theme }) => theme.mq.md} {
     margin: 0 0px 15px 10px;
   }
   &:hover {
@@ -433,7 +430,7 @@ const RiDeleteBin2LineIcone = styled(RiDeleteBin2Line)`
 const UploadImageWraper = styled.div`
   display: flex;
   flex-wrap: wrap;
-  ${media.tablet} {
+  ${({ theme }) => theme.mq.md} {
     flex-wrap: initial;
   }
 `;

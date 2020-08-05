@@ -4,7 +4,6 @@ import { useHistory } from 'react-router-dom';
 import Scroll from 'react-scroll';
 import styled from 'styled-components';
 import { AppState } from '../../../state/allReducers';
-import media from '../../../utils/MediaQueries';
 import FbAndGoogle from './fbAndGoogle/FbAndGoogle';
 import Login from './login/Login';
 import Signup from './signup/Signup';
@@ -31,14 +30,8 @@ const LoginSignup: React.FC<LoginSignupProps> = () => {
   return (
     <LoginSignupContainer ref={container}>
       <FbAndGoogle />
-      <Login
-        errorServerVisibleOn={errorServerVisibleOn}
-        setErrorServerVisibleOn={setErrorServerVisibleOn}
-      />
-      <Signup
-        errorServerVisibleOn={errorServerVisibleOn}
-        setErrorServerVisibleOn={setErrorServerVisibleOn}
-      />
+      <Login errorServerVisibleOn={errorServerVisibleOn} setErrorServerVisibleOn={setErrorServerVisibleOn} />
+      <Signup errorServerVisibleOn={errorServerVisibleOn} setErrorServerVisibleOn={setErrorServerVisibleOn} />
     </LoginSignupContainer>
   );
 };
@@ -49,7 +42,7 @@ const LoginSignupContainer = styled.main`
   background-color: ${(props) => props.theme.colors.backgroundSecondary};
   margin-top: 10px;
   border: 1px solid ${(props) => props.theme.colors.borderPrimary};
-  ${media.tablet} {
+  ${({ theme }) => theme.mq.md} {
     overflow-y: scroll;
     &::-webkit-scrollbar {
       width: 3px;

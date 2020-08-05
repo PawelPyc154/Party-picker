@@ -5,7 +5,6 @@ import Scroll from 'react-scroll';
 import styled from 'styled-components';
 import * as yup from 'yup';
 import axiosWithConfig from '../../../utils/axiosWithConfig';
-import media from '../../../utils/MediaQueries';
 import Input from '../../universal/Input';
 
 export interface ContactProps {}
@@ -156,7 +155,7 @@ const FromStyled = styled(Form)`
   display: flex;
   flex-direction: column;
   padding: 5px;
-  ${media.tablet} {
+  ${({ theme }) => theme.mq.md} {
     margin: 10vh auto 5px;
     max-width: 500px;
   }
@@ -194,7 +193,7 @@ const Textarea = styled(motion.textarea)`
   resize: none;
   margin: 0 0px 15px 0px;
   padding: 5px;
-  ${media.tablet} {
+  ${({ theme }) => theme.mq.md} {
     flex-basis: 200px;
   }
   &:hover,

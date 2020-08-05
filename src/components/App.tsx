@@ -8,7 +8,6 @@ import StyleVariableContext from './context/StyleVariable';
 import { AppState } from '../state/allReducers';
 import { loadUser } from '../state/auth/action';
 import { getEvents } from '../state/events/action';
-import media from '../utils/MediaQueries';
 import Chat from './layout/chat/Chat';
 import Map from './layout/map/Map';
 import Navigation from './layout/navigation/Navigation';
@@ -72,7 +71,7 @@ a {
   text-decoration: none;
 }
 span[data-index='1'] + .MuiSlider-markLabel {
-  @media (max-width: 768px) {
+  ${({ theme }) => theme.mq.md} {
     transform: translate(-50%, -12px);
   }
 }
@@ -91,7 +90,7 @@ const AppContainer = styled.div`
   width: 100%;
   min-height: 100vh;
   background-color: ${(props) => props.theme.colors.backgroundPrimary};
-  ${media.tablet} {
+  ${({ theme }) => theme.mq.md} {
     height: 100vh;
   }
 `;
@@ -102,7 +101,7 @@ const ContentWraper = styled.div`
   grid-template-rows: 50vh 1fr;
   margin: 50px 6px 0px 5px;
   overflow: hidden;
-  ${media.tablet} {
+  ${({ theme }) => theme.mq.md} {
     grid-template-columns: repeat(2, 50vw);
     grid-template-rows: calc(100vh - 50px);
     margin: 0;
