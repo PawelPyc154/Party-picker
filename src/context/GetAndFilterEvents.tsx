@@ -58,7 +58,7 @@ const GetAndFilterEvent: React.FC<GetAndFilterEventProps> = ({ children }) => {
   };
 
   const handleChangeDate = (event: ChangeEvent<{}> | {}, newValue: number | number[]) => {
-    if (typeof newValue === 'object') {
+    if (newValue instanceof Object) {
       setFilters((prev: Filters) => ({ ...prev, timeFromTo: newValue }));
     }
   };
