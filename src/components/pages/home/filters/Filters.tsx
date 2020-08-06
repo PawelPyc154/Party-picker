@@ -38,5 +38,5 @@ const FiltersContainer = styled.section`
   border: 1px solid ${({ theme }) => theme.colors.borderPrimary};
   margin-top: 10px;
   position: relative;
-  z-index: 600;
+  z-index: ${({ theme }) => theme.zIndex.level6};
 `;

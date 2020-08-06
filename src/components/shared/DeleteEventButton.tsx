@@ -71,7 +71,7 @@ const DeleteEventButton: React.FC<DeleteEventButtonProps> = ({ eventId }) => {
 export default DeleteEventButton;
 
 const ButtonDelete = styled.button`
-  z-index: 100;
+  z-index: ${({ theme }) => theme.zIndex.level1};
   border: none;
   background-color: transparent;
   color: ${({ theme }) => theme.colors.textSecondary};

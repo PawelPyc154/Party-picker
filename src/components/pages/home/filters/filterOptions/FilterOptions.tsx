@@ -42,7 +42,7 @@ const FilterOptionsWrapper = styled(motion.div)`
   padding: 10px 5px;
   border: 1px solid ${({ theme }) => theme.colors.borderPrimary};
   border-top: none;
-  z-index: 600;
+  z-index: ${({ theme }) => theme.zIndex.level6};
   ${({ theme }) => theme.mq.md} {
     height: calc(100vh - 110px);
   }

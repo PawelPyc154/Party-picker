@@ -1,4 +1,5 @@
 export const zIndex = {
+  level0: '0',
   level1: '100',
   level2: '200',
   level3: '300',

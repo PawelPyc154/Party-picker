@@ -73,7 +73,7 @@ const NavigationContainer = styled.nav`
   display: flex;
   align-items: center;
   position: fixed;
-  z-index: 500;
+  z-index: ${({ theme }) => theme.zIndex.level5};
   top: 0;
   left: 0;
   border: 1px solid ${(props) => props.theme.colors.borderPrimary};

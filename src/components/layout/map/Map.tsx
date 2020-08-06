@@ -138,12 +138,12 @@ const FullscreenControlWrapper = styled.div`
   }
 `;
 const MarkerStyled = styled(Marker)`
-  z-index: 0;
+  z-index: ${({ theme }) => theme.zIndex.level0};
   &&.hidden {
     display: none;
   }
   &:hover {
-    z-index: 20;
+    z-index: ${({ theme }) => theme.zIndex.level1};
   }
 `;
 const MarkerLinkWrapper = styled(motion.div)`
@@ -173,7 +173,7 @@ const MarkerInfo = styled.div`
   background-color: ${({ theme }) => theme.colors.backgroundSecondary};
   pointer-events: none;
   opacity: 0;
-  z-index: 100;
+  z-index: ${({ theme }) => theme.zIndex.level2};
   display: flex;
   flex-direction: column;
   justify-content: center;

@@ -97,7 +97,7 @@ const Chat: React.FC<ChatProps> = () => {
 export default Chat;
 
 const ChatContainer = styled.div`
-  z-index: 600;
+  z-index: ${({ theme }) => theme.zIndex.level6};
   background-color: ${({ theme }) => theme.colors.backgroundPrimary};
   position: fixed;
   bottom: 0px;

@@ -16,7 +16,7 @@ const BackLink: React.FC<BackLinkProps> = () => (
 export default BackLink;
 
 const LinkBack = styled(Link)`
-  z-index: 100;
+  z-index: ${({ theme }) => theme.zIndex.level1};
   border: none;
   color: ${({ theme }) => theme.colors.textSecondary};
   display: flex;
