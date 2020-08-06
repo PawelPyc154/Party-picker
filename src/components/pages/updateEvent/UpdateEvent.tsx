@@ -257,17 +257,17 @@ export default UpdateEvent;
 
 const UpdateEventContainer = styled.main`
   overflow: hidden;
-  background-color: ${(props) => props.theme.colors.backgroundSecondary};
+  background-color: ${({ theme }) => theme.colors.backgroundSecondary};
   margin-top: 10px;
-  border: 1px solid ${(props) => props.theme.colors.borderPrimary};
+  border: 1px solid ${({ theme }) => theme.colors.borderPrimary};
   ${({ theme }) => theme.mq.md} {
     overflow-y: scroll;
     &::-webkit-scrollbar {
       width: 3px;
     }
     &::-webkit-scrollbar-thumb {
-      background-color: ${(props) => props.theme.colors.scrollbarThumb};
-      outline: 1px solid ${(props) => props.theme.colors.scrollbarThumb};
+      background-color: ${({ theme }) => theme.colors.scrollbarThumb};
+      outline: 1px solid ${({ theme }) => theme.colors.scrollbarThumb};
     }
   }
 `;
@@ -288,7 +288,7 @@ const FromStyled = styled(motion.form)`
 `;
 
 const Validation = styled(motion.div)`
-  color: ${(props) => props.theme.colors.error};
+  color: ${({ theme }) => theme.colors.error};
   font-size: 12px;
   margin: 0 0 5px 0;
 `;
@@ -302,19 +302,19 @@ const Wrapper = styled.div`
   }
 `;
 const WrapperDate = styled(motion.div)`
-  border: 1px solid ${(props) => props.theme.colors.layout};
+  border: 1px solid ${({ theme }) => theme.colors.layout};
   &:hover {
-    border: 1px solid ${(props) => props.theme.colors.hover};
+    border: 1px solid ${({ theme }) => theme.colors.hover};
   }
 `;
 
 const Coordinate = styled(motion.div)`
-  background: ${(props) => props.theme.colors.backgroundSecondary};
+  background: ${({ theme }) => theme.colors.backgroundSecondary};
   height: 35px;
-  color: ${(props) => props.theme.colors.textSecondary};
+  color: ${({ theme }) => theme.colors.textSecondary};
   margin: 0 0px 15px 0px;
   border: none;
-  border: 1px solid ${(props) => props.theme.colors.borderSecondary};
+  border: 1px solid ${({ theme }) => theme.colors.borderSecondary};
   padding: 2px;
   font-size: 16px;
   width: 100%;
@@ -332,27 +332,27 @@ const Ellipsis = styled.p`
 `;
 
 const Button = styled(motion.button)`
-  background: ${(props) => props.theme.colors.backgroundSecondary};
-  color: ${(props) => props.theme.colors.textPrimary};
+  background: ${({ theme }) => theme.colors.backgroundSecondary};
+  color: ${({ theme }) => theme.colors.textPrimary};
   font-size: 20px;
-  border: 1px solid ${(props) => props.theme.colors.layout};
+  border: 1px solid ${({ theme }) => theme.colors.layout};
   height: 35px;
   width: 20%;
   align-self: flex-end;
   margin-bottom: 50px;
   &:disabled {
-    color: ${(props) => props.theme.colors.disable};
-    border: 1px solid ${(props) => props.theme.colors.disable};
+    color: ${({ theme }) => theme.colors.disable};
+    border: 1px solid ${({ theme }) => theme.colors.disable};
   }
 `;
 
 const Textarea = styled(motion.textarea)`
-  background: ${(props) => props.theme.colors.backgroundSecondary};
-  color: ${(props) => props.theme.colors.textSecondary};
+  background: ${({ theme }) => theme.colors.backgroundSecondary};
+  color: ${({ theme }) => theme.colors.textSecondary};
   font-size: 20px;
   font-family: inherit;
   font-weight: 400;
-  border: 1px solid ${(props) => props.theme.colors.layout};
+  border: 1px solid ${({ theme }) => theme.colors.layout};
   flex-basis: 100px;
   resize: none;
   margin: 15px 0 15px 0;
@@ -362,14 +362,14 @@ const Textarea = styled(motion.textarea)`
   }
   &:hover,
   &:focus {
-    border: 1px solid ${(props) => props.theme.colors.hover};
+    border: 1px solid ${({ theme }) => theme.colors.hover};
   }
 `;
 
 const DatePickerStyled = styled(DatePicker)`
-  background: ${(props) => props.theme.colors.backgroundSecondary};
+  background: ${({ theme }) => theme.colors.backgroundSecondary};
   height: 35px;
-  color: ${(props) => props.theme.colors.textSecondary};
+  color: ${({ theme }) => theme.colors.textSecondary};
   text-align: center;
   border: none;
   border-left: none;
@@ -379,7 +379,7 @@ const DatePickerStyled = styled(DatePicker)`
 `;
 
 const Image = styled.img`
-  background-color: ${(props) => props.theme.colors.backgroundPrimary};
+  background-color: ${({ theme }) => theme.colors.backgroundPrimary};
   width: 100%;
   cursor: pointer;
 `;
