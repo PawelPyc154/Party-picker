@@ -23,7 +23,6 @@ export default Loading;
 export interface ContainerProps {
   margin: string;
 }
-
 const Container = styled.div<ContainerProps>`
   display: flex;
   align-items: center;

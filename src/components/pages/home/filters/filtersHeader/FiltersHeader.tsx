@@ -80,12 +80,10 @@ const Wraper = styled.div`
   display: flex;
   align-items: center;
 `;
-
 const IoMdOptionsStyled = styled(IoMdOptions)`
   font-size: 20px;
   margin-right: 5px;
 `;
-
 const LinkUser = styled(Link)`
   border: none;
   color: ${({ theme }) => theme.colors.textSecondary};
@@ -98,7 +96,6 @@ const LinkUser = styled(Link)`
     color: ${({ theme }) => theme.colors.hover};
   }
 `;
-
 const IoIosAddStyled = styled(IoIosAdd)`
   font-size: 30px;
 `;

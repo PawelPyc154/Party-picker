@@ -57,7 +57,6 @@ const SliderStyled = styled(Slider)`
     margin-top: -10px;
     margin-left: -10px;
   }
-
   && .MuiSlider-vertical {
     left: calc(-50% + 11px);
     top: -22px;

@@ -73,7 +73,6 @@ const FbAndGoogleContainer = styled.section`
     margin: 5vh auto 5px;
     max-width: 500px;
   }
-
   .facebookLogin {
     width: 100%;
     height: 35px;

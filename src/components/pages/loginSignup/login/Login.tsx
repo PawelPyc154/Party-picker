@@ -135,19 +135,16 @@ const FromStyled = styled(Form)`
   margin: 10px 5px 5px;
   display: flex;
   flex-direction: column;
-
   ${({ theme }) => theme.mq.md} {
     margin: 10px auto 5px;
     max-width: 500px;
   }
 `;
-
 const Validation = styled.div`
   color: ${({ theme }) => theme.colors.error};
   font-size: 12px;
   margin: 0 0 5px 0;
 `;
-
 const Button = styled(motion.button)`
   background: ${({ theme }) => theme.colors.backgroundSecondary};
   color: ${({ theme }) => theme.colors.textPrimary};

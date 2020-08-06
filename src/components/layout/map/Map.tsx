@@ -155,7 +155,6 @@ const MarkerLinkWrapper = styled(motion.div)`
     opacity: 1;
   }
 `;
-
 const TiLocationStyled = styled(TiLocation)`
   font-size: 50px;
   color: ${({ theme }) => theme.colors.map.marker};
@@ -163,7 +162,6 @@ const TiLocationStyled = styled(TiLocation)`
     color: ${({ theme }) => theme.colors.map.markerAddEvent};
   }
 `;
-
 const MarkerInfo = styled.div`
   width: 200px;
   height: 150px;

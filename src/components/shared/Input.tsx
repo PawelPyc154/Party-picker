@@ -4,7 +4,6 @@ import styled from 'styled-components';
 interface InputProps {
   margin?: string;
 }
-
 const Input = styled(motion.input)<InputProps>`
   background: ${({ theme }) => theme.colors.backgroundSecondary};
   height: 35px;

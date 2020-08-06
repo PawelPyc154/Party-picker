@@ -34,7 +34,6 @@ const LinkUpdate = styled(Link)`
     color: ${({ theme }) => theme.colors.hover};
   }
 `;
-
 const FaEditStyled = styled(FaEdit)`
   font-size: 18px;
 `;

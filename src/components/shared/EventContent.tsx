@@ -48,14 +48,12 @@ const Wraper = styled.div`
   right: 0;
   align-items: center;
 `;
-
 const DateWrapper = styled.div`
   display: flex;
   padding: 2px;
   color: ${({ theme }) => theme.colors.textSecondary};
   margin: 5px;
 `;
-
 const Sup = styled.span`
   font-size: 12px;
 `;

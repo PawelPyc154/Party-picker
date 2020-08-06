@@ -19,7 +19,6 @@ export default ViewEvent;
 
 const LinkUpdate = styled(Link)`
   border: none;
-
   color: ${({ theme }) => theme.colors.textSecondary};
   display: flex;
   align-items: center;
@@ -34,7 +33,6 @@ const LinkUpdate = styled(Link)`
     color: ${({ theme }) => theme.colors.hover};
   }
 `;
-
 const BsArrowsFullscreenIcone = styled(BsArrowsFullscreen)`
   font-size: 18px;
 `;

@@ -160,13 +160,11 @@ const FromStyled = styled(Form)`
     max-width: 500px;
   }
 `;
-
 const Validation = styled.div`
   color: ${({ theme }) => theme.colors.error};
   font-size: 12px;
   margin: 0 0 5px 0;
 `;
-
 const Button = styled(motion.button)`
   background: ${({ theme }) => theme.colors.backgroundSecondary};
   color: ${({ theme }) => theme.colors.textPrimary};
@@ -181,7 +179,6 @@ const Button = styled(motion.button)`
     border: 1px solid ${({ theme }) => theme.colors.disable};
   }
 `;
-
 const Textarea = styled(motion.textarea)`
   background: ${({ theme }) => theme.colors.backgroundSecondary};
   color: ${({ theme }) => theme.colors.layout};

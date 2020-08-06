@@ -274,7 +274,6 @@ const UpdateEventContainer = styled.main`
 const H2 = styled(motion.h2)`
   margin: 10px auto 20px;
 `;
-
 const FromStyled = styled(motion.form)`
   width: 100%;
   margin: 10px 0 5px;
@@ -286,13 +285,11 @@ const FromStyled = styled(motion.form)`
     max-width: 600px;
   }
 `;
-
 const Validation = styled(motion.div)`
   color: ${({ theme }) => theme.colors.error};
   font-size: 12px;
   margin: 0 0 5px 0;
 `;
-
 const Wrapper = styled.div`
   display: grid;
   grid-template-columns: 1fr;

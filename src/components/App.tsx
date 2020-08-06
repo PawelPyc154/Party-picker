@@ -85,7 +85,6 @@ span[data-index='1'] + .MuiSlider-markLabel {
   border: 1px solid ${({ theme }) => theme.colors.error} !important;
 }
 `;
-
 const AppContainer = styled.div`
   width: 100%;
   min-height: 100vh;
@@ -94,7 +93,6 @@ const AppContainer = styled.div`
     height: 100vh;
   }
 `;
-
 const ContentWraper = styled.div`
   display: grid;
   grid-template-columns: 1fr;

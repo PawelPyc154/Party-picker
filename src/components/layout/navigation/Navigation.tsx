@@ -95,7 +95,6 @@ const Logo = styled.div`
     display: initial;
   }
 `;
-
 const NavLinkStyled = styled(NavLink)`
   text-decoration: none;
   background-color: transparent;
@@ -109,7 +108,6 @@ const NavLinkStyled = styled(NavLink)`
     color: ${(props) => props.theme.colors.hover};
   }
 `;
-
 const NavLinkLogInStyled = styled(NavLink)`
   text-decoration: none;
   background-color: transparent;
@@ -131,7 +129,6 @@ const NavLinkLogInStyled = styled(NavLink)`
     color: ${({ theme }) => theme.colors.hover};
   }
 `;
-
 const UserLogin = styled.div`
   display: grid;
   margin: 0 20px 0 auto;
@@ -139,7 +136,6 @@ const UserLogin = styled.div`
   grid-template-rows: 40px;
   grid-gap: 0 5px;
 `;
-
 const NavLinkUser = styled(NavLink)`
   border: none;
   border-radius: 20px;
@@ -151,7 +147,6 @@ const NavLinkUser = styled(NavLink)`
     color: ${({ theme }) => theme.colors.hover};
   }
 `;
-
 const LogOutButton = styled.button`
   border: none;
   background-color: ${({ theme }) => theme.colors.backgroundSecondary};
@@ -164,20 +159,16 @@ const LogOutButton = styled.button`
     color: ${({ theme }) => theme.colors.hover};
   }
 `;
-
 const FaUserAltStyled = styled(FaUserAlt)`
   font-size: 20px;
 `;
-
 const GoSignOutStyled = styled(GoSignOut)`
   font-size: 22px;
   margin: 5px 0 0 4px;
 `;
-
 const IoIosAddStyled = styled(IoIosAdd)`
   font-size: 30px;
 `;
-
 const SwitchStyled = styled(Switch)`
   && .MuiSwitch-thumb {
     background-color: ${({ theme }) => theme.colors.switch.thumb};

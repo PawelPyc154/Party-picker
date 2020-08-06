@@ -32,7 +32,6 @@ const LinkBack = styled(Link)`
     color: ${({ theme }) => theme.colors.hover};
   }
 `;
-
 const IoMdArrowRoundBackIcone = styled(IoMdArrowRoundBack)`
   font-size: 22px;
 `;

@@ -55,7 +55,6 @@ const EventViewContainer = styled.main`
     }
   }
 `;
-
 const ContentWraper = styled.section`
   background-color: ${({ theme }) => theme.colors.backgroundSecondary};
   padding: 5px;
@@ -65,7 +64,6 @@ const ContentWraper = styled.section`
     min-height: 100%;
   }
 `;
-
 const Header = styled.header`
   background-color: ${({ theme }) => theme.colors.backgroundSecondary};
   color: ${({ theme }) => theme.colors.textSecondary};
@@ -80,7 +78,6 @@ const Header = styled.header`
     height: 150px;
   }
 `;
-
 const Describe = styled.article`
   background-color: ${({ theme }) => theme.colors.backgroundSecondary};
   color: ${({ theme }) => theme.colors.textPrimary};
@@ -91,7 +88,6 @@ const Describe = styled.article`
     padding: 0 5px;
   }
 `;
-
 const Image = styled.img`
   background-color: ${({ theme }) => theme.colors.backgroundPrimary};
   width: 100%;

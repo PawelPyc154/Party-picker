@@ -88,17 +88,14 @@ const ButtonDelete = styled.button`
     color: ${({ theme }) => theme.colors.hoverDelete};
   }
 `;
-
 const RiDeleteBin2LineStyled = styled(RiDeleteBin2Line)`
   font-size: 22px;
 `;
-
 const DialogStyled = styled(Dialog)`
   && .MuiDialog-paper {
     background-color: ${({ theme }) => theme.colors.dialog.background} !important;
   }
 `;
-
 const DialogContentTextStyled = styled(DialogContentText)`
   && {
     color: ${({ theme }) => theme.colors.dialog.text} !important;

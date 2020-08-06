@@ -267,7 +267,6 @@ const AddEventContainer = styled.main`
 const H2 = styled(motion.h2)`
   margin: 10px auto 20px;
 `;
-
 const FromStyled = styled(motion.form)`
   width: 100%;
   margin: 10px 0 5px;
@@ -279,13 +278,11 @@ const FromStyled = styled(motion.form)`
     max-width: 600px;
   }
 `;
-
 const Validation = styled(motion.div)`
   color: ${({ theme }) => theme.colors.error};
   font-size: 12px;
   margin: 0 0 5px 0;
 `;
-
 const Wrapper = styled.div`
   display: grid;
   grid-template-columns: 1fr;
@@ -300,7 +297,6 @@ const WrapperDate = styled(motion.div)`
     border: 1px solid ${({ theme }) => theme.colors.hover};
   }
 `;
-
 const Coordinate = styled(motion.div)`
   background: ${({ theme }) => theme.colors.backgroundSecondary};
   height: 35px;
@@ -316,14 +312,12 @@ const Coordinate = styled(motion.div)`
   justify-content: center;
   padding: 0 5px;
 `;
-
 const Ellipsis = styled.p`
   justify-content: initial;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
 `;
-
 const Button = styled(motion.button)`
   background: ${({ theme }) => theme.colors.backgroundSecondary};
   color: ${({ theme }) => theme.colors.textPrimary};
@@ -338,7 +332,6 @@ const Button = styled(motion.button)`
     border: 1px solid ${({ theme }) => theme.colors.disable};
   }
 `;
-
 const Textarea = styled(motion.textarea)`
   background: ${({ theme }) => theme.colors.backgroundSecondary};
   color: ${({ theme }) => theme.colors.textSecondary};
@@ -370,7 +363,6 @@ const DatePickerStyled = styled(DatePicker)`
   font-size: 16px;
   width: 100%;
 `;
-
 const Image = styled.img`
   background-color: ${({ theme }) => theme.colors.backgroundPrimary};
   width: 100%;
