@@ -32,7 +32,7 @@ function App() {
               <ContentWraper>
                 <Map />
                 <Pages />
-                {user ? <Chat /> : null}
+                {user && <Chat />}
               </ContentWraper>
             </GetAndFilterEventContext>
           </AppContainer>
@@ -56,9 +56,9 @@ html {
   /* font-size: 62.5%; */
 }
 body {
-  color: white;
+  color:${({ theme }) => theme.colors.textPrimary};
   box-sizing: border-box;
-  background-color: #202020;
+  background-color: ${({ theme }) => theme.colors.backgroundSecondary};
   font-size: 16px;
 }
 input:focus,
@@ -77,12 +77,12 @@ span[data-index='1'] + .MuiSlider-markLabel {
 }
 .hoverRed {
   &:hover {
-    border: 1px solid #e74c3c !important;
-    color: #e74c3c !important;
+    border: 1px solid ${({ theme }) => theme.colors.hoverDelete} !important;
+    color: ${({ theme }) => theme.colors.hoverDelete} !important;  
   }
 }
 .errorInput {
-  border: 1px solid #e74c3c !important;
+  border: 1px solid ${({ theme }) => theme.colors.error} !important;
 }
 `;
 
