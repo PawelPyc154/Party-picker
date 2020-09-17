@@ -17,6 +17,8 @@ const asyncHandlerError = (fn: (dispatch: ThunkDispatch<{}, {}, AuthActionTypes>
   dispatch: ThunkDispatch<{}, {}, AuthActionTypes>,
 ) =>
   Promise.resolve(fn(dispatch)).catch((err) => {
+    console.log(err.response?.data);
+
     dispatch({
       type: AUTH_ERROR,
       payload: err.response?.data.error,
