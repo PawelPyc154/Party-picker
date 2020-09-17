@@ -13,4 +13,5 @@ const EventsReducer = (state = initialState, action: EventsActionTypes): EventTy
   }
 };
 
+
 export default EventsReducer;
