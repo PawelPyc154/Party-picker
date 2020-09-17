@@ -1,14 +1,14 @@
 import { SnackbarProvider } from 'notistack';
 import React, { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { BrowserRouter as Router } from 'react-router-dom';
 import styled, { createGlobalStyle } from 'styled-components';
 import GetAndFilterEventContext from './context/GetAndFilterEvents';
 import StyleVariableContext from './context/StyleVariable';
-import { AppState } from '../state/allReducers';
+
 import { loadUser } from '../state/auth/action';
 import { getEvents } from '../state/events/action';
-import Chat from './layout/chat/Chat';
+
 import Map from './layout/map/Map';
 import Navigation from './layout/navigation/Navigation';
 import Pages from './pages/Pages';
@@ -19,7 +19,7 @@ function App() {
     dispatch(getEvents());
     dispatch(loadUser());
   }, [dispatch]);
-  const { user } = useSelector((state: AppState) => state.AuthReducer);
+
 
   return (
     <Router basename={process.env.PUBLIC_URL}>
@@ -32,7 +32,7 @@ function App() {
               <ContentWraper>
                 <Map />
                 <Pages />
-                {user && <Chat />}
+
               </ContentWraper>
             </GetAndFilterEventContext>
           </AppContainer>
@@ -53,13 +53,13 @@ const GlobalStyle = createGlobalStyle`
   box-sizing: border-box;
 }
 html {
-  /* font-size: 62.5%; */
+  font-size: 62.5%;
 }
 body {
   color:${({ theme }) => theme.colors.textPrimary};
   box-sizing: border-box;
   background-color: ${({ theme }) => theme.colors.backgroundSecondary};
-  font-size: 16px;
+  font-size: 1.6rem;
 }
 input:focus,
 select:focus,
